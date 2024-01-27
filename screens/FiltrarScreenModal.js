@@ -8,6 +8,7 @@ import Origem from '../Entity/Origem';
 import Sexo from '../Entity/Sexo';
 import Sexualidade from '../Entity/Sexualidade';
 import Peso from '../Entity/Peso';
+import { useNavigation } from '@react-navigation/native';
 
 const FiltrarScreenModal = () => {
     // Estados para controlar a visibilidade de cada modal
@@ -87,6 +88,12 @@ const FiltrarScreenModal = () => {
         setSelectedPeso(itemValue);
         togglePesoModal();
     };
+
+    //tratando a navegação do botão BUSCAR
+    const navigation = useNavigation();
+    const handleBuscarPress = () => {
+        navigation.navigate('ResultadoBusca');
+    };
   
     return (
       <>
@@ -162,7 +169,8 @@ const FiltrarScreenModal = () => {
         </ScrollView>
         <View style={styles.btnContainer}>
             <TouchableOpacity style={[styles.button, {backgroundColor: 'green'},
-            {height: 100}]}>
+            {height: 100}]}
+            onPress={handleBuscarPress}>
                 <Text style={styles.pickerTxt}>BUSCAR</Text>
             </TouchableOpacity>
         </View>
