@@ -2,9 +2,9 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import HomeScreen from './screens/HomeScreen'; // Sua tela principal
-import FiltrarScreen from './screens/FiltrarScreenModal'; // tela Filtrar
-import ResultadoBusca from './screens/ResultadoBusca'; //tela resultadoBusca
+import HomeScreen from './src/screens/HomeScreen'; // Sua tela principal
+import FiltrarScreen from './src/screens/FiltrarScreenModal'; // tela Filtrar
+import ResultadoBusca from './src/screens/ResultadoBusca'; //tela resultadoBusca
 
 const Stack = createStackNavigator();
 
