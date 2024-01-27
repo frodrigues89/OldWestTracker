@@ -1,6 +1,8 @@
-const Nacionalidade = {
-    BRASILEIRO: 'Brasileiro',
-    MERCOSUL: 'Mercosul',
+const Sexualidade = {
+    HETERO: 'Hetero',
+    CHUSKA: 'Chuska',
+    TRAVESTI: 'Travesti',
+    SAPATAO: 'Sapatao',
     OUTROS: 'Outros',
   
     getAllValues: function () {
@@ -14,4 +16,4 @@ const Nacionalidade = {
     },
 };
 
-export default Nacionalidade;
+export default Sexualidade;

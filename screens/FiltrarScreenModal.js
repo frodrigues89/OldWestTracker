@@ -1,16 +1,22 @@
 import React, { useState } from 'react';
-import { View, Text} from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView} from 'react-native';
 import Altura from '../Entity/Altura';
 import DropdownComponent from '../src/components/DropdownComponent';
 import styles from './styles';
 import FaixaEtaria from '../Entity/FaixaEtaria';
-import Nacionalidade from '../Entity/Nacionalidade';
+import Origem from '../Entity/Origem';
+import Sexo from '../Entity/Sexo';
+import Sexualidade from '../Entity/Sexualidade';
+import Peso from '../Entity/Peso';
 
 const FiltrarScreenModal = () => {
     // Estados para controlar a visibilidade de cada modal
     const [isAlturaModalVisible, setAlturaModalVisible] = useState(false);
     const [isFaixaEtariaModalVisible, setFaixaEtariaModalVisible] = useState(false);
-    const [isNacionalidadeModalVisible, setNacionalidadeModalVisible] = useState(false);
+    const [isOrigemModalVisible, setOrigemModalVisible] = useState(false);
+    const [isSexoModalVisible, setSexoModalVisible] = useState(false);
+    const [isSexualidadeModalVisible, setSexualidadeModalVisible] = useState(false);
+    const [isPesoModalVisible, setPesoModalVisible] = useState(false);
 
     // métodos para tratar a visibilidade do modal.
     const toggleAlturaModal = () => {
@@ -21,21 +27,38 @@ const FiltrarScreenModal = () => {
         setFaixaEtariaModalVisible(!isFaixaEtariaModalVisible);
     };
 
-    const toggleNacionalidadeModal = () => {
-        setNacionalidadeModalVisible(!isNacionalidadeModalVisible);
+    const toggleOrigemModal = () => {
+        setOrigemModalVisible(!isOrigemModalVisible);
+    };
+    const toggleSexoModal = () => {
+        setSexoModalVisible(!isSexoModalVisible);
+    };
+
+    const toggleSexualidadeModal = () => {
+        setSexualidadeModalVisible(!isSexualidadeModalVisible);
+    };
+
+    const togglePesoModal = () => {
+        setPesoModalVisible(!isPesoModalVisible);
     };
 
     //variáveis de características.
     const [selectedAltura, setSelectedAltura] = useState(null);
     const [selectedFaixaEtaria, setSelectedFaixaEtaria] = useState(null);
-    const [selectedNacionalidade, setSelectedNacionalidade] = useState(null);
+    const [selectedOrigem, setSelectedOrigem] = useState(null);
+    const [selectedSexo, setSelectedSexo] = useState(null);
+    const [selectedSexualidade, setSelectedSexualidade] = useState(null);
+    const [selectedPeso, setSelectedPeso] = useState(null);
   
 
     //monta a lista de dropdown por categoria
     const dropdownAltura =  Altura.getAllValues();
     const dropdownFaixaEtaria =  FaixaEtaria.getAllValues();
-    const dropdownNacionalidade =  Nacionalidade.getAllValues();
-  
+    const dropdownOrigem =  Origem.getAllValues();
+    const dropdownPeso =  Peso.getAllValues();
+    const dropdownSexo =  Sexo.getAllValues();
+    const dropdownSexualidade =  Sexualidade.getAllValues();
+    
 
     
 
@@ -48,13 +71,27 @@ const FiltrarScreenModal = () => {
         setSelectedFaixaEtaria(itemValue);
         toggleFaixaEtariaModal();
     };
-    const handleSelectNacionalidade = (itemValue) => {
-        setSelectedNacionalidade(itemValue);
-        toggleNacionalidadeModal();
+    const handleSelectOrigem = (itemValue) => {
+        setSelectedOrigem(itemValue);
+        toggleOrigemModal();
+    };
+    const handleSelectSexo = (itemValue) => {
+        setSelectedSexo(itemValue);
+        toggleSexoModal();
+    };
+    const handleSelectSexualidade = (itemValue) => {
+        setSelectedSexualidade(itemValue);
+        toggleSexualidadeModal();
+    };
+    const handleSelectPeso = (itemValue) => {
+        setSelectedPeso(itemValue);
+        togglePesoModal();
     };
   
     return (
-      <><View style={styles.pickerContainer}>
+      <>
+      <ScrollView>
+      <View style={styles.pickerContainer}>
             <Text
                 onPress={toggleAlturaModal}
                 style={styles.pickerTxt}>{selectedAltura || 'Altura'}</Text>
@@ -68,7 +105,7 @@ const FiltrarScreenModal = () => {
         <View style={styles.pickerContainer}>
             <Text
                 onPress={toggleFaixaEtariaModal}
-                style={styles.pickerTxt}>{selectedFaixaEtaria || 'FaixaEtaria'}</Text>
+                style={styles.pickerTxt}>{selectedFaixaEtaria || 'Faixa Etaria'}</Text>
             <DropdownComponent
                 isVisible={isFaixaEtariaModalVisible}
                 toggleModal={toggleFaixaEtariaModal}
@@ -78,14 +115,56 @@ const FiltrarScreenModal = () => {
         </View>
         <View style={styles.pickerContainer}>
             <Text 
-                onPress={toggleNacionalidadeModal}
-                style={styles.pickerTxt}>{selectedNacionalidade || 'Nacionalidade'}</Text>
+                onPress={toggleOrigemModal}
+                style={styles.pickerTxt}>{selectedOrigem || 'Origem'}</Text>
             <DropdownComponent
-                isVisible={isNacionalidadeModalVisible}
-                toggleModal={toggleNacionalidadeModal}
-                selectedValue={selectedNacionalidade}
-                onValueChange={handleSelectNacionalidade}
-                items={dropdownNacionalidade} />
+                isVisible={isOrigemModalVisible}
+                toggleModal={toggleOrigemModal}
+                selectedValue={selectedOrigem}
+                onValueChange={handleSelectOrigem}
+                items={dropdownOrigem} />
+        </View> 
+
+        <View style={styles.pickerContainer}>
+            <Text
+                onPress={togglePesoModal}
+                style={styles.pickerTxt}>{selectedPeso || 'Peso'}</Text>
+            <DropdownComponent
+                isVisible={isPesoModalVisible}
+                toggleModal={togglePesoModal}
+                selectedValue={selectedPeso}
+                onValueChange={handleSelectPeso}
+                items={dropdownPeso} />
+        </View>
+        <View style={styles.pickerContainer}>
+            <Text
+                onPress={toggleSexoModal}
+                style={styles.pickerTxt}>{selectedSexo || 'Sexo'}</Text>
+            <DropdownComponent
+                isVisible={isSexoModalVisible}
+                toggleModal={toggleSexoModal}
+                selectedValue={selectedSexo}
+                onValueChange={handleSelectSexo}
+                items={dropdownSexo} />
+        </View>
+        <View style={styles.pickerContainer}>
+            <Text 
+                onPress={toggleSexualidadeModal}
+                style={styles.pickerTxt}>{selectedSexualidade || 'Sexualidade'}</Text>
+            <DropdownComponent
+                isVisible={isSexualidadeModalVisible}
+                toggleModal={toggleSexualidadeModal}
+                selectedValue={selectedSexualidade}
+                onValueChange={handleSelectSexualidade}
+                items={dropdownSexualidade} />
+        </View>
+
+        </ScrollView>
+        <View style={styles.btnContainer}>
+            <TouchableOpacity style={[styles.button, {backgroundColor: 'green'},
+            {height: 100}]}>
+                <Text style={styles.pickerTxt}>BUSCAR</Text>
+            </TouchableOpacity>
         </View>
         </>
     );

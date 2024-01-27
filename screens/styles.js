@@ -50,10 +50,10 @@ const styles = StyleSheet.create({
     width: '80%',
     backgroundColor: '#0a497b', // Cor de fundo do Picker
     borderRadius: 8,
-    height: 80,
+    height: 50,
   },
   picker: {
-    height: '50%',
+    height: '30%',
     backgroundColor: 'transparent', // Cor de fundo do Picker
     borderColor: 'transparent',
     borderRadius: 8,
