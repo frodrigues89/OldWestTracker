@@ -91,10 +91,18 @@ const FiltrarScreenModal = () => {
 
     //tratando a navegação do botão BUSCAR
     const navigation = useNavigation();
-    const handleBuscarPress = () => {
-        navigation.navigate('ResultadoBusca');
+    const filtros = {
+        altura: selectedAltura,
+        faixaEtaria: selectedFaixaEtaria,
+        origem: selectedOrigem,
+        peso: selectedPeso,
+        sexo: selectedSexo,
+        sexualidade: selectedSexualidade,
     };
-  
+    const handleBuscarPress = () => {
+        navigation.navigate('ResultadoBusca', { filtros});
+    };  
+    
     return (
       <>
       <ScrollView>

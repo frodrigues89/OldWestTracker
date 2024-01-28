@@ -3,10 +3,12 @@
 import { View, Text, ScrollView, FlatList, Image, TouchableOpacity } from "react-native";
 import styles from "./styles";
 import { useEffect, useState } from "react";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 
 const ResultadoBusca = () => {
-
+    const route = useRoute();
+    const { filtros } = route.params;
+    console.log(filtros);
     const [data, setData] = useState([])
 
     const loadData = async () => {

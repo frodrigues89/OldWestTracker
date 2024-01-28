@@ -10,8 +10,12 @@ import { useNavigation } from '@react-navigation/native';
 const HomeScreen = () => {
 
     const handleSearch = (searchText) => {
-        console.log('Pesquisando por:', searchText);
-        navigation.navigate('ResultadoBusca');
+        
+        const busca = {
+            nome: searchText
+        };
+        console.log('Pesquisando por:', busca.nome);
+        navigation.navigate('ResultadoBusca', { busca } );
     };
     const navigation = useNavigation();
 
