@@ -9,6 +9,7 @@ import Sexo from '../Entity/Sexo';
 import Sexualidade from '../Entity/Sexualidade';
 import Peso from '../Entity/Peso';
 import { useNavigation } from '@react-navigation/native';
+import Pessoa from '../Entity/Pessoa';
 
 const FiltrarScreenModal = () => {
     // Estados para controlar a visibilidade de cada modal
@@ -60,9 +61,6 @@ const FiltrarScreenModal = () => {
     const dropdownSexo =  Sexo.getAllValues();
     const dropdownSexualidade =  Sexualidade.getAllValues();
     
-
-    
-
     //métodos que manipulam a variavel de cada categoria.
     const handleSelectAltura = (itemValue) => {
         setSelectedAltura(itemValue);
@@ -89,18 +87,19 @@ const FiltrarScreenModal = () => {
         togglePesoModal();
     };
 
+    //passando as seleções para a entidade Pessoa
+    const filtros = new Pessoa();
+    filtros.altura = selectedAltura;
+    filtros.peso = selectedPeso;
+    filtros.faixaEtaria = selectedFaixaEtaria;
+    filtros.origem = selectedOrigem;
+    filtros.Sexo = selectedSexo;
+    filtros.sexualidade = selectedSexualidade;
+
     //tratando a navegação do botão BUSCAR
     const navigation = useNavigation();
-    const filtros = {
-        altura: selectedAltura,
-        faixaEtaria: selectedFaixaEtaria,
-        origem: selectedOrigem,
-        peso: selectedPeso,
-        sexo: selectedSexo,
-        sexualidade: selectedSexualidade,
-    };
     const handleBuscarPress = () => {
-        navigation.navigate('ResultadoBusca', { filtros});
+        navigation.navigate('ResultadoBusca', { filtros });
     };  
     
     return (

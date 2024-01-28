@@ -5,17 +5,18 @@ import styles from './styles';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { useNavigation } from '@react-navigation/native';
+import Pessoa from '../Entity/Pessoa';
 
 
 const HomeScreen = () => {
 
     const handleSearch = (searchText) => {
+        const filtros = new Pessoa();
+
+        filtros.nome = searchText;
         
-        const busca = {
-            nome: searchText
-        };
-        console.log('Pesquisando por:', busca.nome);
-        navigation.navigate('ResultadoBusca', { busca } );
+        console.log('Pesquisando por:', filtros.nome);
+        navigation.navigate('ResultadoBusca', { filtros } );
     };
     const navigation = useNavigation();
 
