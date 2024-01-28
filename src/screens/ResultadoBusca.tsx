@@ -1,7 +1,6 @@
 //ResultadoBusca.js
 
 import { View, Text, ScrollView, FlatList, Image, TouchableOpacity } from "react-native";
-import styles from "./styles";
 import { useEffect, useState } from "react";
 import { useNavigation, useRoute } from "@react-navigation/native";
 
@@ -12,11 +11,17 @@ const ResultadoBusca = () => {
     const [data, setData] = useState([])
 
     const loadData = async () => {
-        const response = await fetch('https://rickandmortyapi.com/api/character')
+      try {
+        const response = await fetch('https://rickandmortyapi.com/api/character');
         if (response.status === 200) {
-        const responseJson = await response.json()
-        setData(responseJson?.results)
+          const responseJson = await response.json();
+          setData(responseJson?.results);
+        } else {
+          console.error('Erro na resposta da API:', response.status);
         }
+      } catch (error) {
+        console.error('Erro ao carregar dados:', error);
+      }
     }
 
     //tratando a navegação do botão BUSCAR
