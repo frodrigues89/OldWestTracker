@@ -80,7 +80,21 @@ const styles = StyleSheet.create({
     flex: 1,
     width: '100%',
     justifyContent: 'center',
-  }
+  },
+  fichaContainer:{
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+  },
+  fichaIMG: {
+    width: 250,
+    height: 250,
+  },
+  fichaText: {
+    color: 'black',
+    fontSize: 20,
+  },
 
 });
 
