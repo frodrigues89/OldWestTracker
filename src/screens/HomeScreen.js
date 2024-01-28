@@ -11,7 +11,7 @@ const HomeScreen = () => {
 
     const handleSearch = (searchText) => {
         console.log('Pesquisando por:', searchText);
-        // Adicione sua lógica de pesquisa aqui
+        navigation.navigate('ResultadoBusca');
     };
     const navigation = useNavigation();
 
