@@ -6,10 +6,37 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 
 const ResultadoBusca = () => {
     const route = useRoute();
-    const { filtros } = route.params;
+    const  filtros  = route.params;
     console.log(filtros);
     const [data, setData] = useState([])
-
+    
+    //esse método pode enviar os filtros como POST para a API
+    /*
+    const loadData =async () => {
+      fetch('URL_DO_SEU_BACKEND/api/pessoa', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(filtros),
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Erro na solicitação.');
+        }
+        return response.json();
+      })
+      .then(data => {
+        console.log('Dados recebidos:', data);
+        // Manipule a resposta conforme necessário
+      })
+      .catch(error => {
+        console.error('Erro na solicitação:', error);
+        // Trate erros aqui
+      });
+    }
+    */
+    // Método loadData para buscar na API rickandmorty
     const loadData = async () => {
       try {
         const response = await fetch('https://rickandmortyapi.com/api/character');
@@ -23,7 +50,6 @@ const ResultadoBusca = () => {
         console.error('Erro ao carregar dados:', error);
       }
     }
-
     //tratando a navegação do botão BUSCAR
     const navigation = useNavigation();
     
