@@ -43,3 +43,12 @@ export enum Sexualidade {
     SAPATAO = 'Sapatao',
     OUTROS = 'Outros',
 }
+
+export enum Tatuagem {
+    ROSTO = 'Rosto',
+    PESCOÇO = 'Pescoço',
+    BRAÇO_D = 'Braço Direito',
+    BRAÇO_E = 'Braço Esquerdo',
+    PERNA_D = 'Perna Direita',
+    PERNA_E = 'Perna Esquerda',
+}
