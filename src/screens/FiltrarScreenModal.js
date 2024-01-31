@@ -109,14 +109,29 @@ const FiltrarScreenModal = () => {
     filtros.sexualidade = selectedSexualidade;
     filtros.tatuagem = selectedTatuagem;
 
+
+    //tratando botão reset
+    const handleResetPress = () => {
+        setSelectedAltura(null);
+        setSelectedPeso(null);
+        setSelectedFaixaEtaria(null);
+        setSelectedOrigem(null);
+        setSelectedSexo(null);
+        setSelectedSexualidade(null);
+        setSelectedTatuagem(null);
+    };
+
+
     //tratando a navegação do botão BUSCAR
     const navigation = useNavigation();
     const handleBuscarPress = () => {
         navigation.navigate('ResultadoBusca', { filtros });
-    };  
+    };
+
+
     
     return (
-      <>
+      <>      
       <ScrollView>
       <View style={styles.pickerContainer}>
             <Text
@@ -198,11 +213,19 @@ const FiltrarScreenModal = () => {
         </View>
 
         </ScrollView>
-        <View style={styles.btnContainer}>
+        <View style={[styles.btnContainer, {marginBottom: 20}]}>
             <TouchableOpacity style={[styles.button, {backgroundColor: 'green'},
-            {height: 100}]}
+            {height: 100},
+            {marginBottom: 10}]}
             onPress={handleBuscarPress}>
                 <Text style={styles.pickerTxt}>BUSCAR</Text>
+            </TouchableOpacity>
+        </View>
+        <View style={styles.btnContainer}>
+            <TouchableOpacity style={[styles.button, {backgroundColor: 'red'},
+            {height: 50}]}
+            onPress={handleResetPress}>
+                <Text style={styles.pickerTxt}>Limpar busca</Text>
             </TouchableOpacity>
         </View>
         </>
