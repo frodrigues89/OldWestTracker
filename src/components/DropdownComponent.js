@@ -20,7 +20,7 @@ const DropdownComponent = ({ isVisible, toggleModal, selectedValue, onValueChang
         <Picker
           selectedValue={selectedValue}
           onValueChange={onValueChange}
-          style={{ width: 200 }}
+          style={{ width: '80%' }}
           itemStyle={styles.pickerItemTxt}
         >
           {items.map((item, index) => (

@@ -1,4 +1,4 @@
-import { Altura, Peso, FaixaEtaria, Origem, Sexo, Sexualidade } from "./enums";
+import { Altura, Peso, FaixaEtaria, Origem, Sexo, Sexualidade, Tatuagem} from "./enums";
   
 
 export default class Pessoa{
@@ -11,4 +11,5 @@ export default class Pessoa{
     origem : Origem;
     sexo : Sexo;
     sexualidade : Sexualidade;
+    tatuagem : Tatuagem;
 }

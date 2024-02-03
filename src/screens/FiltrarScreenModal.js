@@ -8,6 +8,7 @@ import Origem from '../Entity/Origem';
 import Sexo from '../Entity/Sexo';
 import Sexualidade from '../Entity/Sexualidade';
 import Peso from '../Entity/Peso';
+import Tatuagem from '../Entity/Tatuagem';
 import { useNavigation } from '@react-navigation/native';
 import Pessoa from '../Entity/Pessoa';
 
@@ -19,6 +20,7 @@ const FiltrarScreenModal = () => {
     const [isSexoModalVisible, setSexoModalVisible] = useState(false);
     const [isSexualidadeModalVisible, setSexualidadeModalVisible] = useState(false);
     const [isPesoModalVisible, setPesoModalVisible] = useState(false);
+    const [isTatuagemModalVisible, setTatuagemModalVisible] = useState(false);
 
     // métodos para tratar a visibilidade do modal.
     const toggleAlturaModal = () => {
@@ -44,13 +46,18 @@ const FiltrarScreenModal = () => {
         setPesoModalVisible(!isPesoModalVisible);
     };
 
+    const toggleTatuagemModal = () => {
+        setTatuagemModalVisible(!isTatuagemModalVisible);
+    };
+
     //variáveis de características.
     const [selectedAltura, setSelectedAltura] = useState(null);
     const [selectedFaixaEtaria, setSelectedFaixaEtaria] = useState(null);
     const [selectedOrigem, setSelectedOrigem] = useState(null);
     const [selectedSexo, setSelectedSexo] = useState(null);
     const [selectedSexualidade, setSelectedSexualidade] = useState(null);
-    const [selectedPeso, setSelectedPeso] = useState(null);
+    const [selectedPeso, setSelectedPeso] = useState(null);    
+    const [selectedTatuagem, setSelectedTatuagem] = useState(null);
   
 
     //monta a lista de dropdown por categoria
@@ -60,6 +67,7 @@ const FiltrarScreenModal = () => {
     const dropdownPeso =  Peso.getAllValues();
     const dropdownSexo =  Sexo.getAllValues();
     const dropdownSexualidade =  Sexualidade.getAllValues();
+    const dropdownTatuagem =  Tatuagem.getAllValues();
     
     //métodos que manipulam a variavel de cada categoria.
     const handleSelectAltura = (itemValue) => {
@@ -86,6 +94,10 @@ const FiltrarScreenModal = () => {
         setSelectedPeso(itemValue);
         togglePesoModal();
     };
+    const handleSelectTatuagem = (itemValue) => {
+        setSelectedTatuagem(itemValue);
+        toggleTatuagemModal();
+    };
 
     //passando as seleções para a entidade Pessoa
     const filtros = new Pessoa();
@@ -95,15 +107,31 @@ const FiltrarScreenModal = () => {
     filtros.origem = selectedOrigem;
     filtros.Sexo = selectedSexo;
     filtros.sexualidade = selectedSexualidade;
+    filtros.tatuagem = selectedTatuagem;
+
+
+    //tratando botão reset
+    const handleResetPress = () => {
+        setSelectedAltura(null);
+        setSelectedPeso(null);
+        setSelectedFaixaEtaria(null);
+        setSelectedOrigem(null);
+        setSelectedSexo(null);
+        setSelectedSexualidade(null);
+        setSelectedTatuagem(null);
+    };
+
 
     //tratando a navegação do botão BUSCAR
     const navigation = useNavigation();
     const handleBuscarPress = () => {
         navigation.navigate('ResultadoBusca', { filtros });
-    };  
+    };
+
+
     
     return (
-      <>
+      <>      
       <ScrollView>
       <View style={styles.pickerContainer}>
             <Text
@@ -172,13 +200,32 @@ const FiltrarScreenModal = () => {
                 onValueChange={handleSelectSexualidade}
                 items={dropdownSexualidade} />
         </View>
+        <View style={styles.pickerContainer}>
+            <Text 
+                onPress={toggleTatuagemModal}
+                style={styles.pickerTxt}>{selectedTatuagem || 'Tatuagem'}</Text>
+            <DropdownComponent
+                isVisible={isTatuagemModalVisible}
+                toggleModal={toggleTatuagemModal}
+                selectedValue={selectedTatuagem}
+                onValueChange={handleSelectTatuagem}
+                items={dropdownTatuagem} />
+        </View>
 
         </ScrollView>
-        <View style={styles.btnContainer}>
+        <View style={[styles.btnContainer, {marginBottom: 20}]}>
             <TouchableOpacity style={[styles.button, {backgroundColor: 'green'},
-            {height: 100}]}
+            {height: 100},
+            {marginBottom: 10}]}
             onPress={handleBuscarPress}>
                 <Text style={styles.pickerTxt}>BUSCAR</Text>
+            </TouchableOpacity>
+        </View>
+        <View style={styles.btnContainer}>
+            <TouchableOpacity style={[styles.button, {backgroundColor: 'red'},
+            {height: 50}]}
+            onPress={handleResetPress}>
+                <Text style={styles.pickerTxt}>Limpar busca</Text>
             </TouchableOpacity>
         </View>
         </>
