@@ -2,7 +2,7 @@
 import React from 'react';
 import SearchBar from './SearchBar';
 import styles from './styles';
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Image, Pressable, Text, View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { useNavigation } from '@react-navigation/native';
 import Pessoa from '../Entity/Pessoa';
@@ -33,9 +33,9 @@ const HomeScreen = () => {
             <SearchBar onSearch={handleSearch} />
         </View>
         <View style={styles.midContainer}>
-            <TouchableOpacity style={styles.button} onPress={handleFiltrarPress}>
+            <Pressable style={styles.button} onPress={handleFiltrarPress}>
                 <Text style={styles.buttonText}>Filtrar</Text>
-            </TouchableOpacity>
+            </Pressable>
         </View>
         <StatusBar style="auto" />
         </View>

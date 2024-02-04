@@ -1,6 +1,6 @@
 // SearchBar.js
 import React, { useState } from 'react';
-import { View, TextInput, TouchableOpacity, StyleSheet, Text } from 'react-native';
+import { View, TextInput, Pressable, StyleSheet, Text } from 'react-native';
 
 const SearchBar = ({ onSearch }) => {
   const [searchText, setSearchText] = useState('');
@@ -18,9 +18,9 @@ const SearchBar = ({ onSearch }) => {
           value={searchText}
           onChangeText={(text) => setSearchText(text)}
         />
-        <TouchableOpacity style={styles.button} onPress={handleSearch}>
+        <Pressable style={styles.button} onPress={handleSearch}>
         <Text style={styles.buttonText}>🔍</Text>
-      </TouchableOpacity>
+      </Pressable>
       </View>
     </View>
   );

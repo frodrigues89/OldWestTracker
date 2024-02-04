@@ -45,14 +45,15 @@ const styles = StyleSheet.create({
     height: 50,
   },
   picker: {
-    height: '30%',
+    flex: 1,
     backgroundColor: 'transparent', // Cor de fundo do Picker
     borderColor: 'transparent',
     borderRadius: 8,
     borderWidth: 1,
-    color: '#fff',
-    fontSize: 30,
     fontWeight: 'bold',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '80%',
   },
   pickerTxt: {
     color: '#fff',
@@ -62,7 +63,8 @@ const styles = StyleSheet.create({
   pickerItemTxt: {
     color: '#fff',
     fontSize: 30,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    alignItems: 'center',
   },
   buttonText: {
     color: '#fff',
