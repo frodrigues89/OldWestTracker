@@ -10,6 +10,11 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     padding: 16,
   },
+  midContainer: {
+    justifyContent: 'center',
+    flexDirection: 'row',
+    width: '100%',
+  },
   logo: {
     marginBottom: 20,
     marginTop: 10,
@@ -26,19 +31,6 @@ const styles = StyleSheet.create({
   buttonText: {
     color: '#fff',
     fontSize: 20,
-  },
-  logoContainer: {
-    justifyContent: 'flex-start',
-    flexDirection: 'row',
-  },
-  searchContainer: {
-    justifyContent: 'center',
-    flexDirection: 'row',
-    width: '100%',
-  },
-  btnContainer: {
-    justifyContent: 'center',
-    flexDirection: 'row',
   },
 
   pickerContainer: {

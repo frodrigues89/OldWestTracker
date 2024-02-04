@@ -1,8 +1,9 @@
 //ResultadoBusca.js
 
-import { View, Text, ScrollView, FlatList, Image, TouchableOpacity } from "react-native";
+import { View, Text, FlatList, Image, Pressable } from "react-native";
 import { useEffect, useState } from "react";
 import { useNavigation, useRoute } from "@react-navigation/native";
+import styles from "./styles";
 
 const ResultadoBusca = () => {
     const route = useRoute();
@@ -66,16 +67,16 @@ const ResultadoBusca = () => {
           <FlatList
             data={data}
             renderItem={({ item }) => {
-              const { name, status, species, image }: any = item
+              const { name, status, species, image } = item
               return (
                 <View style={{ marginVertical: 20, alignItems: 'center' }}>
-                  <TouchableOpacity
+                  <Pressable
                   onPress={() => handleImagePress(item)}>
-                    <Image source={{ uri: image }} width={250} height={250}/>
+                    <Image source={{ uri: image }} style={styles.fichaIMG}/>
                     <Text>{name}</Text>
                     <Text>Specie:{species}</Text>
                     <Text>Status:{status}</Text>
-                  </TouchableOpacity>
+                  </Pressable>
                 </View>
               )
             }}

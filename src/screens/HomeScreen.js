@@ -26,13 +26,13 @@ const HomeScreen = () => {
 
     return (
         <View style={styles.container}>
-        <View style={styles.logoContainer}>
+        <View style={styles.midContainer}>
             <Image source={require('../assets/logo.png')} style={styles.logo} />
         </View>
-        <View style={styles.searchContainer}>
+        <View style={styles.midContainer}>
             <SearchBar onSearch={handleSearch} />
         </View>
-        <View style={styles.btnContainer}>
+        <View style={styles.midContainer}>
             <TouchableOpacity style={styles.button} onPress={handleFiltrarPress}>
                 <Text style={styles.buttonText}>Filtrar</Text>
             </TouchableOpacity>
