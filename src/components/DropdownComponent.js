@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import React from 'react';
+import { View } from 'react-native';
 import Modal from 'react-native-modal';
 import { Picker } from '@react-native-picker/picker';
 import styles from '../screens/styles';
@@ -16,15 +16,15 @@ const DropdownComponent = ({ isVisible, toggleModal, selectedValue, onValueChang
       animationOutTiming={500}
       hasBackdrop={true}
     >
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+      <View style={styles.picker}>
         <Picker
           selectedValue={selectedValue}
           onValueChange={onValueChange}
-          style={{ width: '80%' }}
+          style={styles.button}
           itemStyle={styles.pickerItemTxt}
         >
           {items.map((item, index) => (
-            <Picker.Item key={index} label={item.label} value={item.value} />
+            <Picker.Item key={index} label={item.label} value={item.value}/>
           ))}
         </Picker>
       </View>

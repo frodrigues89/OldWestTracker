@@ -213,7 +213,7 @@ const FiltrarScreenModal = () => {
         </View>
 
         </ScrollView>
-        <View style={[styles.btnContainer, {marginBottom: 20}]}>
+        <View style={[styles.midContainer, {marginBottom: 20}]}>
             <TouchableOpacity style={[styles.button, {backgroundColor: 'green'},
             {height: 100},
             {marginBottom: 10}]}
@@ -221,9 +221,9 @@ const FiltrarScreenModal = () => {
                 <Text style={styles.pickerTxt}>BUSCAR</Text>
             </TouchableOpacity>
         </View>
-        <View style={styles.btnContainer}>
+        <View style={styles.midContainer}>
             <TouchableOpacity style={[styles.button, {backgroundColor: 'red'},
-            {height: 50}]}
+            {height: 50},]}
             onPress={handleResetPress}>
                 <Text style={styles.pickerTxt}>Limpar busca</Text>
             </TouchableOpacity>

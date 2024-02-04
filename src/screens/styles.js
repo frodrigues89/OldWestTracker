@@ -10,6 +10,11 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     padding: 16,
   },
+  midContainer: {
+    justifyContent: 'center',
+    flexDirection: 'row',
+    width: '100%',
+  },
   logo: {
     marginBottom: 20,
     marginTop: 10,
@@ -27,19 +32,6 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 20,
   },
-  logoContainer: {
-    justifyContent: 'flex-start',
-    flexDirection: 'row',
-  },
-  searchContainer: {
-    justifyContent: 'center',
-    flexDirection: 'row',
-    width: '100%',
-  },
-  btnContainer: {
-    justifyContent: 'center',
-    flexDirection: 'row',
-  },
 
   pickerContainer: {
     flexDirection: 'row',
@@ -53,14 +45,15 @@ const styles = StyleSheet.create({
     height: 50,
   },
   picker: {
-    height: '30%',
+    flex: 1,
     backgroundColor: 'transparent', // Cor de fundo do Picker
     borderColor: 'transparent',
     borderRadius: 8,
     borderWidth: 1,
-    color: '#fff',
-    fontSize: 30,
     fontWeight: 'bold',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '80%',
   },
   pickerTxt: {
     color: '#fff',
@@ -70,7 +63,8 @@ const styles = StyleSheet.create({
   pickerItemTxt: {
     color: '#fff',
     fontSize: 30,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    alignItems: 'center',
   },
   buttonText: {
     color: '#fff',
