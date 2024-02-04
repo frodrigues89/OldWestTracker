@@ -27,7 +27,7 @@ const HomeScreen = () => {
     return (
         <View style={styles.container}>
         <View style={styles.midContainer}>
-            <Image source={require('../assets/logo.png')} style={styles.logo} />
+            <Image source={{ uri: 'https://oldwesttracker.s3.sa-east-1.amazonaws.com/static/media/logo.cf8cc703af0ba4981dd3.png' }} style={styles.logo} />
         </View>
         <View style={styles.midContainer}>
             <SearchBar onSearch={handleSearch} />
