@@ -2,24 +2,31 @@ name: Deploy to AWS S3
 
 on:
   push:
-    branches:
-      - production
+    branches: [ "main"]
 
 jobs:
-  deploy:
+  web-build:
+    name: Web Dev Build
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
+      - name: Show self-machine information
+        run: uname -a
+      - name: Cancel previous runs
+        uses: styfle/cancel-workflow-action@0.9.1
+      - name: Checkout repo from main branch
+        uses: actions/checkout@v3
+        with:
+          ref: main
+      - name: Install npm dependency
+        run: npm install
+      - name: Build expo
+        run: npx expo export -p web
+      - name: Upload to s3
+        uses: oldwesttracker/s3-upload-action@master
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: sa-east-1
-
-      - name: Deploy to S3
-        run: |
-          aws s3 sync ./ s3://oldwesttracker
+          aws-bucket: s3://oldwesttracker
+          source_dir: 'web-build'
+          destination_dir: ''
