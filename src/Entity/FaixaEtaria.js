@@ -1,9 +1,8 @@
 const FaixaEtaria = {
-    PIVETE: 'Pivete',
+    CRIANCA_JOVEM: 'Criança-Jovem',
     JOVEM: 'Jovem',
-    MARMANJO: 'Marmanjo',
     ADULTO: 'Adulto',
-    TIOZAO: 'Tiozão',
+    ADULTO_IDOSO: 'Adulto-Idoso',
     IDOSO: 'Idoso',
   
     getAllValues: function () {
