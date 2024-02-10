@@ -4,7 +4,7 @@ import { View, Text, Image, Pressable } from "react-native";
 import { useEffect, useState } from "react";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import styles from "./styles";
-import { ScrollView } from "react-native-web";
+import { FlatList, ScrollView } from "react-native-web";
 
 const ResultadoBusca = () => {
     const route = useRoute();
@@ -65,7 +65,10 @@ const ResultadoBusca = () => {
     
       return (
         <View>
-          <ScrollView
+          <FlatList
+            horizontal={false} // Garante que a lista seja vertical
+            scrollEnabled={true} // Habilita a rolagem da lista
+            contentContainerStyle={{ flexGrow: 1 }} // Garante que a lista cresça para preencher o espaço disponível
             data={data}
             renderItem={({ item }) => {
               const { name, status, species, image } = item
@@ -81,10 +84,9 @@ const ResultadoBusca = () => {
                 </View>
               )
             }}
+
           />
-    
-    
-        </View>
+          </View>
       )
     
 }

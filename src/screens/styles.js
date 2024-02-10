@@ -41,13 +41,25 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     marginLeft: "10%",
     width: '80%',
-    backgroundColor: '#0a497b', // Cor de fundo do Picker
+    backgroundColor: '#0a497b',
     borderRadius: 8,
     height: 50,
   },
-  picker: {
+
+  pickerView:{
+    backgroundColor: 'transparent',
+    borderColor: 'transparent',
+    borderRadius: 8,
+    borderWidth: 1,
+    fontWeight: 'bold',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '80%',
+  },
+
+  pickerModal: {
     flex: 1,
-    backgroundColor: 'transparent', // Cor de fundo do Picker
+    backgroundColor: 'transparent',
     borderColor: 'transparent',
     borderRadius: 8,
     borderWidth: 1,
@@ -65,7 +77,7 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 30,
     fontWeight: 'bold',
-    alignItems: 'center',
+    alignText: 'center',
   },
   buttonText: {
     color: '#fff',

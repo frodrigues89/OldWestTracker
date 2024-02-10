@@ -17,13 +17,12 @@ const Login = () => {
             .then((userCredential) =>{
                 const user = userCredential.user;
                 navigation.navigate('Home', { user } );
-                alert('login efetuado');
                 console.log(user);
             })
             .catch((error) =>{
                 const errorCode = error.code;
                 const errorMessage = error.message;
-                alert(errorMessage);
+                alert('Não foi possível realizar seu login.');
             })
     };
     const navigation = useNavigation();
@@ -57,6 +56,7 @@ const Login = () => {
             </Pressable>
         </View>
         </View>
+
         );
     };
 export default Login;

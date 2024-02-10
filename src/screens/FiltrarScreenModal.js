@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, ScrollView} from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView, Pressable} from 'react-native';
 import Altura from '../Entity/Altura';
 import DropdownComponent from '../components/DropdownComponent';
 import styles from './styles';
@@ -133,10 +133,14 @@ const FiltrarScreenModal = () => {
     return (
       <>      
       <ScrollView>
-      <View style={styles.pickerContainer}>
-            <Text
+      <View>
+            <Pressable
                 onPress={toggleAlturaModal}
-                style={styles.pickerTxt}>{selectedAltura || 'Altura'}</Text>
+                style={styles.pickerContainer}>
+                <Text style={styles.pickerTxt}>
+                    {selectedAltura || 'Altura'}
+                </Text>
+            </Pressable>
             <DropdownComponent
                 isVisible={isAlturaModalVisible}
                 toggleModal={toggleAlturaModal}
@@ -144,10 +148,14 @@ const FiltrarScreenModal = () => {
                 onValueChange={handleSelectAltura}
                 items={dropdownAltura} />
         </View>
-        <View style={styles.pickerContainer}>
-            <Text
-                onPress={toggleFaixaEtariaModal}
-                style={styles.pickerTxt}>{selectedFaixaEtaria || 'Faixa Etaria'}</Text>
+        <View>
+            <Pressable
+                style={styles.pickerContainer}
+                onPress={toggleFaixaEtariaModal}>
+                <Text style={styles.pickerTxt}>
+                    {selectedFaixaEtaria || 'Faixa Etaria'}
+                </Text>
+            </Pressable>
             <DropdownComponent
                 isVisible={isFaixaEtariaModalVisible}
                 toggleModal={toggleFaixaEtariaModal}
@@ -155,10 +163,14 @@ const FiltrarScreenModal = () => {
                 onValueChange={handleSelectFaixaEtaria}
                 items={dropdownFaixaEtaria} />
         </View>
-        <View style={styles.pickerContainer}>
-            <Text 
-                onPress={toggleOrigemModal}
-                style={styles.pickerTxt}>{selectedOrigem || 'Origem'}</Text>
+        <View> 
+            <Pressable 
+                style={styles.pickerContainer}
+                onPress={toggleOrigemModal}>
+                <Text style={styles.pickerTxt}>
+                    {selectedOrigem || 'Origem'}
+                </Text>
+            </Pressable>
             <DropdownComponent
                 isVisible={isOrigemModalVisible}
                 toggleModal={toggleOrigemModal}
@@ -167,10 +179,14 @@ const FiltrarScreenModal = () => {
                 items={dropdownOrigem} />
         </View> 
 
-        <View style={styles.pickerContainer}>
-            <Text
-                onPress={togglePesoModal}
-                style={styles.pickerTxt}>{selectedPeso || 'Peso'}</Text>
+        <View> 
+            <Pressable 
+                style={styles.pickerContainer}
+                onPress={togglePesoModal}>
+                <Text style={styles.pickerTxt}>
+                    {selectedPeso || 'Peso'}
+                </Text>
+            </Pressable>
             <DropdownComponent
                 isVisible={isPesoModalVisible}
                 toggleModal={togglePesoModal}
@@ -178,10 +194,14 @@ const FiltrarScreenModal = () => {
                 onValueChange={handleSelectPeso}
                 items={dropdownPeso} />
         </View>
-        <View style={styles.pickerContainer}>
-            <Text
-                onPress={toggleSexoModal}
-                style={styles.pickerTxt}>{selectedSexo || 'Sexo'}</Text>
+        <View>
+            <Pressable 
+                style={styles.pickerContainer}
+                onPress={toggleSexoModal}>
+            <Text style={styles.pickerTxt}>
+                {selectedSexo || 'Sexo'}
+            </Text>
+            </Pressable>
             <DropdownComponent
                 isVisible={isSexoModalVisible}
                 toggleModal={toggleSexoModal}
@@ -189,10 +209,14 @@ const FiltrarScreenModal = () => {
                 onValueChange={handleSelectSexo}
                 items={dropdownSexo} />
         </View>
-        <View style={styles.pickerContainer}>
-            <Text 
-                onPress={toggleSexualidadeModal}
-                style={styles.pickerTxt}>{selectedSexualidade || 'Sexualidade'}</Text>
+        <View>
+            <Pressable
+                style={styles.pickerContainer}
+                onPress={toggleSexualidadeModal}>
+                <Text style={styles.pickerTxt}>
+                    {selectedSexualidade || 'Sexualidade'}
+                </Text>
+            </Pressable>
             <DropdownComponent
                 isVisible={isSexualidadeModalVisible}
                 toggleModal={toggleSexualidadeModal}
@@ -200,10 +224,14 @@ const FiltrarScreenModal = () => {
                 onValueChange={handleSelectSexualidade}
                 items={dropdownSexualidade} />
         </View>
-        <View style={styles.pickerContainer}>
-            <Text 
-                onPress={toggleTatuagemModal}
-                style={styles.pickerTxt}>{selectedTatuagem || 'Tatuagem'}</Text>
+        <View> 
+            <Pressable
+                style={styles.pickerContainer}
+                onPress={toggleTatuagemModal}>
+                <Text style={styles.pickerTxt}>
+                    {selectedTatuagem || 'Tatuagem'}
+                </Text>
+            </Pressable>
             <DropdownComponent
                 isVisible={isTatuagemModalVisible}
                 toggleModal={toggleTatuagemModal}

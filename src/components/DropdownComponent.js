@@ -9,14 +9,14 @@ const DropdownComponent = ({ isVisible, toggleModal, selectedValue, onValueChang
     <Modal
       isVisible={isVisible}
       onBackdropPress={toggleModal}
-      style={styles.picker}
+      style={styles.pickerModal}
       animationIn="slideInUp"
       animationOut="slideOutDown"
       animationInTiming={500}
       animationOutTiming={500}
       hasBackdrop={true}
     >
-      <View style={styles.picker}>
+      <View style={styles.pickerView}>
         <Picker
           selectedValue={selectedValue}
           onValueChange={onValueChange}
