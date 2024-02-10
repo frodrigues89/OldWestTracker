@@ -1,9 +1,10 @@
 //ResultadoBusca.js
 
-import { View, Text, FlatList, Image, Pressable } from "react-native";
+import { View, Text, Image, Pressable } from "react-native";
 import { useEffect, useState } from "react";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import styles from "./styles";
+import { ScrollView } from "react-native-web";
 
 const ResultadoBusca = () => {
     const route = useRoute();
@@ -64,7 +65,7 @@ const ResultadoBusca = () => {
     
       return (
         <View>
-          <FlatList
+          <ScrollView
             data={data}
             renderItem={({ item }) => {
               const { name, status, species, image } = item

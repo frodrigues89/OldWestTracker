@@ -6,12 +6,14 @@ import HomeScreen from './src/screens/HomeScreen'; // Sua tela principal
 import FiltrarScreen from './src/screens/FiltrarScreenModal'; // tela Filtrar
 import ResultadoBusca from './src/screens/ResultadoBusca'; //tela resultadoBusca
 import FichaScreen from './src/screens/FichaScreen'; //tela da ficha de um mala específico
+import Login from './src/screens/Login'; //tela de login
 const Stack = createStackNavigator();
 
 const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Filtrar" component={FiltrarScreen} />
         <Stack.Screen name="ResultadoBusca" component={ResultadoBusca}/>

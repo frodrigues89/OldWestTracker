@@ -90,6 +90,24 @@ const styles = StyleSheet.create({
     color: 'black',
     fontSize: 20,
   },
+  input: {
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 8,
+    marginBottom: 20,
+    width: '75%',
+    height: 50,
+    alignItems: 'center',
+  },
+  inputPassword: {
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 8,
+    marginBottom: 20,
+    width: '75%',
+    height: 50,
+    alignItems: 'center',
+  },
 
 });
 

@@ -28,5 +28,5 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: sa-east-1
           aws-bucket: s3://oldwesttracker
-          source_dir: 'web-build'
+          source_dir: 'WEB_deploy'
           destination_dir: ''

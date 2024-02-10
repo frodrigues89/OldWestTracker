@@ -8,8 +8,9 @@ import { useNavigation } from '@react-navigation/native';
 import Pessoa from '../Entity/Pessoa';
 
 
-const HomeScreen = () => {
+const HomeScreen = (user) => {
 
+    console.log(user);
     const handleSearch = (searchText) => {
         const filtros = new Pessoa();
 
@@ -27,7 +28,7 @@ const HomeScreen = () => {
     return (
         <View style={styles.container}>
         <View style={styles.midContainer}>
-            <Image source={{ uri: 'https://oldwesttracker.s3.sa-east-1.amazonaws.com/static/media/logo.cf8cc703af0ba4981dd3.png' }} style={styles.logo} />
+            <Image source={{ uri: 'https://oldwesttracker.s3.sa-east-1.amazonaws.com/logo.png' }} style={styles.logo} />
         </View>
         <View style={styles.midContainer}>
             <SearchBar onSearch={handleSearch} />
@@ -37,7 +38,6 @@ const HomeScreen = () => {
                 <Text style={styles.buttonText}>Filtrar</Text>
             </Pressable>
         </View>
-        <StatusBar style="auto" />
         </View>
         );
     };

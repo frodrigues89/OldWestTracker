@@ -212,7 +212,7 @@ const FiltrarScreenModal = () => {
                 items={dropdownTatuagem} />
         </View>
 
-        </ScrollView>
+        
         <View style={[styles.midContainer, {marginBottom: 20}]}>
             <TouchableOpacity style={[styles.button, {backgroundColor: 'green'},
             {height: 100},
@@ -228,6 +228,7 @@ const FiltrarScreenModal = () => {
                 <Text style={styles.pickerTxt}>Limpar busca</Text>
             </TouchableOpacity>
         </View>
+        </ScrollView>
         </>
     );
   };
