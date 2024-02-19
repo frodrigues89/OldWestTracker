@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, ScrollView, Pressable} from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView, Pressable, TextInput, Alert} from 'react-native';
 import Altura from '../Entity/Altura';
 import DropdownComponent from '../components/DropdownComponent';
+import takePicture from '../components/takepicture';
 import styles from './styles';
 import FaixaEtaria from '../Entity/FaixaEtaria';
 import Origem from '../Entity/Origem';
@@ -12,7 +13,8 @@ import Tatuagem from '../Entity/Tatuagem';
 import { useNavigation } from '@react-navigation/native';
 import Pessoa from '../Entity/Pessoa';
 
-const FiltrarScreenModal = () => {
+const Cadastrar = () => {
+
     // Estados para controlar a visibilidade de cada modal
     const [isAlturaModalVisible, setAlturaModalVisible] = useState(false);
     const [isFaixaEtariaModalVisible, setFaixaEtariaModalVisible] = useState(false);
@@ -51,6 +53,11 @@ const FiltrarScreenModal = () => {
     };
 
     //variáveis de características.
+    const [picture,setPicture ] = useState(null);
+    const [nome,setNome ] = useState(null);
+    const [rg, setRg ]  = useState(null);
+    const [cpf, setCpf ] = useState(null);
+
     const [selectedAltura, setSelectedAltura] = useState(null);
     const [selectedFaixaEtaria, setSelectedFaixaEtaria] = useState(null);
     const [selectedOrigem, setSelectedOrigem] = useState(null);
@@ -100,14 +107,18 @@ const FiltrarScreenModal = () => {
     };
 
     //passando as seleções para a entidade Pessoa
-    const filtros = new Pessoa();
-    filtros.altura = selectedAltura;
-    filtros.peso = selectedPeso;
-    filtros.faixaEtaria = selectedFaixaEtaria;
-    filtros.origem = selectedOrigem;
-    filtros.Sexo = selectedSexo;
-    filtros.sexualidade = selectedSexualidade;
-    filtros.tatuagem = selectedTatuagem;
+    const pessoa = new Pessoa();
+    pessoa.picture = picture;
+    pessoa.nome = nome;
+    pessoa.rg = rg;
+    pessoa.cpf = cpf;
+    pessoa.altura = selectedAltura;
+    pessoa.peso = selectedPeso;
+    pessoa.faixaEtaria = selectedFaixaEtaria;
+    pessoa.origem = selectedOrigem;
+    pessoa.Sexo = selectedSexo;
+    pessoa.sexualidade = selectedSexualidade;
+    pessoa.tatuagem = selectedTatuagem;
 
 
     //tratando botão reset
@@ -125,18 +136,57 @@ const FiltrarScreenModal = () => {
     //tratando a navegação do botão BUSCAR
     const navigation = useNavigation();
     const handleBuscarPress = () => {
-        navigation.navigate('ResultadoBusca', { filtros });
+        console.log(pessoa);
     };
-
+ 
+    const handlePhotoPress = () =>{
+        setPicture(takePicture);
+    }
 
     
     return (
       <View 
         style={styles.Scrollcontainer}>       
       <ScrollView>
-        <Text style={styles.txt}>
-            Selecione os filtros para busca.
-        </Text>
+        <View>
+            <Text style={styles.txt}>Foto: </Text>
+            <Pressable
+                style={styles.inputCadastro}
+                onPress = {handlePhotoPress}
+            >
+
+            </Pressable>
+        </View>
+        <View>
+            <Text style={styles.txt}>Nome: </Text>
+            <TextInput
+                style={styles.inputCadastro}
+                placeholder="NOME DO MALA..."
+                value={nome}
+                onChangeText={(text) => setNome(text)}
+                />
+        </View>
+        <View>
+            <Text style={styles.txt}>RG: </Text>
+            <TextInput
+                style={styles.inputCadastro}
+                placeholder="RG"
+                value={rg}
+                onChangeText={(text) => setRg(text)}
+                />
+        </View>
+        <View>
+            <Text style={styles.txt}>CPF: </Text>
+            <TextInput
+                style={styles.inputCadastro}
+                placeholder="CPF"
+                value={cpf}
+                onChangeText={(text) => setCpf(text)}
+                />
+        </View>
+        
+        
+        
         <View>
             <Pressable
                 onPress={toggleAlturaModal}
@@ -265,4 +315,4 @@ const FiltrarScreenModal = () => {
     );
   };
 
-export default FiltrarScreenModal;
+export default Cadastrar;

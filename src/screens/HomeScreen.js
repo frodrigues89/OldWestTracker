@@ -23,6 +23,10 @@ const HomeScreen = (user) => {
     const handleFiltrarPress = () => {
         navigation.navigate('Filtrar');
     };
+    
+    const handleCadastrarPress = () => {
+        navigation.navigate('Cadastrar');
+    };
 
     return (
         <View style={styles.container}>
@@ -37,6 +41,12 @@ const HomeScreen = (user) => {
                     <Text style={styles.buttonText}>Filtrar</Text>
                 </Pressable>
             </View>
+            <View style={styles.midContainer}>
+                <Pressable style={styles.button} onPress={handleCadastrarPress}>
+                    <Text style={styles.buttonText}>CADASTRAR</Text>
+                </Pressable>
+            </View>
+
         </View>
         );
     };

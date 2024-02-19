@@ -64,7 +64,7 @@ const ResultadoBusca = () => {
       }, [])
     
       return (
-        <View>
+        <View styles={styles.container}>
           <FlatList
             horizontal={false} // Garante que a lista seja vertical
             scrollEnabled={true} // Habilita a rolagem da lista

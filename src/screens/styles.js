@@ -10,6 +10,12 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     padding: 16,
   },
+  Scrollcontainer: {
+    flex: 1,
+    backgroundColor: '#F3F3FF',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+  },
   midContainer: {
     justifyContent: 'center',
     flexDirection: 'row',
@@ -32,6 +38,13 @@ const styles = StyleSheet.create({
   buttonText: {
     color: '#fff',
     fontSize: 20,
+  },
+  txt: {
+    color: 'black',
+    fontSize: 20,
+    marginLeft: '10%',
+    marginBottom: 5
+    
   },
 
   pickerContainer: {
@@ -110,6 +123,17 @@ const styles = StyleSheet.create({
     width: '75%',
     height: 50,
     alignItems: 'center',
+  },
+  inputCadastro: {
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 8,
+    marginBottom: 20,
+    width: '80%',
+    height: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginLeft: '10%',
   },
   inputPassword: {
     borderWidth: 1,
