@@ -2,7 +2,7 @@ name: Deploy to AWS S3
 
 on:
   push:
-    branches: [ "main"]
+    branches: [ "production"]
 
 jobs:
   web-build:
@@ -13,10 +13,10 @@ jobs:
         run: uname -a
       - name: Cancel previous runs
         uses: styfle/cancel-workflow-action@0.9.1
-      - name: Checkout repo from main branch
+      - name: Checkout repo from production branch
         uses: actions/checkout@v3
         with:
-          ref: main
+          ref: production
       - name: Install npm dependency
         run: npm install
       - name: Build expo
