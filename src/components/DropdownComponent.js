@@ -2,7 +2,7 @@ import React from 'react';
 import { View } from 'react-native';
 import Modal from 'react-native-modal';
 import { Picker } from '@react-native-picker/picker';
-import styles from '../screens/styles';
+import styles from '../styles/dropdownStyles';
 
 const DropdownComponent = ({ isVisible, toggleModal, selectedValue, onValueChange, items }) => {
   return (

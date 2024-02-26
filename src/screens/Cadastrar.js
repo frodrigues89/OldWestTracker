@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, ScrollView, Pressable, TextInput, Alert} from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView, Pressable, TextInput, Image, Alert} from 'react-native';
 import Altura from '../Entity/Altura';
 import DropdownComponent from '../components/DropdownComponent';
 import takePicture from '../components/takepicture';
-import styles from './styles';
+import styles from '../styles/cadastrarStyles';
 import FaixaEtaria from '../Entity/FaixaEtaria';
 import Origem from '../Entity/Origem';
 import Sexo from '../Entity/Sexo';
@@ -53,7 +53,7 @@ const Cadastrar = () => {
     };
 
     //variáveis de características.
-    const [picture,setPicture ] = useState(null);
+    const [picture,setPicture ] = useState('https://oldwesttracker.s3.sa-east-1.amazonaws.com/logo.png');
     const [nome,setNome ] = useState(null);
     const [rg, setRg ]  = useState(null);
     const [cpf, setCpf ] = useState(null);
@@ -140,7 +140,11 @@ const Cadastrar = () => {
     };
  
     const handlePhotoPress = () =>{
-        setPicture(takePicture);
+        const log = {takePicture};
+        console.log(log);
+        
+        //setPicture(takePicture);
+
     }
 
     
@@ -151,16 +155,15 @@ const Cadastrar = () => {
         <View>
             <Text style={styles.txt}>Foto: </Text>
             <Pressable
-                style={styles.inputCadastro}
-                onPress = {handlePhotoPress}
-            >
-
+                onPress={handlePhotoPress}>
+                <Image 
+                source={{ uri: picture}} style={styles.fichaIMG}/>
             </Pressable>
         </View>
         <View>
             <Text style={styles.txt}>Nome: </Text>
             <TextInput
-                style={styles.inputCadastro}
+                style={styles.input}
                 placeholder="NOME DO MALA..."
                 value={nome}
                 onChangeText={(text) => setNome(text)}
@@ -169,7 +172,7 @@ const Cadastrar = () => {
         <View>
             <Text style={styles.txt}>RG: </Text>
             <TextInput
-                style={styles.inputCadastro}
+                style={styles.input}
                 placeholder="RG"
                 value={rg}
                 onChangeText={(text) => setRg(text)}
@@ -178,7 +181,7 @@ const Cadastrar = () => {
         <View>
             <Text style={styles.txt}>CPF: </Text>
             <TextInput
-                style={styles.inputCadastro}
+                style={styles.input}
                 placeholder="CPF"
                 value={cpf}
                 onChangeText={(text) => setCpf(text)}

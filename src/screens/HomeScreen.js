@@ -1,7 +1,7 @@
 // HomeScreen.js
 import React from 'react';
-import SearchBar from './SearchBar';
-import styles from './styles';
+import SearchBar from '../components/SearchBar';
+import styles from '../styles/homeScreenStyles';
 import { Image, Pressable, Text, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Pessoa from '../Entity/Pessoa';
@@ -10,6 +10,9 @@ import Pessoa from '../Entity/Pessoa';
 const HomeScreen = (user) => {
 
     console.log(user);
+    if (user.isAnonymous){
+        navigation.navigate(Login)
+    };
     const handleSearch = (searchText) => {
         const filtros = new Pessoa();
 
@@ -41,12 +44,13 @@ const HomeScreen = (user) => {
                     <Text style={styles.buttonText}>Filtrar</Text>
                 </Pressable>
             </View>
+            {/*  comentado para fazer o deploy sem o botão
             <View style={styles.midContainer}>
                 <Pressable style={styles.button} onPress={handleCadastrarPress}>
                     <Text style={styles.buttonText}>CADASTRAR</Text>
                 </Pressable>
             </View>
-
+    */}
         </View>
         );
     };

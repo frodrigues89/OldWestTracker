@@ -1,6 +1,8 @@
-import ImagePicker from 'react-native-image-picker';
+import { launchCamera } from 'react-native-image-picker';
 
 function takePicture() {
+  return new Promise ((resolve, reject) => {
+  console.log ('entrei aqui');
   const options = {
     title: 'oldWestTracker',
     mediaType: 'photo',
@@ -10,7 +12,7 @@ function takePicture() {
     },
   };
 
-  ImagePicker.launchCamera(options, (response) => {
+  launchCamera(options, (response) => {
     if (response.didCancel) {
       console.log('Captura de imagem cancelada');
     } else if (response.error) {
@@ -18,10 +20,11 @@ function takePicture() {
     } else {
       // Aqui você pode usar a imagem capturada, que está em response.uri
       const source = { uri: response.uri };
-      return source;
+      console.log (uri)
+      return 'source';
     }
   });
-
+});
 }
 
 export default takePicture;

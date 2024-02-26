@@ -1,6 +1,6 @@
 // login.js
 import React, { useState } from 'react';
-import styles from './styles';
+import styles from '../styles/loginStyles';
 import { Pressable, Text, View, TextInput } from 'react-native';
 import { auth } from '../firebase.config';
 import { signInWithEmailAndPassword } from 'firebase/auth';
@@ -17,7 +17,6 @@ const Login = () => {
             .then((userCredential) =>{
                 const user = userCredential.user;
                 navigation.navigate('Home', { user } );
-                console.log(user);
             })
             .catch((error) =>{
                 const errorCode = error.code;

@@ -1,15 +1,13 @@
 //ResultadoBusca.js
 
-import { View, Text, Image, Pressable } from "react-native";
+import { View, Text, Image, Pressable, FlatList } from "react-native";
 import { useEffect, useState } from "react";
 import { useNavigation, useRoute } from "@react-navigation/native";
-import styles from "./styles";
-import { FlatList, ScrollView } from "react-native-web";
+import styles from "../styles/resultadoBuscaStyles";
 
 const ResultadoBusca = () => {
     const route = useRoute();
     const  filtros  = route.params;
-    console.log(filtros);
     const [data, setData] = useState([])
     
     //esse método pode enviar os filtros como POST para a API
@@ -86,7 +84,7 @@ const ResultadoBusca = () => {
             }}
 
           />
-          </View>
+          </View> 
       )
     
 }
