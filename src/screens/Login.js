@@ -28,7 +28,7 @@ const Login = () => {
 
     return (
         <View style={styles.container}>
-        
+        <Text> Bem Vindo! </Text>
         <View style={styles.midContainer}>
             <TextInput
             style={styles.input}
