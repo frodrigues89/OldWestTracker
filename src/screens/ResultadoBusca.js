@@ -1,14 +1,13 @@
 //ResultadoBusca.js
 
-import { View, Text, FlatList, Image, Pressable } from "react-native";
+import { View, Text, Image, Pressable, FlatList } from "react-native";
 import { useEffect, useState } from "react";
 import { useNavigation, useRoute } from "@react-navigation/native";
-import styles from "./styles";
+import styles from "../styles/resultadoBuscaStyles";
 
 const ResultadoBusca = () => {
     const route = useRoute();
     const  filtros  = route.params;
-    console.log(filtros);
     const [data, setData] = useState([])
     
     //esse método pode enviar os filtros como POST para a API
@@ -63,8 +62,11 @@ const ResultadoBusca = () => {
       }, [])
     
       return (
-        <View>
+        <View styles={styles.container}>
           <FlatList
+            horizontal={false} // Garante que a lista seja vertical
+            scrollEnabled={true} // Habilita a rolagem da lista
+            contentContainerStyle={{ flexGrow: 1 }} // Garante que a lista cresça para preencher o espaço disponível
             data={data}
             renderItem={({ item }) => {
               const { name, status, species, image } = item
@@ -80,10 +82,9 @@ const ResultadoBusca = () => {
                 </View>
               )
             }}
+
           />
-    
-    
-        </View>
+          </View> 
       )
     
 }

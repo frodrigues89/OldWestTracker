@@ -5,6 +5,9 @@ const Tatuagem = {
     BRAÇO_E: 'Braço Esquerdo',
     PERNA_D: 'Perna Direita',
     PERNA_E: 'Perna Esquerda',
+    PEITO: 'Peito',
+    COSTAS: 'Costas',
+    OUTROS: 'Outros',
   
     getAllValues: function () {
       const values = [];

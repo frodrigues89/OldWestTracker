@@ -10,14 +10,21 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     padding: 16,
   },
+  Scrollcontainer: {
+    flex: 1,
+    backgroundColor: '#F3F3FF',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+  },
   midContainer: {
     justifyContent: 'center',
     flexDirection: 'row',
     width: '100%',
   },
   logo: {
+    width:350,
+    height: 350,
     marginBottom: 20,
-    marginTop: 10,
   },
   button: {
     backgroundColor: '#0a497b',
@@ -32,6 +39,13 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 20,
   },
+  txt: {
+    color: 'black',
+    fontSize: 20,
+    marginLeft: '10%',
+    marginBottom: 5
+    
+  },
 
   pickerContainer: {
     flexDirection: 'row',
@@ -40,13 +54,25 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     marginLeft: "10%",
     width: '80%',
-    backgroundColor: '#0a497b', // Cor de fundo do Picker
+    backgroundColor: '#0a497b',
     borderRadius: 8,
     height: 50,
   },
-  picker: {
+
+  pickerView:{
+    backgroundColor: 'transparent',
+    borderColor: 'transparent',
+    borderRadius: 8,
+    borderWidth: 1,
+    fontWeight: 'bold',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '80%',
+  },
+
+  pickerModal: {
     flex: 1,
-    backgroundColor: 'transparent', // Cor de fundo do Picker
+    backgroundColor: 'transparent',
     borderColor: 'transparent',
     borderRadius: 8,
     borderWidth: 1,
@@ -64,7 +90,7 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 30,
     fontWeight: 'bold',
-    alignItems: 'center',
+    alignText: 'center',
   },
   buttonText: {
     color: '#fff',
@@ -88,6 +114,35 @@ const styles = StyleSheet.create({
   fichaText: {
     color: 'black',
     fontSize: 20,
+  },
+  input: {
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 8,
+    marginBottom: 20,
+    width: '75%',
+    height: 50,
+    alignItems: 'center',
+  },
+  inputCadastro: {
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 8,
+    marginBottom: 20,
+    width: '80%',
+    height: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginLeft: '10%',
+  },
+  inputPassword: {
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 8,
+    marginBottom: 20,
+    width: '75%',
+    height: 50,
+    alignItems: 'center',
   },
 
 });

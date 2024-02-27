@@ -2,21 +2,21 @@ import React from 'react';
 import { View } from 'react-native';
 import Modal from 'react-native-modal';
 import { Picker } from '@react-native-picker/picker';
-import styles from '../screens/styles';
+import styles from '../styles/dropdownStyles';
 
 const DropdownComponent = ({ isVisible, toggleModal, selectedValue, onValueChange, items }) => {
   return (
     <Modal
       isVisible={isVisible}
       onBackdropPress={toggleModal}
-      style={styles.picker}
+      style={styles.pickerModal}
       animationIn="slideInUp"
       animationOut="slideOutDown"
       animationInTiming={500}
       animationOutTiming={500}
       hasBackdrop={true}
     >
-      <View style={styles.picker}>
+      <View style={styles.pickerView}>
         <Picker
           selectedValue={selectedValue}
           onValueChange={onValueChange}

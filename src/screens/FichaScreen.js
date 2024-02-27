@@ -1,7 +1,7 @@
 // FichaScreen.js
 import React from 'react';
 import { View, Text, Image } from 'react-native';
-import styles from './styles';
+import styles from '../styles/fichaScreenStyles';
 
 const FichaScreen = ({ route }) => {
   const { characterData } = route.params;

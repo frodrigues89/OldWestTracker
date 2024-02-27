@@ -1,9 +1,9 @@
 const Altura = {
-    TAMPINHA: 'Tampinha',
     BAIXO: 'Baixo',
-    MEDIANO: 'Mediano',
+    BAIXO_MEDIO: 'Baixo-Médio',
+    MEDIO: 'Medio',
+    MEDIO_ALTO: 'Médio-Alto',
     ALTO: 'Alto',
-    GIGANTE: 'Gigante',
   
     getAllValues: function () {
       const values = [];

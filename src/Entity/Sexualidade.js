@@ -1,8 +1,8 @@
 const Sexualidade = {
     HETERO: 'Hetero',
-    CHUSKA: 'Chuska',
-    TRAVESTI: 'Travesti',
-    SAPATAO: 'Sapatao',
+    GAY: 'Gay',
+    TRANS: 'Trans',
+    LESBICA: 'Lésbica',
     OUTROS: 'Outros',
   
     getAllValues: function () {
