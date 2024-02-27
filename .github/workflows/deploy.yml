@@ -27,7 +27,6 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: sa-east-1
-          aws-bucket: s3://oldwesttracker
       - name: Deploy to S3
         run: |
           aws s3 sync ./WEB_deploy s3://oldwesttracker
