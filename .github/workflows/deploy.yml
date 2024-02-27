@@ -20,7 +20,7 @@ jobs:
       - name: Install npm dependency
         run: npm install
       - name: Build expo
-        run: npx expo export -p web
+        run: npx expo export -p web --output-dir ./WEB_deploy        
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
