@@ -28,11 +28,10 @@ const Login = () => {
 
     return (
         <View style={styles.container}>
-        <Text> Bem Vindo! </Text>
         <View style={styles.midContainer}>
             <TextInput
             style={styles.input}
-            placeholder="Nome de usuário"
+            placeholder="username"
             keyboardType='email-address'
             autoCapitalize='none'
             autoComplete='email'
@@ -43,7 +42,7 @@ const Login = () => {
         <View style={styles.midContainer}>
             <TextInput
                 style={styles.inputPassword}
-                placeholder="Senha"
+                placeholder="passwrord"
                 secureTextEntry={true}
                 value={userPass}
                 onChangeText={setUserPass}
