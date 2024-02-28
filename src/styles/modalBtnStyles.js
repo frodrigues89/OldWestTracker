@@ -4,27 +4,19 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
 
-  pickerView:{
-    backgroundColor: 'transparent',
-    borderColor: 'transparent',
-    borderRadius: 8,
-    borderWidth: 1,
-    fontWeight: 'bold',
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: '80%',
-  },
-
   pickerModal: {
     flex: 1,
-    backgroundColor: 'transparent',
     borderColor: 'transparent',
-    borderRadius: 8,
-    borderWidth: 1,
     fontWeight: 'bold',
     justifyContent: 'center',
     alignItems: 'center',
-    width: '80%',
+    width: '90%',
+  },
+  pickerView:{
+    borderWidth: 0,
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
   },
   pickerTxt: {
     color: '#fff',
@@ -35,7 +27,16 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 30,
     fontWeight: 'bold',
-    alignText: 'center',
+    textAlign: 'center',
+  },
+  button: {
+    backgroundColor: '#0a497b',
+    width: '80%',
+    height: 50,
+    borderRadius: 8,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 50,
   },
 
 });

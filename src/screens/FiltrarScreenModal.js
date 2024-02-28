@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, ScrollView, Pressable} from 'react-native';
+import { View, Text, ScrollView, Pressable} from 'react-native';
 import Altura from '../Entity/Altura';
-import DropdownComponent from '../components/DropdownComponent';
 import styles from '../styles/filtrarScreenStyles';
 import FaixaEtaria from '../Entity/FaixaEtaria';
 import Origem from '../Entity/Origem';
@@ -11,6 +10,7 @@ import Peso from '../Entity/Peso';
 import Tatuagem from '../Entity/Tatuagem';
 import { useNavigation } from '@react-navigation/native';
 import Pessoa from '../Entity/Pessoa';
+import ModalBtn from '../components/ModalBtn';
 
 const FiltrarScreenModal = () => {
     // Estados para controlar a visibilidade de cada modal
@@ -105,7 +105,7 @@ const FiltrarScreenModal = () => {
     filtros.peso = selectedPeso;
     filtros.faixaEtaria = selectedFaixaEtaria;
     filtros.origem = selectedOrigem;
-    filtros.Sexo = selectedSexo;
+    filtros.sexo = selectedSexo;
     filtros.sexualidade = selectedSexualidade;
     filtros.tatuagem = selectedTatuagem;
 
@@ -125,6 +125,7 @@ const FiltrarScreenModal = () => {
     //tratando a navegação do botão BUSCAR
     const navigation = useNavigation();
     const handleBuscarPress = () => {
+        console.log(filtros);
         navigation.navigate('ResultadoBusca', { filtros });
     };
 
@@ -140,12 +141,12 @@ const FiltrarScreenModal = () => {
         <View>
             <Pressable
                 onPress={toggleAlturaModal}
-                style={styles.pickerContainer}>
-                <Text style={styles.pickerTxt}>
+                style={[styles.modalBtn, selectedAltura !== null ? styles.changedButton : null]}>
+                <Text style={styles.modalBtnTxt}>
                     {selectedAltura || 'Altura'}
                 </Text>
             </Pressable>
-            <DropdownComponent
+            <ModalBtn
                 isVisible={isAlturaModalVisible}
                 toggleModal={toggleAlturaModal}
                 selectedValue={selectedAltura}
@@ -154,13 +155,13 @@ const FiltrarScreenModal = () => {
         </View>
         <View>
             <Pressable
-                style={styles.pickerContainer}
+                style={[styles.modalBtn, selectedFaixaEtaria !== null ? styles.changedButton : null]}
                 onPress={toggleFaixaEtariaModal}>
-                <Text style={styles.pickerTxt}>
+                <Text style={styles.modalBtnTxt}>
                     {selectedFaixaEtaria || 'Faixa Etaria'}
                 </Text>
             </Pressable>
-            <DropdownComponent
+            <ModalBtn
                 isVisible={isFaixaEtariaModalVisible}
                 toggleModal={toggleFaixaEtariaModal}
                 selectedValue={selectedFaixaEtaria}
@@ -169,13 +170,13 @@ const FiltrarScreenModal = () => {
         </View>
         <View> 
             <Pressable 
-                style={styles.pickerContainer}
+                style={[styles.modalBtn, selectedOrigem !== null ? styles.changedButton : null]}
                 onPress={toggleOrigemModal}>
-                <Text style={styles.pickerTxt}>
+                <Text style={styles.modalBtnTxt}>
                     {selectedOrigem || 'Origem'}
                 </Text>
             </Pressable>
-            <DropdownComponent
+            <ModalBtn
                 isVisible={isOrigemModalVisible}
                 toggleModal={toggleOrigemModal}
                 selectedValue={selectedOrigem}
@@ -185,13 +186,13 @@ const FiltrarScreenModal = () => {
 
         <View> 
             <Pressable 
-                style={styles.pickerContainer}
+                style={[styles.modalBtn, selectedPeso !== null ? styles.changedButton : null]}
                 onPress={togglePesoModal}>
-                <Text style={styles.pickerTxt}>
+                <Text style={styles.modalBtnTxt}>
                     {selectedPeso || 'Peso'}
                 </Text>
             </Pressable>
-            <DropdownComponent
+            <ModalBtn
                 isVisible={isPesoModalVisible}
                 toggleModal={togglePesoModal}
                 selectedValue={selectedPeso}
@@ -200,13 +201,13 @@ const FiltrarScreenModal = () => {
         </View>
         <View>
             <Pressable 
-                style={styles.pickerContainer}
+                style={[styles.modalBtn, selectedSexo !== null ? styles.changedButton : null]}
                 onPress={toggleSexoModal}>
-            <Text style={styles.pickerTxt}>
+            <Text style={styles.modalBtnTxt}>
                 {selectedSexo || 'Sexo'}
             </Text>
             </Pressable>
-            <DropdownComponent
+            <ModalBtn
                 isVisible={isSexoModalVisible}
                 toggleModal={toggleSexoModal}
                 selectedValue={selectedSexo}
@@ -215,13 +216,13 @@ const FiltrarScreenModal = () => {
         </View>
         <View>
             <Pressable
-                style={styles.pickerContainer}
+                style={[styles.modalBtn, selectedSexualidade !== null ? styles.changedButton : null]}
                 onPress={toggleSexualidadeModal}>
-                <Text style={styles.pickerTxt}>
+                <Text style={styles.modalBtnTxt}>
                     {selectedSexualidade || 'Sexualidade'}
                 </Text>
             </Pressable>
-            <DropdownComponent
+            <ModalBtn
                 isVisible={isSexualidadeModalVisible}
                 toggleModal={toggleSexualidadeModal}
                 selectedValue={selectedSexualidade}
@@ -230,13 +231,13 @@ const FiltrarScreenModal = () => {
         </View>
         <View> 
             <Pressable
-                style={styles.pickerContainer}
+                style={[styles.modalBtn, selectedTatuagem !== null ? styles.changedButton : null]}
                 onPress={toggleTatuagemModal}>
-                <Text style={styles.pickerTxt}>
+                <Text style={styles.modalBtnTxt}>
                     {selectedTatuagem || 'Tatuagem'}
                 </Text>
             </Pressable>
-            <DropdownComponent
+            <ModalBtn
                 isVisible={isTatuagemModalVisible}
                 toggleModal={toggleTatuagemModal}
                 selectedValue={selectedTatuagem}
@@ -246,19 +247,19 @@ const FiltrarScreenModal = () => {
 
         
         <View style={[styles.midContainer, {marginBottom: 20}]}>
-            <TouchableOpacity style={[styles.button, {backgroundColor: 'green'},
+            <Pressable style={[styles.button, {backgroundColor: 'green'},
             {height: 100},
             {marginBottom: 10}]}
             onPress={handleBuscarPress}>
-                <Text style={styles.pickerTxt}>BUSCAR</Text>
-            </TouchableOpacity>
+                <Text style={styles.modalBtnTxt}>BUSCAR</Text>
+            </Pressable>
         </View>
         <View style={styles.midContainer}>
-            <TouchableOpacity style={[styles.button, {backgroundColor: 'red'},
+            <Pressable style={[styles.button, {backgroundColor: 'red'},
             {height: 50},]}
             onPress={handleResetPress}>
-                <Text style={styles.pickerTxt}>Limpar busca</Text>
-            </TouchableOpacity>
+                <Text style={styles.modalBtnTxt}>Limpar busca</Text>
+            </Pressable>
         </View>
         </ScrollView>
         </View>

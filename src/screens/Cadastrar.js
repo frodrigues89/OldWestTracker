@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, ScrollView, Pressable, TextInput, Image, Alert} from 'react-native';
 import Altura from '../Entity/Altura';
-import DropdownComponent from '../components/DropdownComponent';
 import takePicture from '../components/takepicture';
 import styles from '../styles/cadastrarStyles';
 import FaixaEtaria from '../Entity/FaixaEtaria';
@@ -12,6 +11,7 @@ import Peso from '../Entity/Peso';
 import Tatuagem from '../Entity/Tatuagem';
 import { useNavigation } from '@react-navigation/native';
 import Pessoa from '../Entity/Pessoa';
+import ModalBtn from '../components/ModalBtn';
 
 const Cadastrar = () => {
 
@@ -198,7 +198,7 @@ const Cadastrar = () => {
                     {selectedAltura || 'Altura'}
                 </Text>
             </Pressable>
-            <DropdownComponent
+            <ModalBtn
                 isVisible={isAlturaModalVisible}
                 toggleModal={toggleAlturaModal}
                 selectedValue={selectedAltura}
@@ -213,7 +213,7 @@ const Cadastrar = () => {
                     {selectedFaixaEtaria || 'Faixa Etaria'}
                 </Text>
             </Pressable>
-            <DropdownComponent
+            <ModalBtn
                 isVisible={isFaixaEtariaModalVisible}
                 toggleModal={toggleFaixaEtariaModal}
                 selectedValue={selectedFaixaEtaria}
@@ -228,7 +228,7 @@ const Cadastrar = () => {
                     {selectedOrigem || 'Origem'}
                 </Text>
             </Pressable>
-            <DropdownComponent
+            <ModalBtn
                 isVisible={isOrigemModalVisible}
                 toggleModal={toggleOrigemModal}
                 selectedValue={selectedOrigem}
@@ -244,7 +244,7 @@ const Cadastrar = () => {
                     {selectedPeso || 'Peso'}
                 </Text>
             </Pressable>
-            <DropdownComponent
+            <ModalBtn
                 isVisible={isPesoModalVisible}
                 toggleModal={togglePesoModal}
                 selectedValue={selectedPeso}
@@ -259,7 +259,7 @@ const Cadastrar = () => {
                 {selectedSexo || 'Sexo'}
             </Text>
             </Pressable>
-            <DropdownComponent
+            <ModalBtn
                 isVisible={isSexoModalVisible}
                 toggleModal={toggleSexoModal}
                 selectedValue={selectedSexo}
@@ -274,7 +274,7 @@ const Cadastrar = () => {
                     {selectedSexualidade || 'Sexualidade'}
                 </Text>
             </Pressable>
-            <DropdownComponent
+            <ModalBtn
                 isVisible={isSexualidadeModalVisible}
                 toggleModal={toggleSexualidadeModal}
                 selectedValue={selectedSexualidade}
@@ -289,7 +289,7 @@ const Cadastrar = () => {
                     {selectedTatuagem || 'Tatuagem'}
                 </Text>
             </Pressable>
-            <DropdownComponent
+            <ModalBtn
                 isVisible={isTatuagemModalVisible}
                 toggleModal={toggleTatuagemModal}
                 selectedValue={selectedTatuagem}

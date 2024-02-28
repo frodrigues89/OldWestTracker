@@ -3,13 +3,6 @@
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#F3F3FF',
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-    padding: 16,
-  },
   Scrollcontainer: {
     flex: 1,
     backgroundColor: '#F3F3FF',
@@ -21,11 +14,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     width: '100%',
   },
-  logo: {
-    width:350,
-    height: 350,
-    marginBottom: 20,
-  },
   button: {
     backgroundColor: '#0a497b',
     width: '80%',
@@ -34,6 +22,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 50,
+  },
+  changedButton:{
+    backgroundColor: "green"
   },
   buttonText: {
     color: '#fff',
@@ -47,7 +38,7 @@ const styles = StyleSheet.create({
     
   },
 
-  pickerContainer: {
+  modalBtn: {
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
@@ -81,7 +72,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: '80%',
   },
-  pickerTxt: {
+  modalBtnTxt: {
     color: '#fff',
     fontSize: 30,
     fontWeight: 'bold'
