@@ -53,18 +53,18 @@ const Cadastrar = () => {
     };
 
     //variáveis de características.
-    const [picture,setPicture ] = useState('https://oldwesttracker.s3.sa-east-1.amazonaws.com/logo.png');
+    const [image,setPicture ] = useState('https://oldwesttracker.s3.sa-east-1.amazonaws.com/logo.png');
     const [nome,setNome ] = useState(null);
     const [rg, setRg ]  = useState(null);
     const [cpf, setCpf ] = useState(null);
 
-    const [selectedAltura, setSelectedAltura] = useState(null);
-    const [selectedFaixaEtaria, setSelectedFaixaEtaria] = useState(null);
-    const [selectedOrigem, setSelectedOrigem] = useState(null);
-    const [selectedSexo, setSelectedSexo] = useState(null);
-    const [selectedSexualidade, setSelectedSexualidade] = useState(null);
-    const [selectedPeso, setSelectedPeso] = useState(null);    
-    const [selectedTatuagem, setSelectedTatuagem] = useState(null);
+    const [selectedAltura, setSelectedAltura] = useState("");
+    const [selectedFaixaEtaria, setSelectedFaixaEtaria] = useState("");
+    const [selectedOrigem, setSelectedOrigem] = useState("");
+    const [selectedSexo, setSelectedSexo] = useState("");
+    const [selectedSexualidade, setSelectedSexualidade] = useState("");
+    const [selectedPeso, setSelectedPeso] = useState("");    
+    const [selectedTatuagem, setSelectedTatuagem] = useState("");
   
 
     //monta a lista de dropdown por categoria
@@ -108,7 +108,7 @@ const Cadastrar = () => {
 
     //passando as seleções para a entidade Pessoa
     const pessoa = new Pessoa();
-    pessoa.picture = picture;
+    pessoa.image = image;
     pessoa.nome = nome;
     pessoa.rg = rg;
     pessoa.cpf = cpf;
@@ -116,20 +116,20 @@ const Cadastrar = () => {
     pessoa.peso = selectedPeso;
     pessoa.faixaEtaria = selectedFaixaEtaria;
     pessoa.origem = selectedOrigem;
-    pessoa.Sexo = selectedSexo;
+    pessoa.sexo = selectedSexo;
     pessoa.sexualidade = selectedSexualidade;
     pessoa.tatuagem = selectedTatuagem;
 
 
     //tratando botão reset
     const handleResetPress = () => {
-        setSelectedAltura(null);
-        setSelectedPeso(null);
-        setSelectedFaixaEtaria(null);
-        setSelectedOrigem(null);
-        setSelectedSexo(null);
-        setSelectedSexualidade(null);
-        setSelectedTatuagem(null);
+        setSelectedAltura("");
+        setSelectedPeso("");
+        setSelectedFaixaEtaria("");
+        setSelectedOrigem("");
+        setSelectedSexo("");
+        setSelectedSexualidade("");
+        setSelectedTatuagem("");
     };
 
 
@@ -157,7 +157,7 @@ const Cadastrar = () => {
             <Pressable
                 onPress={handlePhotoPress}>
                 <Image 
-                source={{ uri: picture}} style={styles.fichaIMG}/>
+                source={{ uri: image}} style={styles.fichaIMG}/>
             </Pressable>
         </View>
         <View>
@@ -193,8 +193,8 @@ const Cadastrar = () => {
         <View>
             <Pressable
                 onPress={toggleAlturaModal}
-                style={styles.pickerContainer}>
-                <Text style={styles.pickerTxt}>
+                style={[styles.modalBtn, selectedAltura !== "" ? styles.changedButton : null]}>
+                <Text style={styles.modalBtnTxt}>
                     {selectedAltura || 'Altura'}
                 </Text>
             </Pressable>
@@ -207,9 +207,9 @@ const Cadastrar = () => {
         </View>
         <View>
             <Pressable
-                style={styles.pickerContainer}
+                style={[styles.modalBtn, selectedFaixaEtaria !== "" ? styles.changedButton : null]}
                 onPress={toggleFaixaEtariaModal}>
-                <Text style={styles.pickerTxt}>
+                <Text style={styles.modalBtnTxt}>
                     {selectedFaixaEtaria || 'Faixa Etaria'}
                 </Text>
             </Pressable>
@@ -222,9 +222,9 @@ const Cadastrar = () => {
         </View>
         <View> 
             <Pressable 
-                style={styles.pickerContainer}
+                style={[styles.modalBtn, selectedOrigem !== "" ? styles.changedButton : null]}
                 onPress={toggleOrigemModal}>
-                <Text style={styles.pickerTxt}>
+                <Text style={styles.modalBtnTxt}>
                     {selectedOrigem || 'Origem'}
                 </Text>
             </Pressable>
@@ -238,9 +238,9 @@ const Cadastrar = () => {
 
         <View> 
             <Pressable 
-                style={styles.pickerContainer}
+                style={[styles.modalBtn, selectedPeso !== "" ? styles.changedButton : null]}
                 onPress={togglePesoModal}>
-                <Text style={styles.pickerTxt}>
+                <Text style={styles.modalBtnTxt}>
                     {selectedPeso || 'Peso'}
                 </Text>
             </Pressable>
@@ -253,9 +253,9 @@ const Cadastrar = () => {
         </View>
         <View>
             <Pressable 
-                style={styles.pickerContainer}
+                style={[styles.modalBtn, selectedSexo !== "" ? styles.changedButton : null]}
                 onPress={toggleSexoModal}>
-            <Text style={styles.pickerTxt}>
+            <Text style={styles.modalBtnTxt}>
                 {selectedSexo || 'Sexo'}
             </Text>
             </Pressable>
@@ -268,9 +268,9 @@ const Cadastrar = () => {
         </View>
         <View>
             <Pressable
-                style={styles.pickerContainer}
+                style={[styles.modalBtn, selectedSexualidade !== "" ? styles.changedButton : null]}
                 onPress={toggleSexualidadeModal}>
-                <Text style={styles.pickerTxt}>
+                <Text style={styles.modalBtnTxt}>
                     {selectedSexualidade || 'Sexualidade'}
                 </Text>
             </Pressable>
@@ -283,9 +283,9 @@ const Cadastrar = () => {
         </View>
         <View> 
             <Pressable
-                style={styles.pickerContainer}
+                style={[styles.modalBtn, selectedTatuagem !== "" ? styles.changedButton : null]}
                 onPress={toggleTatuagemModal}>
-                <Text style={styles.pickerTxt}>
+                <Text style={styles.modalBtnTxt}>
                     {selectedTatuagem || 'Tatuagem'}
                 </Text>
             </Pressable>
@@ -303,14 +303,14 @@ const Cadastrar = () => {
             {height: 100},
             {marginBottom: 10}]}
             onPress={handleBuscarPress}>
-                <Text style={styles.pickerTxt}>BUSCAR</Text>
+                <Text style={styles.modalBtnTxt}>BUSCAR</Text>
             </TouchableOpacity>
         </View>
         <View style={styles.midContainer}>
             <TouchableOpacity style={[styles.button, {backgroundColor: 'red'},
             {height: 50},]}
             onPress={handleResetPress}>
-                <Text style={styles.pickerTxt}>Limpar busca</Text>
+                <Text style={styles.modalBtnTxt}>Limpar busca</Text>
             </TouchableOpacity>
         </View>
         </ScrollView>

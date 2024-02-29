@@ -7,49 +7,59 @@ import styles from "../styles/resultadoBuscaStyles";
 
 const ResultadoBusca = () => {
     const route = useRoute();
-    const  filtros  = route.params;
+    const  filtros  = route.params.filtros;
     const [data, setData] = useState([])
-    
+
+
     //esse método pode enviar os filtros como POST para a API
-    /*
-    const loadData =async () => {
-      fetch('URL_DO_SEU_BACKEND/api/pessoa', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(filtros),
-      })
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Erro na solicitação.');
-        }
-        return response.json();
-      })
-      .then(data => {
-        console.log('Dados recebidos:', data);
-        // Manipule a resposta conforme necessário
-      })
-      .catch(error => {
-        console.error('Erro na solicitação:', error);
-        // Trate erros aqui
-      });
-    }
-    */
-    // Método loadData para buscar na API rickandmorty
     const loadData = async () => {
-      try {
-        const response = await fetch('https://rickandmortyapi.com/api/character');
-        if (response.status === 200) {
-          const responseJson = await response.json();
-          setData(responseJson?.results);
-        } else {
-          console.error('Erro na resposta da API:', response.status);
+      filtros.job = "scan"
+      console.log(JSON.stringify(filtros))
+      
+      fetch('https://tcy36fyg2j.execute-api.sa-east-1.amazonaws.com/Test/', {
+
+        method: 'POST',
+
+        headers: {
+
+          'Content-Type': 'application/json',
+
+        },
+
+        body: JSON.stringify(filtros),
+
+      })
+
+      .then(response => {
+
+        if (!response.ok) {
+
+          throw new Error('Erro na solicitação.');
+
         }
-      } catch (error) {
-        console.error('Erro ao carregar dados:', error);
-      }
+
+        return response.json();
+
+      })
+
+      .then(data => {
+
+        console.log('Dados recebidos:', data);
+        setData(data.body.response.Items)
+        // Trate dados aqui
+
+      })
+
+      .catch(error => {
+
+        console.error('Erro na solicitação:', error);
+
+        // Trate erros aqui
+
+      });
+      
     }
+
     //tratando a navegação do botão BUSCAR
     const navigation = useNavigation();
     
@@ -59,7 +69,7 @@ const ResultadoBusca = () => {
 
     useEffect(() => {
         loadData()
-      }, [])
+    }, [])
     
       return (
         <View styles={styles.container}>
@@ -69,15 +79,16 @@ const ResultadoBusca = () => {
             contentContainerStyle={{ flexGrow: 1 }} // Garante que a lista cresça para preencher o espaço disponível
             data={data}
             renderItem={({ item }) => {
-              const { name, status, species, image } = item
+              const { nome, altura, origem, image } = item
               return (
                 <View style={{ marginVertical: 20, alignItems: 'center' }}>
+                  
                   <Pressable
                   onPress={() => handleImagePress(item)}>
                     <Image source={{ uri: image }} style={styles.fichaIMG}/>
-                    <Text>{name}</Text>
-                    <Text>Specie:{species}</Text>
-                    <Text>Status:{status}</Text>
+                    <Text>{nome}</Text>
+                    <Text>Origem:{origem}</Text>
+                    <Text>Altura:{altura}</Text>
                   </Pressable>
                 </View>
               )

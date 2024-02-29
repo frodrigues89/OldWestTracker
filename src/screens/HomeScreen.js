@@ -10,16 +10,20 @@ import Pessoa from '../Entity/Pessoa';
 const HomeScreen = (user) => {
 
     console.log(user);
-    {/*}
     if (user.isAnonymous){
         navigation.navigate(Login)
     };
-    */}
     const handleSearch = (searchText) => {
         const filtros = new Pessoa();
 
         filtros.nome = searchText;
-        
+        filtros.altura = "";
+        filtros.peso = "";
+        filtros.faixaEtaria = "";
+        filtros.origem = "";
+        filtros.sexo = "";
+        filtros.sexualidade = "";
+        filtros.tatuagem = "";
         console.log('Pesquisando por:', filtros.nome);
         navigation.navigate('ResultadoBusca', { filtros } );
     };
@@ -46,7 +50,7 @@ const HomeScreen = (user) => {
                     <Text style={styles.buttonText}>Filtrar</Text>
                 </Pressable>
             </View>
-            {/*  comentado para fazer o deploy sem o botão
+            {/*
             <View style={styles.midContainer}>
                 <Pressable style={styles.button} onPress={handleCadastrarPress}>
                     <Text style={styles.buttonText}>CADASTRAR</Text>

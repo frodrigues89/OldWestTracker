@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
 
-  pickerContainer: {
+  modalBtn: {
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
@@ -41,10 +41,13 @@ const styles = StyleSheet.create({
     height: 50,
   },
 
-  pickerTxt: {
+  modalBtnTxt: {
     color: '#fff',
     fontSize: 30,
     fontWeight: 'bold'
+  },
+  changedButton:{
+    backgroundColor: 'green'
   },
   pickerItemTxt: {
     color: '#fff',

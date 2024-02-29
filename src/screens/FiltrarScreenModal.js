@@ -51,13 +51,13 @@ const FiltrarScreenModal = () => {
     };
 
     //variáveis de características.
-    const [selectedAltura, setSelectedAltura] = useState(null);
-    const [selectedFaixaEtaria, setSelectedFaixaEtaria] = useState(null);
-    const [selectedOrigem, setSelectedOrigem] = useState(null);
-    const [selectedSexo, setSelectedSexo] = useState(null);
-    const [selectedSexualidade, setSelectedSexualidade] = useState(null);
-    const [selectedPeso, setSelectedPeso] = useState(null);    
-    const [selectedTatuagem, setSelectedTatuagem] = useState(null);
+    const [selectedAltura, setSelectedAltura] = useState("");
+    const [selectedFaixaEtaria, setSelectedFaixaEtaria] = useState("");
+    const [selectedOrigem, setSelectedOrigem] = useState("");
+    const [selectedSexo, setSelectedSexo] = useState("");
+    const [selectedSexualidade, setSelectedSexualidade] = useState("");
+    const [selectedPeso, setSelectedPeso] = useState("");    
+    const [selectedTatuagem, setSelectedTatuagem] = useState("");
   
 
     //monta a lista de dropdown por categoria
@@ -112,20 +112,19 @@ const FiltrarScreenModal = () => {
 
     //tratando botão reset
     const handleResetPress = () => {
-        setSelectedAltura(null);
-        setSelectedPeso(null);
-        setSelectedFaixaEtaria(null);
-        setSelectedOrigem(null);
-        setSelectedSexo(null);
-        setSelectedSexualidade(null);
-        setSelectedTatuagem(null);
+        setSelectedAltura("");
+        setSelectedPeso("");
+        setSelectedFaixaEtaria("");
+        setSelectedOrigem("");
+        setSelectedSexo("");
+        setSelectedSexualidade("");
+        setSelectedTatuagem("");
     };
 
 
     //tratando a navegação do botão BUSCAR
     const navigation = useNavigation();
     const handleBuscarPress = () => {
-        console.log(filtros);
         navigation.navigate('ResultadoBusca', { filtros });
     };
 
@@ -141,7 +140,7 @@ const FiltrarScreenModal = () => {
         <View>
             <Pressable
                 onPress={toggleAlturaModal}
-                style={[styles.modalBtn, selectedAltura !== null ? styles.changedButton : null]}>
+                style={[styles.modalBtn, selectedAltura !== "" ? styles.changedButton : null]}>
                 <Text style={styles.modalBtnTxt}>
                     {selectedAltura || 'Altura'}
                 </Text>
@@ -155,7 +154,7 @@ const FiltrarScreenModal = () => {
         </View>
         <View>
             <Pressable
-                style={[styles.modalBtn, selectedFaixaEtaria !== null ? styles.changedButton : null]}
+                style={[styles.modalBtn, selectedFaixaEtaria !== "" ? styles.changedButton : null]}
                 onPress={toggleFaixaEtariaModal}>
                 <Text style={styles.modalBtnTxt}>
                     {selectedFaixaEtaria || 'Faixa Etaria'}
@@ -170,7 +169,7 @@ const FiltrarScreenModal = () => {
         </View>
         <View> 
             <Pressable 
-                style={[styles.modalBtn, selectedOrigem !== null ? styles.changedButton : null]}
+                style={[styles.modalBtn, selectedOrigem !== "" ? styles.changedButton : null]}
                 onPress={toggleOrigemModal}>
                 <Text style={styles.modalBtnTxt}>
                     {selectedOrigem || 'Origem'}
@@ -186,7 +185,7 @@ const FiltrarScreenModal = () => {
 
         <View> 
             <Pressable 
-                style={[styles.modalBtn, selectedPeso !== null ? styles.changedButton : null]}
+                style={[styles.modalBtn, selectedPeso !== "" ? styles.changedButton : null]}
                 onPress={togglePesoModal}>
                 <Text style={styles.modalBtnTxt}>
                     {selectedPeso || 'Peso'}
@@ -201,7 +200,7 @@ const FiltrarScreenModal = () => {
         </View>
         <View>
             <Pressable 
-                style={[styles.modalBtn, selectedSexo !== null ? styles.changedButton : null]}
+                style={[styles.modalBtn, selectedSexo !== "" ? styles.changedButton : null]}
                 onPress={toggleSexoModal}>
             <Text style={styles.modalBtnTxt}>
                 {selectedSexo || 'Sexo'}
@@ -216,7 +215,7 @@ const FiltrarScreenModal = () => {
         </View>
         <View>
             <Pressable
-                style={[styles.modalBtn, selectedSexualidade !== null ? styles.changedButton : null]}
+                style={[styles.modalBtn, selectedSexualidade !== "" ? styles.changedButton : null]}
                 onPress={toggleSexualidadeModal}>
                 <Text style={styles.modalBtnTxt}>
                     {selectedSexualidade || 'Sexualidade'}
@@ -231,7 +230,7 @@ const FiltrarScreenModal = () => {
         </View>
         <View> 
             <Pressable
-                style={[styles.modalBtn, selectedTatuagem !== null ? styles.changedButton : null]}
+                style={[styles.modalBtn, selectedTatuagem !== "" ? styles.changedButton : null]}
                 onPress={toggleTatuagemModal}>
                 <Text style={styles.modalBtnTxt}>
                     {selectedTatuagem || 'Tatuagem'}
