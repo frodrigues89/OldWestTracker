@@ -75,10 +75,6 @@ const ResultadoBusca = () => {
     
       return (
         <View style={styles.container}>
-          <Text>Carregando a página de resultados.</Text>
-          <Text>API status code: {status}</Text>
-          <Text>Count: {count}</Text>
-          <Text> {JSON.stringify(filtros)}</Text>
           <FlatList
             horizontal={false} // Garante que a lista seja vertical
             scrollEnabled={true} // Habilita a rolagem da lista
