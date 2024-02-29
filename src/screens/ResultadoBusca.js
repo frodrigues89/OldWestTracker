@@ -35,9 +35,8 @@ const ResultadoBusca = () => {
       .then(response => {
 
         if (!response.ok) {
-
+          setStatus('Erro na solicitação.');
           throw new Error('Erro na solicitação.');
-
         }
 
         return response.json();
@@ -56,7 +55,7 @@ const ResultadoBusca = () => {
       .catch(error => {
 
         console.error('Erro na solicitação:', error);
-
+        setStatus(error)
         // Trate erros aqui
 
       });
@@ -79,6 +78,7 @@ const ResultadoBusca = () => {
           <Text>Carregando a página de resultados.</Text>
           <Text>API status code: {status}</Text>
           <Text>Count: {count}</Text>
+          <Text> {JSON.stringify(filtros)}</Text>
           <FlatList
             horizontal={false} // Garante que a lista seja vertical
             scrollEnabled={true} // Habilita a rolagem da lista
