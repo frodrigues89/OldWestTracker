@@ -9,6 +9,8 @@ const ResultadoBusca = () => {
     const route = useRoute();
     const  filtros  = route.params.filtros;
     const [data, setData] = useState([])
+    const [status, setStatus] = useState([])
+    const [body, setBody] = useState([])
 
 
     //esse método pode enviar os filtros como POST para a API
@@ -46,7 +48,8 @@ const ResultadoBusca = () => {
 
         console.log('Dados recebidos:', data);
         setData(data.body.response.Items)
-        // Trate dados aqui
+        setBody(data.body)
+        setStatus(data.statusCode)
 
       })
 
@@ -64,7 +67,7 @@ const ResultadoBusca = () => {
     const navigation = useNavigation();
     
     const handleImagePress = (item) => {
-      navigation.navigate('FichaScreen', { characterData: item });
+      navigation.navigate('FichaScreen', { pessoa: item });
     }
 
     useEffect(() => {
@@ -73,13 +76,15 @@ const ResultadoBusca = () => {
     
       return (
         <View styles={styles.container}>
+          <Text>API status code: {status}</Text>
+          <Text>Count: {body.response.Count}</Text>
           <FlatList
             horizontal={false} // Garante que a lista seja vertical
             scrollEnabled={true} // Habilita a rolagem da lista
             contentContainerStyle={{ flexGrow: 1 }} // Garante que a lista cresça para preencher o espaço disponível
             data={data}
             renderItem={({ item }) => {
-              const { nome, altura, origem, image } = item
+              const { nome, origem, image } = item
               return (
                 <View style={{ marginVertical: 20, alignItems: 'center' }}>
                   
@@ -88,7 +93,6 @@ const ResultadoBusca = () => {
                     <Image source={{ uri: image }} style={styles.fichaIMG}/>
                     <Text>{nome}</Text>
                     <Text>Origem:{origem}</Text>
-                    <Text>Altura:{altura}</Text>
                   </Pressable>
                 </View>
               )
