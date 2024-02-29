@@ -55,7 +55,7 @@ const ResultadoBusca = () => {
       .catch(error => {
 
         console.error('Erro na solicitação:', error);
-        setStatus(error)
+        setStatus('error')
         // Trate erros aqui
 
       });
