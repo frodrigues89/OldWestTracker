@@ -31,7 +31,7 @@ const Login = () => {
         <View style={styles.midContainer}>
             <TextInput
             style={styles.input}
-            placeholder="username"
+            placeholder="Username"
             keyboardType='email-address'
             autoCapitalize='none'
             autoComplete='email'
@@ -42,7 +42,7 @@ const Login = () => {
         <View style={styles.midContainer}>
             <TextInput
                 style={styles.inputPassword}
-                placeholder="passwrord"
+                placeholder="Password"
                 secureTextEntry={true}
                 value={userPass}
                 onChangeText={setUserPass}
