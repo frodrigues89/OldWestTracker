@@ -10,7 +10,7 @@ const ResultadoBusca = () => {
     const  filtros  = route.params.filtros;
     const [data, setData] = useState([])
     const [status, setStatus] = useState([])
-    const [body, setBody] = useState([])
+    const [count, setCount] = useState(0)
 
 
     //esse método pode enviar os filtros como POST para a API
@@ -48,7 +48,7 @@ const ResultadoBusca = () => {
 
         console.log('Dados recebidos:', data);
         setData(data.body.response.Items)
-        setBody(data.body)
+        setCount(data.body.response.Count)
         setStatus(data.statusCode)
 
       })
@@ -77,7 +77,7 @@ const ResultadoBusca = () => {
       return (
         <View styles={styles.container}>
           <Text>API status code: {status}</Text>
-          <Text>Count: {body.response.Count}</Text>
+          <Text>Count: {count}</Text>
           <FlatList
             horizontal={false} // Garante que a lista seja vertical
             scrollEnabled={true} // Habilita a rolagem da lista
