@@ -75,7 +75,8 @@ const ResultadoBusca = () => {
     }, [])
     
       return (
-        <View styles={styles.container}>
+        <View style={styles.container}>
+          <Text>Carregando a página de resultados.</Text>
           <Text>API status code: {status}</Text>
           <Text>Count: {count}</Text>
           <FlatList
