@@ -1,4 +1,4 @@
-//styles.js
+//filtrarScreenStyles.js
 
 import { StyleSheet } from "react-native";
 

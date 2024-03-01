@@ -72,9 +72,6 @@ const ResultadoBusca = () => {
       return (
         <View style={styles.container}>
           <FlatList
-            horizontal={false} // Garante que a lista seja vertical
-            scrollEnabled={true} // Habilita a rolagem da lista
-            contentContainerStyle={{ flexGrow: 1 }} // Garante que a lista cresça para preencher o espaço disponível
             data={data}
             renderItem={({ item }) => {
               const { nome, origem, image, atividade } = item

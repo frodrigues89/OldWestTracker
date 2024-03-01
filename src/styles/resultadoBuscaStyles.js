@@ -1,10 +1,19 @@
-//styles.js
+//resultadoBuscaStyles.js
 
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    flexDirection: 'row',
+    backgroundColor: '#F3F3FF',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    padding: 16,
+  },
+  flatlist: {
+    flex: 1,
+    flexDirection: 'row',
     backgroundColor: '#F3F3FF',
     alignItems: 'center',
     justifyContent: 'flex-start',

@@ -149,10 +149,8 @@ const FiltrarScreenModal = () => {
 
 
     
-    return (
-      <View 
-        style={{...styles.Scrollcontainer, width: width, height: height}}>       
-      <ScrollView>
+    return (      
+      <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
         <Text style={styles.txt}>
             Selecione os filtros para busca.
         </Text>
@@ -309,7 +307,6 @@ const FiltrarScreenModal = () => {
             </Pressable>
         </View>
         </ScrollView>
-        </View>
     );
   };
 
