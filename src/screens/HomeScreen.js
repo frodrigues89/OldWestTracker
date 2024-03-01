@@ -9,11 +9,9 @@ import Pessoa from '../Entity/Pessoa';
 
 const HomeScreen = (user) => {
 
-    /*
     if (user.isAnonymous){
         navigation.navigate(Login)
     };
-    */
     const handleSearch = (searchText) => {
         const filtros = new Pessoa();
 

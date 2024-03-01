@@ -149,164 +149,166 @@ const FiltrarScreenModal = () => {
 
 
     
-    return (      
-      <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-        <Text style={styles.txt}>
-            Selecione os filtros para busca.
-        </Text>
-        <View>
-            <Pressable
-                onPress={toggleAlturaModal}
-                style={[styles.modalBtn, selectedAltura !== "" ? styles.changedButton : null]}>
-                <Text style={styles.modalBtnTxt}>
-                    {selectedAltura || 'Altura'}
-                </Text>
-            </Pressable>
-            <ModalBtn
-                isVisible={isAlturaModalVisible}
-                toggleModal={toggleAlturaModal}
-                selectedValue={selectedAltura}
-                onValueChange={handleSelectAltura}
-                items={Altura.getAllValues()} />
-        </View> 
-        <View> 
-            <Pressable 
-                style={[styles.modalBtn, selectedPeso !== "" ? styles.changedButton : null]}
-                onPress={togglePesoModal}>
-                <Text style={styles.modalBtnTxt}>
-                    {selectedPeso || 'Peso'}
-                </Text>
-            </Pressable>
-            <ModalBtn
-                isVisible={isPesoModalVisible}
-                toggleModal={togglePesoModal}
-                selectedValue={selectedPeso}
-                onValueChange={handleSelectPeso}
-                items={Peso.getAllValues()} />
-        </View>
-        <View> 
-            <Pressable 
-                style={[styles.modalBtn, selectedRaca !== "" ? styles.changedButton : null]}
-                onPress={toggleRacaModal}>
-                <Text style={styles.modalBtnTxt}>
-                    {selectedRaca || 'Raça'}
-                </Text>
-            </Pressable>
-            <ModalBtn
-                isVisible={isRacaModalVisible}
-                toggleModal={toggleRacaModal}
-                selectedValue={selectedRaca}
-                onValueChange={handleSelectRaca}
-                items={Raca.getAllValues()} />
-        </View>
-        <View> 
-            <Pressable 
-                style={[styles.modalBtn, selectedAtividade !== "" ? styles.changedButton : null]}
-                onPress={toggleAtividadeModal}>
-                <Text style={styles.modalBtnTxt}>
-                    {selectedAtividade || 'Atividade'}
-                </Text>
-            </Pressable>
-            <ModalBtn
-                isVisible={isAtividadeModalVisible}
-                toggleModal={toggleAtividadeModal}
-                selectedValue={selectedAtividade}
-                onValueChange={handleSelectAtividade}
-                items={Atividade.getAllValues()} />
-        </View>
-        <View>
-            <Pressable
-                style={[styles.modalBtn, selectedFaixaEtaria !== "" ? styles.changedButton : null]}
-                onPress={toggleFaixaEtariaModal}>
-                <Text style={styles.modalBtnTxt}>
-                    {selectedFaixaEtaria || 'Faixa Etaria'}
-                </Text>
-            </Pressable>
-            <ModalBtn
-                isVisible={isFaixaEtariaModalVisible}
-                toggleModal={toggleFaixaEtariaModal}
-                selectedValue={selectedFaixaEtaria}
-                onValueChange={handleSelectFaixaEtaria}
-                items={FaixaEtaria.getAllValues()} />
-        </View>
-        <View> 
-            <Pressable 
-                style={[styles.modalBtn, selectedOrigem !== "" ? styles.changedButton : null]}
-                onPress={toggleOrigemModal}>
-                <Text style={styles.modalBtnTxt}>
-                    {selectedOrigem || 'Origem'}
-                </Text>
-            </Pressable>
-            <ModalBtn
-                isVisible={isOrigemModalVisible}
-                toggleModal={toggleOrigemModal}
-                selectedValue={selectedOrigem}
-                onValueChange={handleSelectOrigem}
-                items={Origem.getAllValues()} />
-        </View> 
-        <View>
-            <Pressable 
-                style={[styles.modalBtn, selectedSexo !== "" ? styles.changedButton : null]}
-                onPress={toggleSexoModal}>
-            <Text style={styles.modalBtnTxt}>
-                {selectedSexo || 'Sexo'}
+    return (
+        <View style={styles.Scrollcontainer}>   
+        <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+            <Text style={styles.txt}>
+                Selecione os filtros para busca.
             </Text>
-            </Pressable>
-            <ModalBtn
-                isVisible={isSexoModalVisible}
-                toggleModal={toggleSexoModal}
-                selectedValue={selectedSexo}
-                onValueChange={handleSelectSexo}
-                items={Sexo.getAllValues()} />
-        </View>
-        <View>
-            <Pressable
-                style={[styles.modalBtn, selectedSexualidade !== "" ? styles.changedButton : null]}
-                onPress={toggleSexualidadeModal}>
+            <View>
+                <Pressable
+                    onPress={toggleAlturaModal}
+                    style={[styles.modalBtn, selectedAltura !== "" ? styles.changedButton : null]}>
+                    <Text style={styles.modalBtnTxt}>
+                        {selectedAltura || 'Altura'}
+                    </Text>
+                </Pressable>
+                <ModalBtn
+                    isVisible={isAlturaModalVisible}
+                    toggleModal={toggleAlturaModal}
+                    selectedValue={selectedAltura}
+                    onValueChange={handleSelectAltura}
+                    items={Altura.getAllValues()} />
+            </View> 
+            <View> 
+                <Pressable 
+                    style={[styles.modalBtn, selectedPeso !== "" ? styles.changedButton : null]}
+                    onPress={togglePesoModal}>
+                    <Text style={styles.modalBtnTxt}>
+                        {selectedPeso || 'Peso'}
+                    </Text>
+                </Pressable>
+                <ModalBtn
+                    isVisible={isPesoModalVisible}
+                    toggleModal={togglePesoModal}
+                    selectedValue={selectedPeso}
+                    onValueChange={handleSelectPeso}
+                    items={Peso.getAllValues()} />
+            </View>
+            <View> 
+                <Pressable 
+                    style={[styles.modalBtn, selectedRaca !== "" ? styles.changedButton : null]}
+                    onPress={toggleRacaModal}>
+                    <Text style={styles.modalBtnTxt}>
+                        {selectedRaca || 'Raça'}
+                    </Text>
+                </Pressable>
+                <ModalBtn
+                    isVisible={isRacaModalVisible}
+                    toggleModal={toggleRacaModal}
+                    selectedValue={selectedRaca}
+                    onValueChange={handleSelectRaca}
+                    items={Raca.getAllValues()} />
+            </View>
+            <View> 
+                <Pressable 
+                    style={[styles.modalBtn, selectedAtividade !== "" ? styles.changedButton : null]}
+                    onPress={toggleAtividadeModal}>
+                    <Text style={styles.modalBtnTxt}>
+                        {selectedAtividade || 'Atividade'}
+                    </Text>
+                </Pressable>
+                <ModalBtn
+                    isVisible={isAtividadeModalVisible}
+                    toggleModal={toggleAtividadeModal}
+                    selectedValue={selectedAtividade}
+                    onValueChange={handleSelectAtividade}
+                    items={Atividade.getAllValues()} />
+            </View>
+            <View>
+                <Pressable
+                    style={[styles.modalBtn, selectedFaixaEtaria !== "" ? styles.changedButton : null]}
+                    onPress={toggleFaixaEtariaModal}>
+                    <Text style={styles.modalBtnTxt}>
+                        {selectedFaixaEtaria || 'Faixa Etaria'}
+                    </Text>
+                </Pressable>
+                <ModalBtn
+                    isVisible={isFaixaEtariaModalVisible}
+                    toggleModal={toggleFaixaEtariaModal}
+                    selectedValue={selectedFaixaEtaria}
+                    onValueChange={handleSelectFaixaEtaria}
+                    items={FaixaEtaria.getAllValues()} />
+            </View>
+            <View> 
+                <Pressable 
+                    style={[styles.modalBtn, selectedOrigem !== "" ? styles.changedButton : null]}
+                    onPress={toggleOrigemModal}>
+                    <Text style={styles.modalBtnTxt}>
+                        {selectedOrigem || 'Origem'}
+                    </Text>
+                </Pressable>
+                <ModalBtn
+                    isVisible={isOrigemModalVisible}
+                    toggleModal={toggleOrigemModal}
+                    selectedValue={selectedOrigem}
+                    onValueChange={handleSelectOrigem}
+                    items={Origem.getAllValues()} />
+            </View> 
+            <View>
+                <Pressable 
+                    style={[styles.modalBtn, selectedSexo !== "" ? styles.changedButton : null]}
+                    onPress={toggleSexoModal}>
                 <Text style={styles.modalBtnTxt}>
-                    {selectedSexualidade || 'Sexualidade'}
+                    {selectedSexo || 'Sexo'}
                 </Text>
-            </Pressable>
-            <ModalBtn
-                isVisible={isSexualidadeModalVisible}
-                toggleModal={toggleSexualidadeModal}
-                selectedValue={selectedSexualidade}
-                onValueChange={handleSelectSexualidade}
-                items={Sexualidade.getAllValues()} />
-        </View>
-        <View> 
-            <Pressable
-                style={[styles.modalBtn, selectedTatuagem !== "" ? styles.changedButton : null]}
-                onPress={toggleTatuagemModal}>
-                <Text style={styles.modalBtnTxt}>
-                    {selectedTatuagem || 'Tatuagem'}
-                </Text>
-            </Pressable>
-            <ModalBtn
-                isVisible={isTatuagemModalVisible}
-                toggleModal={toggleTatuagemModal}
-                selectedValue={selectedTatuagem}
-                onValueChange={handleSelectTatuagem}
-                items={Tatuagem.getAllValues()} />
-        </View>
+                </Pressable>
+                <ModalBtn
+                    isVisible={isSexoModalVisible}
+                    toggleModal={toggleSexoModal}
+                    selectedValue={selectedSexo}
+                    onValueChange={handleSelectSexo}
+                    items={Sexo.getAllValues()} />
+            </View>
+            <View>
+                <Pressable
+                    style={[styles.modalBtn, selectedSexualidade !== "" ? styles.changedButton : null]}
+                    onPress={toggleSexualidadeModal}>
+                    <Text style={styles.modalBtnTxt}>
+                        {selectedSexualidade || 'Sexualidade'}
+                    </Text>
+                </Pressable>
+                <ModalBtn
+                    isVisible={isSexualidadeModalVisible}
+                    toggleModal={toggleSexualidadeModal}
+                    selectedValue={selectedSexualidade}
+                    onValueChange={handleSelectSexualidade}
+                    items={Sexualidade.getAllValues()} />
+            </View>
+            <View> 
+                <Pressable
+                    style={[styles.modalBtn, selectedTatuagem !== "" ? styles.changedButton : null]}
+                    onPress={toggleTatuagemModal}>
+                    <Text style={styles.modalBtnTxt}>
+                        {selectedTatuagem || 'Tatuagem'}
+                    </Text>
+                </Pressable>
+                <ModalBtn
+                    isVisible={isTatuagemModalVisible}
+                    toggleModal={toggleTatuagemModal}
+                    selectedValue={selectedTatuagem}
+                    onValueChange={handleSelectTatuagem}
+                    items={Tatuagem.getAllValues()} />
+            </View>
 
-        
-        <View style={[styles.midContainer, {marginBottom: 20}]}>
-            <Pressable style={[styles.button, {backgroundColor: 'green'},
-            {height: 100},
-            {marginBottom: 10}]}
-            onPress={handleBuscarPress}>
-                <Text style={styles.modalBtnTxt}>BUSCAR</Text>
-            </Pressable>
+            
+            <View style={[styles.midContainer, {marginBottom: 20}]}>
+                <Pressable style={[styles.button, {backgroundColor: 'green'},
+                {height: 100},
+                {marginBottom: 10}]}
+                onPress={handleBuscarPress}>
+                    <Text style={styles.modalBtnTxt}>BUSCAR</Text>
+                </Pressable>
+            </View>
+            <View style={styles.midContainer}>
+                <Pressable style={[styles.button, {backgroundColor: 'red'},
+                {height: 50},]}
+                onPress={handleResetPress}>
+                    <Text style={styles.modalBtnTxt}>Limpar busca</Text>
+                </Pressable>
+            </View>
+            </ScrollView>
         </View>
-        <View style={styles.midContainer}>
-            <Pressable style={[styles.button, {backgroundColor: 'red'},
-            {height: 50},]}
-            onPress={handleResetPress}>
-                <Text style={styles.modalBtnTxt}>Limpar busca</Text>
-            </Pressable>
-        </View>
-        </ScrollView>
     );
   };
 
