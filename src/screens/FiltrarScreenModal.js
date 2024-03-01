@@ -9,6 +9,7 @@ import Sexualidade from '../Entity/Sexualidade';
 import Peso from '../Entity/Peso';
 import Tatuagem from '../Entity/Tatuagem';
 import Atividade from '../Entity/Atividade';
+import Raca from '../Entity/Raca';
 import { useNavigation } from '@react-navigation/native';
 import Pessoa from '../Entity/Pessoa';
 import ModalBtn from '../components/ModalBtn';
@@ -23,8 +24,10 @@ const FiltrarScreenModal = () => {
     const [isPesoModalVisible, setPesoModalVisible] = useState(false);
     const [isTatuagemModalVisible, setTatuagemModalVisible] = useState(false);
     const [isAtividadeModalVisible, setAtividadeModalVisible] = useState(false);
+    const [isRacaModalVisible, setRacaModalVisible] = useState(false);
 
     const { width } = useWindowDimensions;
+    const { height } = useWindowDimensions;
 
     // métodos para tratar a visibilidade do modal.
     const toggleAlturaModal = () => {
@@ -58,6 +61,10 @@ const FiltrarScreenModal = () => {
         setAtividadeModalVisible(!isAtividadeModalVisible)
     };
 
+    const toggleRacaModal = () => {
+        setRacaModalVisible(!isRacaModalVisible)
+    };
+
     //variáveis de características.
     const [selectedAltura, setSelectedAltura] = useState("");
     const [selectedFaixaEtaria, setSelectedFaixaEtaria] = useState("");
@@ -67,6 +74,7 @@ const FiltrarScreenModal = () => {
     const [selectedPeso, setSelectedPeso] = useState("");    
     const [selectedTatuagem, setSelectedTatuagem] = useState("");
     const [selectedAtividade, setSelectedAtividade] = useState("");
+    const [selectedRaca, setSelectedRaca] = useState("");
     
     //métodos que manipulam a variavel de cada categoria.
     const handleSelectAltura = (itemValue) => {
@@ -101,6 +109,10 @@ const FiltrarScreenModal = () => {
         setSelectedAtividade(itemValue);
         toggleAtividadeModal();
     };
+    const handleSelectRaca = (itemValue) => {
+        setSelectedRaca(itemValue);
+        toggleRacaModal();
+    };
 
     //passando as seleções para a entidade Pessoa
     const filtros = new Pessoa();
@@ -112,6 +124,7 @@ const FiltrarScreenModal = () => {
     filtros.sexualidade = selectedSexualidade;
     filtros.tatuagem = selectedTatuagem;
     filtros.atividade = selectedAtividade;
+    filtros.raca = selectedRaca;
 
 
     //tratando botão reset
@@ -124,6 +137,7 @@ const FiltrarScreenModal = () => {
         setSelectedSexualidade("");
         setSelectedTatuagem("");
         setSelectedAtividade("");
+        setSelectedRaca("");
     };
 
 
@@ -137,7 +151,7 @@ const FiltrarScreenModal = () => {
     
     return (
       <View 
-        style={{...styles.Scrollcontainer, width: width}}>       
+        style={{...styles.Scrollcontainer, width: width, height: height}}>       
       <ScrollView>
         <Text style={styles.txt}>
             Selecione os filtros para busca.
@@ -171,6 +185,21 @@ const FiltrarScreenModal = () => {
                 selectedValue={selectedPeso}
                 onValueChange={handleSelectPeso}
                 items={Peso.getAllValues()} />
+        </View>
+        <View> 
+            <Pressable 
+                style={[styles.modalBtn, selectedRaca !== "" ? styles.changedButton : null]}
+                onPress={toggleRacaModal}>
+                <Text style={styles.modalBtnTxt}>
+                    {selectedRaca || 'Raça'}
+                </Text>
+            </Pressable>
+            <ModalBtn
+                isVisible={isRacaModalVisible}
+                toggleModal={toggleRacaModal}
+                selectedValue={selectedRaca}
+                onValueChange={handleSelectRaca}
+                items={Raca.getAllValues()} />
         </View>
         <View> 
             <Pressable 

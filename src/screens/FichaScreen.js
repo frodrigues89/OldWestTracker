@@ -16,9 +16,11 @@ const FichaScreen = ({ route }) => {
         </Text >
         <Text style={styles.fichaText}>Peso: {pessoa.peso}
         </Text>
+        <Text style={styles.fichaText}>Origem: {pessoa.origem}
+        </Text>
         <Text style={styles.fichaText}>Faixa Etária: {pessoa.faixaEtaria}
         </Text>
-        <Text style={styles.fichaText}>Origem: {pessoa.origem}
+        <Text style={styles.fichaText}>Etnia: {pessoa.raca}
         </Text>
         <Text style={styles.fichaText}>Sexo: {pessoa.sexo}
         </Text>

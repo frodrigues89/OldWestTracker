@@ -12,6 +12,7 @@ class Pessoa {
         this.sexualidade = '';
         this.tatuagem = '';
         this.atividade = '';
+        this.raca = '';
     }
 }
 
