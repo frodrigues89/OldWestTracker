@@ -3,16 +3,15 @@
 
 class Pessoa {
     constructor() {
-        this.id = 0;
         this.nome = '';
-        this.idade = 0;
-        this.altura = 0;
-        this.peso = null;
-        this.faixaEtaria = null;
-        this.origem = null;
-        this.sexo = null;
-        this.sexualidade = null;
-        this.tatuagem = null;
+        this.altura = '';
+        this.peso = '';
+        this.faixaEtaria = '';
+        this.origem = '';
+        this.sexo = '';
+        this.sexualidade = '';
+        this.tatuagem = '';
+        this.atividade = '';
     }
 }
 

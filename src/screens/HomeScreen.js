@@ -9,21 +9,16 @@ import Pessoa from '../Entity/Pessoa';
 
 const HomeScreen = (user) => {
 
-    console.log(user);
+    /*
     if (user.isAnonymous){
         navigation.navigate(Login)
     };
+    */
     const handleSearch = (searchText) => {
         const filtros = new Pessoa();
 
         filtros.nome = searchText;
-        filtros.altura = "";
-        filtros.peso = "";
-        filtros.faixaEtaria = "";
-        filtros.origem = "";
-        filtros.sexo = "";
-        filtros.sexualidade = "";
-        filtros.tatuagem = "";
+
         console.log('Pesquisando por:', filtros.nome);
         navigation.navigate('ResultadoBusca', { filtros } );
     };
@@ -37,12 +32,17 @@ const HomeScreen = (user) => {
         navigation.navigate('Cadastrar');
     };
 
+    uriFoto = 'https://drive.google.com/file/d/1uUY6LIhuPQ49Jt5wPSu8erefhKWqWau6/view?usp=sharing';
+    uriLogo = 'https://oldwesttracker.s3.sa-east-1.amazonaws.com/logo.png';
+
     return (
         <View style={styles.container}>
             <View style={styles.midContainer}>
-                <Image source={{ uri: 'https://oldwesttracker.s3.sa-east-1.amazonaws.com/logo.png' }} style={styles.logo} />
+
+
+                <Image source={{ uri: uriLogo }} style={styles.logo} />
             </View>
-            <View style={styles.midContainer}>
+            <View style={styles.searchContainer}>
                 <SearchBar onSearch={handleSearch} />
             </View>
             <View style={styles.midContainer}>

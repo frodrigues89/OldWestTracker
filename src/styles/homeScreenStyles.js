@@ -21,6 +21,17 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     width: '100%',
   },
+  searchContainer: {
+    borderRadius: 20,
+    borderWidth: 5,
+    borderColor: '#0a497b',
+    justifyContent: 'center',
+    flexDirection: 'row',
+    width: '100%',
+    paddingVertical: 20,
+    marginBottom: 20,
+  
+  },
   logo: {
     width:350,
     height: 350,
@@ -33,7 +44,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 50,
+    marginBottom: 40,
   },
   buttonText: {
     color: '#fff',

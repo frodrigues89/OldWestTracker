@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
 
   modalBtnTxt: {
     color: '#fff',
-    fontSize: 30,
+    fontSize: 20,
     fontWeight: 'bold'
   },
   changedButton:{
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
   },
   pickerItemTxt: {
     color: '#fff',
-    fontSize: 30,
+    fontSize: 20,
     fontWeight: 'bold',
     alignText: 'center',
   },

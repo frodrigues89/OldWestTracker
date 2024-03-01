@@ -74,12 +74,12 @@ const styles = StyleSheet.create({
   },
   modalBtnTxt: {
     color: '#fff',
-    fontSize: 30,
+    fontSize: 20,
     fontWeight: 'bold'
   },
   pickerItemTxt: {
     color: '#fff',
-    fontSize: 30,
+    fontSize: 20,
     fontWeight: 'bold',
     alignText: 'center',
   },

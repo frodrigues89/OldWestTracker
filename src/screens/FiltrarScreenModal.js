@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, ScrollView, Pressable} from 'react-native';
+import { View, Text, ScrollView, Pressable, useWindowDimensions} from 'react-native';
 import Altura from '../Entity/Altura';
 import styles from '../styles/filtrarScreenStyles';
 import FaixaEtaria from '../Entity/FaixaEtaria';
@@ -8,6 +8,7 @@ import Sexo from '../Entity/Sexo';
 import Sexualidade from '../Entity/Sexualidade';
 import Peso from '../Entity/Peso';
 import Tatuagem from '../Entity/Tatuagem';
+import Atividade from '../Entity/Atividade';
 import { useNavigation } from '@react-navigation/native';
 import Pessoa from '../Entity/Pessoa';
 import ModalBtn from '../components/ModalBtn';
@@ -21,6 +22,9 @@ const FiltrarScreenModal = () => {
     const [isSexualidadeModalVisible, setSexualidadeModalVisible] = useState(false);
     const [isPesoModalVisible, setPesoModalVisible] = useState(false);
     const [isTatuagemModalVisible, setTatuagemModalVisible] = useState(false);
+    const [isAtividadeModalVisible, setAtividadeModalVisible] = useState(false);
+
+    const { width } = useWindowDimensions;
 
     // métodos para tratar a visibilidade do modal.
     const toggleAlturaModal = () => {
@@ -50,6 +54,10 @@ const FiltrarScreenModal = () => {
         setTatuagemModalVisible(!isTatuagemModalVisible);
     };
 
+    const toggleAtividadeModal = () => {
+        setAtividadeModalVisible(!isAtividadeModalVisible)
+    };
+
     //variáveis de características.
     const [selectedAltura, setSelectedAltura] = useState("");
     const [selectedFaixaEtaria, setSelectedFaixaEtaria] = useState("");
@@ -58,16 +66,7 @@ const FiltrarScreenModal = () => {
     const [selectedSexualidade, setSelectedSexualidade] = useState("");
     const [selectedPeso, setSelectedPeso] = useState("");    
     const [selectedTatuagem, setSelectedTatuagem] = useState("");
-  
-
-    //monta a lista de dropdown por categoria
-    const dropdownAltura =  Altura.getAllValues();
-    const dropdownFaixaEtaria =  FaixaEtaria.getAllValues();
-    const dropdownOrigem =  Origem.getAllValues();
-    const dropdownPeso =  Peso.getAllValues();
-    const dropdownSexo =  Sexo.getAllValues();
-    const dropdownSexualidade =  Sexualidade.getAllValues();
-    const dropdownTatuagem =  Tatuagem.getAllValues();
+    const [selectedAtividade, setSelectedAtividade] = useState("");
     
     //métodos que manipulam a variavel de cada categoria.
     const handleSelectAltura = (itemValue) => {
@@ -98,6 +97,10 @@ const FiltrarScreenModal = () => {
         setSelectedTatuagem(itemValue);
         toggleTatuagemModal();
     };
+    const handleSelectAtividade = (itemValue) => {
+        setSelectedAtividade(itemValue);
+        toggleAtividadeModal();
+    };
 
     //passando as seleções para a entidade Pessoa
     const filtros = new Pessoa();
@@ -108,6 +111,7 @@ const FiltrarScreenModal = () => {
     filtros.sexo = selectedSexo;
     filtros.sexualidade = selectedSexualidade;
     filtros.tatuagem = selectedTatuagem;
+    filtros.atividade = selectedAtividade;
 
 
     //tratando botão reset
@@ -119,6 +123,7 @@ const FiltrarScreenModal = () => {
         setSelectedSexo("");
         setSelectedSexualidade("");
         setSelectedTatuagem("");
+        setSelectedAtividade("");
     };
 
 
@@ -132,7 +137,7 @@ const FiltrarScreenModal = () => {
     
     return (
       <View 
-        style={styles.Scrollcontainer}>       
+        style={{...styles.Scrollcontainer, width: width}}>       
       <ScrollView>
         <Text style={styles.txt}>
             Selecione os filtros para busca.
@@ -150,7 +155,37 @@ const FiltrarScreenModal = () => {
                 toggleModal={toggleAlturaModal}
                 selectedValue={selectedAltura}
                 onValueChange={handleSelectAltura}
-                items={dropdownAltura} />
+                items={Altura.getAllValues()} />
+        </View> 
+        <View> 
+            <Pressable 
+                style={[styles.modalBtn, selectedPeso !== "" ? styles.changedButton : null]}
+                onPress={togglePesoModal}>
+                <Text style={styles.modalBtnTxt}>
+                    {selectedPeso || 'Peso'}
+                </Text>
+            </Pressable>
+            <ModalBtn
+                isVisible={isPesoModalVisible}
+                toggleModal={togglePesoModal}
+                selectedValue={selectedPeso}
+                onValueChange={handleSelectPeso}
+                items={Peso.getAllValues()} />
+        </View>
+        <View> 
+            <Pressable 
+                style={[styles.modalBtn, selectedAtividade !== "" ? styles.changedButton : null]}
+                onPress={toggleAtividadeModal}>
+                <Text style={styles.modalBtnTxt}>
+                    {selectedAtividade || 'Atividade'}
+                </Text>
+            </Pressable>
+            <ModalBtn
+                isVisible={isAtividadeModalVisible}
+                toggleModal={toggleAtividadeModal}
+                selectedValue={selectedAtividade}
+                onValueChange={handleSelectAtividade}
+                items={Atividade.getAllValues()} />
         </View>
         <View>
             <Pressable
@@ -165,7 +200,7 @@ const FiltrarScreenModal = () => {
                 toggleModal={toggleFaixaEtariaModal}
                 selectedValue={selectedFaixaEtaria}
                 onValueChange={handleSelectFaixaEtaria}
-                items={dropdownFaixaEtaria} />
+                items={FaixaEtaria.getAllValues()} />
         </View>
         <View> 
             <Pressable 
@@ -180,24 +215,8 @@ const FiltrarScreenModal = () => {
                 toggleModal={toggleOrigemModal}
                 selectedValue={selectedOrigem}
                 onValueChange={handleSelectOrigem}
-                items={dropdownOrigem} />
+                items={Origem.getAllValues()} />
         </View> 
-
-        <View> 
-            <Pressable 
-                style={[styles.modalBtn, selectedPeso !== "" ? styles.changedButton : null]}
-                onPress={togglePesoModal}>
-                <Text style={styles.modalBtnTxt}>
-                    {selectedPeso || 'Peso'}
-                </Text>
-            </Pressable>
-            <ModalBtn
-                isVisible={isPesoModalVisible}
-                toggleModal={togglePesoModal}
-                selectedValue={selectedPeso}
-                onValueChange={handleSelectPeso}
-                items={dropdownPeso} />
-        </View>
         <View>
             <Pressable 
                 style={[styles.modalBtn, selectedSexo !== "" ? styles.changedButton : null]}
@@ -211,7 +230,7 @@ const FiltrarScreenModal = () => {
                 toggleModal={toggleSexoModal}
                 selectedValue={selectedSexo}
                 onValueChange={handleSelectSexo}
-                items={dropdownSexo} />
+                items={Sexo.getAllValues()} />
         </View>
         <View>
             <Pressable
@@ -226,7 +245,7 @@ const FiltrarScreenModal = () => {
                 toggleModal={toggleSexualidadeModal}
                 selectedValue={selectedSexualidade}
                 onValueChange={handleSelectSexualidade}
-                items={dropdownSexualidade} />
+                items={Sexualidade.getAllValues()} />
         </View>
         <View> 
             <Pressable
@@ -241,7 +260,7 @@ const FiltrarScreenModal = () => {
                 toggleModal={toggleTatuagemModal}
                 selectedValue={selectedTatuagem}
                 onValueChange={handleSelectTatuagem}
-                items={dropdownTatuagem} />
+                items={Tatuagem.getAllValues()} />
         </View>
 
         

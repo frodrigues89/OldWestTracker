@@ -4,6 +4,7 @@ import { View, Pressable } from 'react-native';
 import Modal from 'react-native-modal';
 import styles from '../styles/modalBtnStyles';
 import { Text } from 'react-native';
+import { ScrollView } from 'react-native-web';
 
 const ModalBtn = ({ isVisible, toggleModal, selectedValue, onValueChange, items }) => {
   return (
@@ -17,14 +18,13 @@ const ModalBtn = ({ isVisible, toggleModal, selectedValue, onValueChange, items 
       animationOutTiming={500}
       hasBackdrop={true}
     >
+      
       <View style={styles.pickerView}>
-        <View style={styles.pickerView}>
-          {items.map((item, index) => (
-            <Pressable key={index} onPress={() => onValueChange(item.value)} style={styles.button}>
-              <Text style={styles.pickerItemTxt}>{item.label}</Text>
-            </Pressable>
-          ))}
-        </View>
+        {items.map((item, index) => (
+          <Pressable key={index} onPress={() => onValueChange(item.value)} style={styles.button}>
+            <Text style={styles.pickerItemTxt}>{item.label}</Text>
+          </Pressable>
+        ))}
       </View>
     </Modal>
   );

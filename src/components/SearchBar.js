@@ -37,14 +37,12 @@ const styles = StyleSheet.create({
   inputContainer:{
     width: '80%',
     flexDirection: 'row',
-    marginBottom: 10,
     justifyContent: 'flex-start',
   },
   input: {
     borderWidth: 1,
     borderColor: '#ccc',
     borderRadius: 8,
-    marginBottom: 20,
     width: '75%',
     height: 50,
     alignItems: 'center',
@@ -56,7 +54,6 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 30,
     marginLeft: "5%",
   },
   buttonText: {

@@ -1,7 +1,14 @@
-const Altura = {
+const Atividade = {
     PUNGA: 'Punga',
-    AB_COVER: 'AB-Cover',
-    LADRAO: 'Ladrão',
+    AB_COVER: 'ABCover',
+    ARREBATADOR: 'Arrebatador',
+    ENCOXADOR: "Encoxador",
+    ESTELIONATARIO: "Estelionatário",
+    PULA_CATRACA: "Pula catraca",
+    MARRETEIRO: "Marreteiro",
+    PEDINTE: "Pedinte",
+    PIXADOR: "Pixador",
+    TRAFICANTE: "Traficante",
   
     getAllValues: function () {
       const values = [];
@@ -14,4 +21,4 @@ const Altura = {
     },
 };
 
-export default Altura;
+export default Atividade;

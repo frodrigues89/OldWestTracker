@@ -8,9 +8,7 @@ import styles from "../styles/resultadoBuscaStyles";
 const ResultadoBusca = () => {
     const route = useRoute();
     const  filtros  = route.params.filtros;
-    const [data, setData] = useState([])
-    const [status, setStatus] = useState([])
-    const [count, setCount] = useState(0)
+    const [data, setData] = useState([]);
 
 
     //esse método pode enviar os filtros como POST para a API
@@ -46,9 +44,7 @@ const ResultadoBusca = () => {
       .then(data => {
 
         console.log('Dados recebidos:', data);
-        setData(data.body.response.Items)
-        setCount(data.body.response.Count)
-        setStatus(data.statusCode)
+        setData(data.body.response.Items);
 
       })
 
@@ -81,7 +77,7 @@ const ResultadoBusca = () => {
             contentContainerStyle={{ flexGrow: 1 }} // Garante que a lista cresça para preencher o espaço disponível
             data={data}
             renderItem={({ item }) => {
-              const { nome, origem, image } = item
+              const { nome, origem, image, atividade } = item
               return (
                 <View style={{ marginVertical: 20, alignItems: 'center' }}>
                   
@@ -89,6 +85,7 @@ const ResultadoBusca = () => {
                   onPress={() => handleImagePress(item)}>
                     <Image source={{ uri: image }} style={styles.fichaIMG}/>
                     <Text>{nome}</Text>
+                    <Text>Atividade:{atividade}</Text>
                     <Text>Origem:{origem}</Text>
                   </Pressable>
                 </View>

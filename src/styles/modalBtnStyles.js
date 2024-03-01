@@ -5,8 +5,8 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
 
   pickerModal: {
-    flex: 1,
-    borderColor: 'transparent',
+    backgroundColor: 'white',
+    borderRadius: 50,
     fontWeight: 'bold',
     justifyContent: 'center',
     alignItems: 'center',
@@ -20,12 +20,12 @@ const styles = StyleSheet.create({
   },
   pickerTxt: {
     color: '#fff',
-    fontSize: 30,
+    fontSize: 20,
     fontWeight: 'bold'
   },
   pickerItemTxt: {
     color: '#fff',
-    fontSize: 30,
+    fontSize: 20,
     fontWeight: 'bold',
     textAlign: 'center',
   },
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 50,
+    marginBottom: 20,
   },
 
 });

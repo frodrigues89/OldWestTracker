@@ -1,9 +1,9 @@
 const Altura = {
-    BAIXO: 'Baixo',
-    BAIXO_MEDIO: 'Baixo-Médio',
-    MEDIO: 'Medio',
-    MEDIO_ALTO: 'Médio-Alto',
-    ALTO: 'Alto',
+    BAIXO: 'Baixo (1,50m-)',
+    BAIXO_MEDIO: 'Baixo-Médio (1,50-1,65)',
+    MEDIO: 'Médio (1,65-1,80)',
+    MEDIO_ALTO: 'Médio-Alto (1,81-1,90)',
+    ALTO: 'Alto (1,90+)',
   
     getAllValues: function () {
       const values = [];
