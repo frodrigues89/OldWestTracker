@@ -43,9 +43,9 @@ const HomeScreen = (user) => {
             <View style={styles.searchContainer}>
                 <SearchBar onSearch={handleSearch} />
             </View>
-            <View style={styles.midContainer}>
+            <View style={styles.searchContainer}>
                 <Pressable style={styles.button} onPress={handleFiltrarPress}>
-                    <Text style={styles.buttonText}>Filtrar</Text>
+                    <Text style={styles.buttonText}>CARACTERÍSTICAS </Text>
                 </Pressable>
             </View>
             {/*

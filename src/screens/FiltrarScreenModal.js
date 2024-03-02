@@ -293,7 +293,7 @@ const FiltrarScreenModal = () => {
 
             
             <View style={[styles.midContainer, {marginBottom: 20}]}>
-                <Pressable style={[styles.button, {backgroundColor: 'green'},
+                <Pressable style={[styles.button, {backgroundColor: 'rgb(0,122,94)'},
                 {height: 100},
                 {marginBottom: 10}]}
                 onPress={handleBuscarPress}>
@@ -301,7 +301,7 @@ const FiltrarScreenModal = () => {
                 </Pressable>
             </View>
             <View style={styles.midContainer}>
-                <Pressable style={[styles.button, {backgroundColor: 'red'},
+                <Pressable style={[styles.button, {backgroundColor: 'rgb(237,46,56)'},
                 {height: 50},]}
                 onPress={handleResetPress}>
                     <Text style={styles.modalBtnTxt}>Limpar busca</Text>

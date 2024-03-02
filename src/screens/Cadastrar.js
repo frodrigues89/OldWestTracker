@@ -299,7 +299,7 @@ const Cadastrar = () => {
 
         
         <View style={[styles.midContainer, {marginBottom: 20}]}>
-            <TouchableOpacity style={[styles.button, {backgroundColor: 'green'},
+            <TouchableOpacity style={[styles.button, {backgroundColor: 'rgb(0,122,94)'},
             {height: 100},
             {marginBottom: 10}]}
             onPress={handleBuscarPress}>
@@ -307,7 +307,7 @@ const Cadastrar = () => {
             </TouchableOpacity>
         </View>
         <View style={styles.midContainer}>
-            <TouchableOpacity style={[styles.button, {backgroundColor: 'red'},
+            <TouchableOpacity style={[styles.button, {backgroundColor: 'rgb(237,46,56)'},
             {height: 50},]}
             onPress={handleResetPress}>
                 <Text style={styles.modalBtnTxt}>Limpar busca</Text>

@@ -74,16 +74,17 @@ const ResultadoBusca = () => {
           <FlatList
             data={data}
             renderItem={({ item }) => {
-              const { nome, origem, image, atividade } = item
+              const { nome, origem, image, atividade, id } = item
+              const uri = 'https://oldwestimg.s3.sa-east-1.amazonaws.com/Pessoas/' + id + '/foto.jpg';
               return (
-                <View style={{ marginVertical: 20, alignItems: 'center' }}>
+                <View style={styles.itemContainer}>
                   
                   <Pressable
                   onPress={() => handleImagePress(item)}>
-                    <Image source={{ uri: image }} style={styles.fichaIMG}/>
-                    <Text>{nome}</Text>
-                    <Text>Atividade:{atividade}</Text>
-                    <Text>Origem:{origem}</Text>
+                    <Image source={{ uri: uri }} style={styles.fichaIMG}/>
+                    <Text style={styles.txtNome}>{nome}</Text>
+                    <Text style={styles.txt}>Atividade: {atividade}</Text>
+                    <Text style={styles.txt}>Origem: {origem}</Text>
                   </Pressable>
                 </View>
               )

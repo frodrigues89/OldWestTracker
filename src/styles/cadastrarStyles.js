@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   button: {
-    backgroundColor: '#0a497b',
+    backgroundColor: 'rgb(23,23,150)',
     width: '80%',
     height: 50,
     borderRadius: 8,
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     marginLeft: "10%",
     width: '80%',
-    backgroundColor: '#0a497b',
+    backgroundColor: 'rgb(23,23,150)',
     borderRadius: 8,
     height: 50,
   },
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   },
   changedButton:{
-    backgroundColor: 'green'
+    backgroundColor: 'rgb(0,122,94)'
   },
   pickerItemTxt: {
     color: '#fff',

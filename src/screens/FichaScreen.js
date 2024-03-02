@@ -6,12 +6,23 @@ import styles from '../styles/fichaScreenStyles';
 const FichaScreen = ({ route }) => {
   const { pessoa } = route.params;
 
+  const uri = 'https://oldwestimg.s3.sa-east-1.amazonaws.com/Pessoas/' + pessoa.id + '/foto.jpg';
+
   return (
     <View style={styles.fichaContainer}>
-      <Image source={{ uri: pessoa.image }} style={styles.fichaIMG} />
+      <Text style={styles.nomeText} >{pessoa.nome}
+        </Text>
+        
+      <Text style={styles.fichaText} >ID: {pessoa.id}
+      </Text>
+      <Image source={{ uri: uri }} style={styles.fichaIMG} />
       <View>
-        <Text
-           style={styles.fichaText} >{pessoa.name}</Text>
+        <Text style={styles.fichaText}>RG: {pessoa.rg}
+        </Text>
+        <Text style={styles.fichaText}>CPF: {pessoa.cpf}
+        </Text>
+        <Text style={styles.fichaText}>Data de Nascimento: {pessoa.dataNascimento}
+        </Text>
         <Text style={styles.fichaText}>Altura: {pessoa.altura}
         </Text >
         <Text style={styles.fichaText}>Peso: {pessoa.peso}
@@ -28,6 +39,7 @@ const FichaScreen = ({ route }) => {
         </Text>
         <Text style={styles.fichaText}>Tatuagem: {pessoa.tatuagem}
         </Text>
+        
         {/* Adicione aqui o restante da apresentação dos dados */}
       </View>
     </View>

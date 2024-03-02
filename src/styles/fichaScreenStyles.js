@@ -110,10 +110,19 @@ const styles = StyleSheet.create({
   fichaIMG: {
     width: 250,
     height: 250,
+    borderRadius: 90,
+    marginVertical: 20,
+  },
+  nomeText: {
+    color: 'black',
+    fontSize: 22,
+    fontWeight: 'bold',
+    marginVertical: 10,
   },
   fichaText: {
     color: 'black',
     fontSize: 20,
+    marginVertical: 3,
   },
   input: {
     borderWidth: 1,
