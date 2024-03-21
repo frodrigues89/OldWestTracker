@@ -24,10 +24,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 50,
   },
-  buttonText: {
-    color: '#fff',
-    fontSize: 20,
-  },
   fichaIMG: {
     width: 250,
     height: 250,
@@ -46,42 +42,21 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     height: 50,
   },
-
+  changedButton:{
+    backgroundColor: 'rgb(0,122,94)'
+  },
   modalBtnTxt: {
     color: '#fff',
     fontSize: 20,
     fontWeight: 'bold'
   },
-  changedButton:{
-    backgroundColor: 'rgb(0,122,94)'
-  },
-  pickerItemTxt: {
-    color: '#fff',
-    fontSize: 20,
-    fontWeight: 'bold',
-    alignText: 'center',
-  },
-  buttonText: {
-    color: '#fff',
-    fontSize: 20,
-  },
-  scrollView: {
-    flex: 1,
-    width: '100%',
-    justifyContent: 'center',
+  txt:{
+    fontSize: 16,
+    color: 'rgb(23,23,150)',
   },
   input: {
     borderWidth: 1,
-    borderColor: '#ccc',
-    borderRadius: 8,
-    marginBottom: 20,
-    width: '75%',
-    height: 50,
-    alignItems: 'center',
-  },
-  input: {
-    borderWidth: 1,
-    borderColor: '#ccc',
+    borderColor: 'rgb(23,23,150)',
     borderRadius: 8,
     marginBottom: 20,
     width: '80%',
@@ -90,11 +65,33 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginLeft: '10%',
   },
+  inputRg: {
+    flex: 1,
+    borderWidth: 1,
+    borderColor: 'rgb(23,23,150)',
+    borderRadius: 8,
+    marginBottom: 20,
+    height: 50,
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
   fichaContainer:{
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'flex-start',
     alignItems: 'center',
+  },
+
+  viewDocs:{
+    flexDirection:'row',
+    width: '80%',
+    marginLeft: '10%',
+    justifyContent: 'space-between',
+  },
+  viewDocsItems:{
+    width: '45%',
   },
 
 });

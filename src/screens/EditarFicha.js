@@ -55,9 +55,13 @@ const EditarFicha = ({ route, navigation }) => {
     const pessoa = route.params.pessoa;
     //variáveis de características. 'https://oldwesttracker.s3.sa-east-1.amazonaws.com/logo.png'
     const [image,setPicture ] = useState('https://oldwestimg.s3.sa-east-1.amazonaws.com/Pessoas/' + pessoa.id + '/foto.jpg');
+    pessoa.image = image;
     const [nome,setNome ] = useState(pessoa.nome);
     const [rg, setRg ]  = useState(pessoa.rg);
     const [cpf, setCpf ] = useState(pessoa.cpf);
+    const [dataNascimento, setDataNascimento] = useState(pessoa.dataNascimento);
+    const [id, setId] = useState(pessoa.id);
+    const [mae, setMae] = useState(pessoa.mae);
 
     const [selectedAltura, setSelectedAltura] = useState(pessoa.altura);
     const [selectedFaixaEtaria, setSelectedFaixaEtaria] = useState(pessoa.faixaEtaria);
@@ -107,9 +111,71 @@ const EditarFicha = ({ route, navigation }) => {
         toggleTatuagemModal();
     };
 
-    const handleSalvarPress = () => {
-        console.log(pessoa);
+    function novaPessoa () {
+        return {
+            id: id,
+            nome: nome,
+            rg: rg,
+            cpf: cpf,
+            dataNascimento: dataNascimento,
+            mae: mae,
+            altura: selectedAltura,
+            faixaEtaria: selectedFaixaEtaria,
+            origem: selectedOrigem,
+            sexo: selectedSexo,
+            sexualidade: selectedSexualidade,
+            peso: selectedPeso,
+            tatuagem: selectedTatuagem,
+            image: image // Certifique-se de que `image` já foi atualizado antes de criar o objeto
+      };
     };
+
+
+    const handleSalvarPress = async () => {
+        json = novaPessoa();
+        json.job = 'update';
+
+        console.log(JSON.stringify(json))
+        
+        fetch('https://tcy36fyg2j.execute-api.sa-east-1.amazonaws.com/Test/', {
+  
+          method: 'POST',
+  
+          headers: {
+  
+            'Content-Type': 'application/json',
+  
+          },
+  
+          body: JSON.stringify(json),
+  
+        })
+  
+        .then(response => {
+  
+          if (!response.ok) {
+            setStatus('Erro na solicitação.');
+            throw new Error('Erro na solicitação.');
+          }
+  
+          return response.json();
+  
+        })
+  
+        .then(data => {
+          console.log('resposta do server:', data);
+          alert('Dados atualizados com sucesso');
+          navigation.goBack();
+        })
+  
+        .catch(error => {
+  
+          console.error('Erro na solicitação:', error);
+          // Trate erros aqui
+  
+        });
+        
+      }
  
     const handlePhotoPress = () =>{
         const log = {takePicture};
@@ -128,34 +194,70 @@ const EditarFicha = ({ route, navigation }) => {
             <Pressable
                 onPress={handlePhotoPress}>
                 <Image 
-                source={{ uri: image}} style={styles.fichaIMG}/>
+                source={{ uri: image || 'https://oldwesttracker.s3.sa-east-1.amazonaws.com/logo.png' }} 
+                style={styles.fichaIMG}/>
             </Pressable>
         </View>
         <View>
-            <Text style={styles.txt}>Nome: </Text>
+            <Text style={[styles.txt, {marginLeft: '10%'}]}>Nome: </Text>
             <TextInput
                 style={styles.input}
                 placeholder="NOME DO MALA..."
                 value={nome}
-                onChangeText={(text) => setNome(text)}
+                onChangeText={(text) => setNome(nome)}
                 />
         </View>
-        <View>
-            <Text style={styles.txt}>RG: </Text>
-            <TextInput
-                style={styles.input}
-                placeholder="RG"
-                value={rg}
-                onChangeText={(text) => setRg(text)}
-                />
+        <View style={styles.viewDocs}>
+            <View style={styles.viewDocsItems}> 
+                <Text style={styles.txt}>RG: </Text>
+                <TextInput
+                    style={styles.inputRg}
+                    placeholder="RG"
+                    value={rg}
+                    onChangeText={(text) => setRg(text)}
+                    />
+            </View>
+        
+            <View style={styles.viewDocsItems}>
+                <Text style={styles.txt}>CPF: </Text>
+                <TextInput
+                    style={styles.inputRg}
+                    placeholder="CPF"
+                    value={cpf}
+                    onChangeText={(text) => setCpf(text)}
+                    />
+            </View>
+        </View>
+
+        <View style={styles.viewDocs}>
+            <View style={styles.viewDocsItems}> 
+                <Text style={styles.txt}>Nascimento: </Text>
+                <TextInput
+                    style={styles.inputRg}
+                    placeholder="DD/MM/AAAA"
+                    value={dataNascimento}
+                    onChangeText={(text) => setDataNascimento(text)}
+                    />
+            </View>
+        
+            <View style={styles.viewDocsItems}>
+                <Text style={styles.txt}>ID: </Text>
+                <TextInput
+                    style={styles.inputRg}
+                    placeholder="ID"
+                    value={id}
+                    editable={false}
+                    onChangeText={(text) => setId(text)}
+                    />
+            </View>
         </View>
         <View>
-            <Text style={styles.txt}>CPF: </Text>
+            <Text style={[styles.txt, {marginLeft: '10%'}]}>Nome da mãe: </Text>
             <TextInput
                 style={styles.input}
-                placeholder="CPF"
-                value={cpf}
-                onChangeText={(text) => setCpf(text)}
+                placeholder="NOME DA MÃE"
+                value={mae}
+                onChangeText={(text) => setMae(text)}
                 />
         </View>
         
