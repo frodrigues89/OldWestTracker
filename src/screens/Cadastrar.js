@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, TouchableOpacity, ScrollView, Pressable, TextInput, Image, Alert} from 'react-native';
 import Altura from '../Entity/Altura';
 import takePicture from '../components/takepicture';
@@ -9,11 +9,11 @@ import Sexo from '../Entity/Sexo';
 import Sexualidade from '../Entity/Sexualidade';
 import Peso from '../Entity/Peso';
 import Tatuagem from '../Entity/Tatuagem';
-import { useNavigation } from '@react-navigation/native';
 import Pessoa from '../Entity/Pessoa';
 import ModalBtn from '../components/ModalBtn';
 
-const Cadastrar = () => {
+const Cadastrar = ({ route, navigation }) => {
+
 
     // Estados para controlar a visibilidade de cada modal
     const [isAlturaModalVisible, setAlturaModalVisible] = useState(false);
@@ -106,19 +106,43 @@ const Cadastrar = () => {
         toggleTatuagemModal();
     };
 
-    //passando as seleções para a entidade Pessoa
-    const pessoa = new Pessoa();
-    pessoa.image = image;
-    pessoa.nome = nome;
-    pessoa.rg = rg;
-    pessoa.cpf = cpf;
-    pessoa.altura = selectedAltura;
-    pessoa.peso = selectedPeso;
-    pessoa.faixaEtaria = selectedFaixaEtaria;
-    pessoa.origem = selectedOrigem;
-    pessoa.sexo = selectedSexo;
-    pessoa.sexualidade = selectedSexualidade;
-    pessoa.tatuagem = selectedTatuagem;
+    // Função para criar a instância da Pessoa
+    const createPessoaInstance = () => {
+        const novaPessoa = new Pessoa();
+        novaPessoa.image = image;
+        novaPessoa.nome = nome;
+        novaPessoa.rg = rg;
+        novaPessoa.cpf = cpf;
+        novaPessoa.altura = selectedAltura;
+        novaPessoa.peso = selectedPeso;
+        novaPessoa.faixaEtaria = selectedFaixaEtaria;
+        novaPessoa.origem = selectedOrigem;
+        novaPessoa.sexo = selectedSexo;
+        novaPessoa.sexualidade = selectedSexualidade;
+        novaPessoa.tatuagem = selectedTatuagem;
+
+        return novaPessoa;
+    };
+
+    // Efeito para criar a instância da Pessoa quando os parâmetros da rota mudarem
+    useEffect(() => {
+        if (route.params && route.params.pessoa) {
+            const pessoa = route.params.pessoa;
+            setNome(pessoa.nome);
+            setRg(pessoa.rg);
+            setCpf(pessoa.cpf);
+            setSelectedAltura(pessoa.altura);
+            setSelectedPeso(pessoa.peso);
+            setSelectedFaixaEtaria(pessoa.faixaEtaria);
+            setSelectedOrigem(pessoa.origem);
+            setSelectedSexo(pessoa.sexo);
+            setSelectedSexualidade(pessoa.sexualidade);
+            setSelectedTatuagem(pessoa.tatuagem);
+        } else {
+            const pessoa = createPessoaInstance();
+            console.log(pessoa);
+        }
+    }, [route.params]);
 
 
     //tratando botão reset
@@ -132,9 +156,6 @@ const Cadastrar = () => {
         setSelectedTatuagem("");
     };
 
-
-    //tratando a navegação do botão BUSCAR
-    const navigation = useNavigation();
     const handleBuscarPress = () => {
         console.log(pessoa);
     };

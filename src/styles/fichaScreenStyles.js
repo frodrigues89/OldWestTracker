@@ -21,23 +21,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     width: '100%',
   },
-  logo: {
-    width:350,
-    height: 350,
-    marginBottom: 20,
-  },
-  button: {
-    backgroundColor: '#0a497b',
-    width: '80%',
-    height: 50,
-    borderRadius: 8,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 50,
-  },
-  buttonText: {
-    color: '#fff',
+  navTabBtn:{
+    fontWeight: 'bold',
     fontSize: 20,
+    color: 'rgb(23,23,150)',
+    marginRight: '10%',
   },
   txt: {
     color: 'black',
