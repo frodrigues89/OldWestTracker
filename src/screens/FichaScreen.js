@@ -36,13 +36,13 @@ export const FichaScreenOptions = ({ navigation, route }) => {
   const { pessoa } = route.params;
 
   const handleEditarBtn = () => {
-    navigation.navigate('Cadastrar', { pessoa }); // Passe pessoa como parâmetro para a tela Cadastrar
+    navigation.navigate('EditarFicha', { pessoa }); // Passe pessoa como parâmetro para a tela Cadastrar
   };
 
   return {
     headerRight: () => (
       // Botão que aparece apenas nesta tela
-      <Pressable onPress={handleEditarBtn()}>
+      <Pressable onPress={handleEditarBtn}>
         <Text>Editar</Text>
       </Pressable>
     ),

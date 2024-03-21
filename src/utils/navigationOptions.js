@@ -4,7 +4,7 @@ import styles from "../styles/navigationStyles";
 
 const voltar = '<'
 
-export const navigationOptions  = (navigation, route) => {
+export const navigationOptions  = (navigation) => {
 
 
   return {
