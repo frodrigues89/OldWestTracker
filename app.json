@@ -15,18 +15,35 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
-      
+      "supportsTablet": true,
+      "bundleIdentifier": "com.seuapp",
+      "infoPlist": {
+        "NSCameraUsageDescription": "Permissão necessária para acessar a câmera",
+        "NSPhotoLibraryUsageDescription": "Permissão necessária para acessar a galeria de fotos"
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "src/assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.seuapp",
+      "permissions": [
+        "CAMERA",
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE"
+      ]
     },
     "web": {
       "favicon": "src/assets/favicon.png"
-    }
-    
+    },
+    "plugins": [
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "The app accesses your photos to let you share them with your friends."
+        }
+      ]
+    ]
   }
 }

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, TouchableOpacity, ScrollView, Pressable, TextInput, Image, Alert} from 'react-native';
 import Altura from '../Entity/Altura';
-import takePicture from '../components/takepicture';
+import pickImage from '../components/pickImage';
 import styles from '../styles/cadastrarStyles';
 import FaixaEtaria from '../Entity/FaixaEtaria';
 import Origem from '../Entity/Origem';
@@ -140,7 +140,6 @@ const Cadastrar = ({ route, navigation }) => {
             setSelectedTatuagem(pessoa.tatuagem);
         } else {
             const pessoa = createPessoaInstance();
-            console.log(pessoa);
         }
     }, [route.params]);
 
@@ -157,15 +156,15 @@ const Cadastrar = ({ route, navigation }) => {
     };
 
     const handleBuscarPress = () => {
-        console.log(pessoa);
+        console.log('handleBuscarPress' + pessoa);
     };
  
-    const handlePhotoPress = () =>{
-        const log = {takePicture};
-        console.log(log);
-        
-        //setPicture(takePicture);
-
+    const handlePhotoPress = async () => {
+        const foto = await pickImage();
+        console.log(foto);
+            if ( foto != false){       
+                setPicture(foto);            
+        }
     }
 
     

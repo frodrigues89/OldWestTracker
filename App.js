@@ -10,7 +10,6 @@ import Login from './src/screens/Login'; //tela de login
 import Cadastrar from './src/screens/Cadastrar';
 import EditarFicha from './src/screens/EditarFicha';
 import { navigationOptions } from './src/utils/navigationOptions';
-
 const Stack = createStackNavigator();
 
 const App = () => {

@@ -27,7 +27,8 @@ const HomeScreen = (user) => {
     };
     
     const handleCadastrarPress = () => {
-        navigation.navigate('Cadastrar');
+       navigation.navigate('Cadastrar');
+       //navigation.navigate('pickImage');
     };
 
     uriFoto = 'https://drive.google.com/file/d/1uUY6LIhuPQ49Jt5wPSu8erefhKWqWau6/view?usp=sharing';
@@ -48,13 +49,11 @@ const HomeScreen = (user) => {
                     <Text style={styles.buttonText}>CARACTERÍSTICAS </Text>
                 </Pressable>
             </View>
-            {/*
-            <View style={styles.midContainer}>
+            <View style={styles.searchContainer}>
                 <Pressable style={styles.button} onPress={handleCadastrarPress}>
                     <Text style={styles.buttonText}>CADASTRAR</Text>
                 </Pressable>
             </View>
-    */}
         </View>
         );
     };

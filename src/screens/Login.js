@@ -50,7 +50,7 @@ const Login = () => {
         </View>
         <View style={styles.midContainer}>
             <Pressable style={styles.button} onPress={handleLogarPress}>
-                <Text style={styles.buttonText}>Logon</Text>
+                <Text style={styles.buttonText}>Logon </Text>
             </Pressable>
         </View>
         </View>
