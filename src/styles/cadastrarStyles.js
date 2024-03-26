@@ -8,7 +8,12 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#F3F3FF',
     alignItems: 'center',
+  },
+  fichaContainer:{
+    flex: 1,
+    flexDirection: 'column',
     justifyContent: 'flex-start',
+    alignItems: 'center',
   },
   midContainer: {
     justifyContent: 'center',
@@ -75,7 +80,7 @@ const styles = StyleSheet.create({
   },
   input: {
     borderWidth: 1,
-    borderColor: '#ccc',
+    borderColor: 'rgb(23,23,150)',
     borderRadius: 8,
     marginBottom: 20,
     width: '80%',
@@ -84,9 +89,36 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginLeft: '10%',
   },
+  inputRg: {
+    flex: 1,
+    borderWidth: 1,
+    borderColor: 'rgb(23,23,150)',
+    borderRadius: 8,
+    marginBottom: 20,
+    height: 50,
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   fichaIMG: {
     width: 250,
     height: 250,
+    borderRadius: 90,
+    marginVertical: 20,
+    alignSelf: 'center',
+  },
+  txt:{
+    fontSize: 16,
+    color: 'rgb(23,23,150)',
+  },
+  viewDocs:{
+    flexDirection:'row',
+    width: '80%',
+    marginLeft: '10%',
+    justifyContent: 'space-between',
+  },
+  viewDocsItems:{
+    width: '45%',
   },
 
 });

@@ -12,7 +12,7 @@ import Tatuagem from '../Entity/Tatuagem';
 import Pessoa from '../Entity/Pessoa';
 import ModalBtn from '../components/ModalBtn';
 
-const Cadastrar = ({ route, navigation }) => {
+const Cadastrar = ({ navigation }) => {
 
 
     // Estados para controlar a visibilidade de cada modal
@@ -53,10 +53,13 @@ const Cadastrar = ({ route, navigation }) => {
     };
 
     //variáveis de características.
-    const [image,setPicture ] = useState('https://oldwesttracker.s3.sa-east-1.amazonaws.com/logo.png');
-    const [nome,setNome ] = useState(null);
-    const [rg, setRg ]  = useState(null);
-    const [cpf, setCpf ] = useState(null);
+    const [image,setImage ] = useState('https://oldwesttracker.s3.sa-east-1.amazonaws.com/logo.png');
+    const [nome,setNome ] = useState("");
+    const [rg, setRg ]  = useState("");
+    const [cpf, setCpf ] = useState("");
+    const [dataNascimento, setDataNascimento] = useState("");
+    const [id, setId] = useState("");
+    const [mae, setMae] = useState("");
 
     const [selectedAltura, setSelectedAltura] = useState("");
     const [selectedFaixaEtaria, setSelectedFaixaEtaria] = useState("");
@@ -112,7 +115,9 @@ const Cadastrar = ({ route, navigation }) => {
         novaPessoa.image = image;
         novaPessoa.nome = nome;
         novaPessoa.rg = rg;
-        novaPessoa.cpf = cpf;
+        novaPessoa.cpf = cpf; 
+        novaPessoa.dataNascimento = dataNascimento;
+        novaPessoa.mae = mae;
         novaPessoa.altura = selectedAltura;
         novaPessoa.peso = selectedPeso;
         novaPessoa.faixaEtaria = selectedFaixaEtaria;
@@ -124,28 +129,16 @@ const Cadastrar = ({ route, navigation }) => {
         return novaPessoa;
     };
 
-    // Efeito para criar a instância da Pessoa quando os parâmetros da rota mudarem
-    useEffect(() => {
-        if (route.params && route.params.pessoa) {
-            const pessoa = route.params.pessoa;
-            setNome(pessoa.nome);
-            setRg(pessoa.rg);
-            setCpf(pessoa.cpf);
-            setSelectedAltura(pessoa.altura);
-            setSelectedPeso(pessoa.peso);
-            setSelectedFaixaEtaria(pessoa.faixaEtaria);
-            setSelectedOrigem(pessoa.origem);
-            setSelectedSexo(pessoa.sexo);
-            setSelectedSexualidade(pessoa.sexualidade);
-            setSelectedTatuagem(pessoa.tatuagem);
-        } else {
-            const pessoa = createPessoaInstance();
-        }
-    }, [route.params]);
-
 
     //tratando botão reset
     const handleResetPress = () => {
+        setImage('https://oldwesttracker.s3.sa-east-1.amazonaws.com/logo.png');
+        setNome("");
+        setRg("");
+        setCpf("");
+        setDataNascimento("");
+        setId("");
+        setMae("");
         setSelectedAltura("");
         setSelectedPeso("");
         setSelectedFaixaEtaria("");
@@ -155,15 +148,62 @@ const Cadastrar = ({ route, navigation }) => {
         setSelectedTatuagem("");
     };
 
-    const handleBuscarPress = () => {
-        console.log('handleBuscarPress' + pessoa);
+    const handleSalvarPress = () => {
+        const pessoa = createPessoaInstance();
+        console.log(pessoa);
+        formData = pessoa;
+        imageData = {uri: pessoa.image, type: 'image/jpeg',
+        name: 'foto.jpg'};
+        formData.image = imageData;
+        formData.job = "put";
+        console.log(formData);
+        alert(JSON.stringify(formData));
+        /*
+        fetch('https://tcy36fyg2j.execute-api.sa-east-1.amazonaws.com/Test/', {
+  
+          method: 'POST',
+  
+          headers: {
+  
+            'Content-Type': 'application/json',
+  
+          },
+  
+          body: JSON.stringify(formData),
+  
+        })
+  
+        .then(response => {
+  
+          if (!response.ok) {
+            setStatus('Erro na solicitação.');
+            throw new Error('Erro na solicitação.');
+          }
+  
+          return response.json();
+  
+        })
+  
+        .then(data => {
+          console.log('resposta do server:', data);
+          alert('Dados atualizados com sucesso');
+          navigation.navigate('FichaScreen', { pessoa: item });
+        })
+  
+        .catch(error => {
+  
+          console.error('Erro na solicitação:', error);
+          // Trate erros aqui
+  
+        });
+        */
     };
  
     const handlePhotoPress = async () => {
         const foto = await pickImage();
         console.log(foto);
             if ( foto != false){       
-                setPicture(foto);            
+                setImage(foto);            
         }
     }
 
@@ -172,8 +212,7 @@ const Cadastrar = ({ route, navigation }) => {
       <View 
         style={styles.Scrollcontainer}>       
       <ScrollView>
-        <View>
-            <Text style={styles.txt}>Foto: </Text>
+        <View style={styles.fichaContainer}>
             <Pressable
                 onPress={handlePhotoPress}>
                 <Image 
@@ -181,7 +220,7 @@ const Cadastrar = ({ route, navigation }) => {
             </Pressable>
         </View>
         <View>
-            <Text style={styles.txt}>Nome: </Text>
+            <Text style={[styles.txt, {marginLeft: '10%'}]}>Nome: </Text>
             <TextInput
                 style={styles.input}
                 placeholder="NOME DO MALA..."
@@ -189,22 +228,57 @@ const Cadastrar = ({ route, navigation }) => {
                 onChangeText={(text) => setNome(text)}
                 />
         </View>
-        <View>
-            <Text style={styles.txt}>RG: </Text>
-            <TextInput
-                style={styles.input}
-                placeholder="RG"
-                value={rg}
-                onChangeText={(text) => setRg(text)}
-                />
+        <View style={styles.viewDocs}>
+            <View style={styles.viewDocsItems}> 
+                <Text style={styles.txt}>RG: </Text>
+                <TextInput
+                    style={styles.inputRg}
+                    placeholder="RG"
+                    value={rg}
+                    onChangeText={(text) => setRg(text)}
+                    />
+            </View>
+        
+            <View style={styles.viewDocsItems}>
+                <Text style={styles.txt}>CPF: </Text>
+                <TextInput
+                    style={styles.inputRg}
+                    placeholder="CPF"
+                    value={cpf}
+                    onChangeText={(text) => setCpf(text)}
+                    />
+            </View>
+        </View>
+
+        <View style={styles.viewDocs}>
+            <View style={styles.viewDocsItems}> 
+                <Text style={styles.txt}>Nascimento: </Text>
+                <TextInput
+                    style={styles.inputRg}
+                    placeholder="DD/MM/AAAA"
+                    value={dataNascimento}
+                    onChangeText={(text) => setDataNascimento(text)}
+                    />
+            </View>
+        
+            <View style={styles.viewDocsItems}>
+                <Text style={styles.txt}>ID: </Text>
+                <TextInput
+                    style={styles.inputRg}
+                    placeholder="ID"
+                    value={id}
+                    editable={false}
+                    onChangeText={(text) => setId(text)}
+                    />
+            </View>
         </View>
         <View>
-            <Text style={styles.txt}>CPF: </Text>
+            <Text style={[styles.txt, {marginLeft: '10%'}]}>Nome da mãe: </Text>
             <TextInput
                 style={styles.input}
-                placeholder="CPF"
-                value={cpf}
-                onChangeText={(text) => setCpf(text)}
+                placeholder="NOME DA MÃE"
+                value={mae}
+                onChangeText={(text) => setMae(text)}
                 />
         </View>
         
@@ -322,15 +396,15 @@ const Cadastrar = ({ route, navigation }) => {
             <TouchableOpacity style={[styles.button, {backgroundColor: 'rgb(0,122,94)'},
             {height: 100},
             {marginBottom: 10}]}
-            onPress={handleBuscarPress}>
-                <Text style={styles.modalBtnTxt}>BUSCAR</Text>
+            onPress={handleSalvarPress}>
+                <Text style={styles.modalBtnTxt}>SALVAR </Text>
             </TouchableOpacity>
         </View>
         <View style={styles.midContainer}>
             <TouchableOpacity style={[styles.button, {backgroundColor: 'rgb(237,46,56)'},
             {height: 50},]}
             onPress={handleResetPress}>
-                <Text style={styles.modalBtnTxt}>Limpar busca</Text>
+                <Text style={styles.modalBtnTxt}>Limpar campos </Text>
             </TouchableOpacity>
         </View>
         </ScrollView>

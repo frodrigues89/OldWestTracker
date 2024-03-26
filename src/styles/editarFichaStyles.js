@@ -83,7 +83,6 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'center',
   },
-
   viewDocs:{
     flexDirection:'row',
     width: '80%',

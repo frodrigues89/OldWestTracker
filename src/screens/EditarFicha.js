@@ -177,11 +177,12 @@ const EditarFicha = ({ route, navigation }) => {
         
       }
  
-    const handlePhotoPress = () =>{
-        const log = {takePicture};
-        console.log(log);
-        
-        //setPicture(takePicture);
+    const handlePhotoPress = async () =>{
+        const foto = await pickImage();
+        console.log(foto);
+            if ( foto != false){       
+                setPicture(foto);            
+        }
 
     }
 
