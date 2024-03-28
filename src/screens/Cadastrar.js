@@ -159,33 +159,33 @@ const Cadastrar = ({ navigation }) => {
     const handleSalvarPress = () => {
         if (isOrigemSelected){
             const pessoa = createPessoaInstance();
-            console.log(pessoa);
-            formData = pessoa;
-            imageData = {uri: pessoa.image, type: 'image/jpeg',
-            name: 'foto.jpg'};
-            formData.image = imageData;
-            formData.job = "put";
+            const formData = new FormData();
+            const file = { uri: pessoa.image, type: 'image/jpeg', name: 'foto.jpg' };
+            // Adiciona o arquivo de imagem ao formData
+            formData.append('file', file);
+
+            // Adiciona todos os atributos da pessoa ao formData
+            for (const [key, value] of Object.entries(pessoa)) {
+                formData.append(key, value);
+            }
+            // formData.append('job','put');
+            formData.job = 'put';
+            // Configura a requisição
+            const requestOptions = {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                  },
+            };
+
             console.log(formData);
             alert(JSON.stringify(formData));
             /*
-            fetch('https://tcy36fyg2j.execute-api.sa-east-1.amazonaws.com/Test/', {
-    
-            method: 'POST',
-    
-            headers: {
-    
-                'Content-Type': 'application/json',
-    
-            },
-    
-            body: JSON.stringify(formData),
-    
-            })
-    
+            fetch('https://tcy36fyg2j.execute-api.sa-east-1.amazonaws.com/Test/', requestOptions)
             .then(response => {
     
             if (!response.ok) {
-                setStatus('Erro na solicitação.');
                 throw new Error('Erro na solicitação.');
             }
     
@@ -194,22 +194,22 @@ const Cadastrar = ({ navigation }) => {
             })
     
             .then(data => {
-            console.log('resposta do server:', data);
+            console.log('resposta da API:', data);
             alert('Dados atualizados com sucesso');
-            navigation.navigate('FichaScreen', { pessoa: item });
+            navigation.navigate('FichaScreen', { pessoa: pessoa });
             })
     
             .catch(error => {
     
-            console.error('Erro na solicitação:', error);
+            console.error('Erro na solicitação à API:', error);
             // Trate erros aqui
     
             });
-            */
         }else{
             alert('Você deve selecionar a origem para cadastar um indivíduo.');
             return;
-        }   
+            */
+        } 
     };
  
     const handleAPISearch = (origem) => {
@@ -231,7 +231,7 @@ const Cadastrar = ({ navigation }) => {
                 return response.json();
             })
             .then(data => {
-                console.log('Dados recebidos:', data);
+                // console.log('Dados recebidos:', data);
                 setCountID(data.body.response.Count);
                 return data.body.response.Count;
             })
@@ -248,18 +248,14 @@ const Cadastrar = ({ navigation }) => {
             const count = await handleAPISearch(origem);
             const countPlus = count + 1;
             const idNum = String(countPlus).padStart(4, '0');
-            console.log('idNum: ' + idNum);
             if (origem === 'Brasileiro'){
                 newId = 'BB' + idNum;
-                console.log('newId: ' + newId);
                 setId(newId);            
             }else if(origem === 'Mercosul'){
-                newId = 'MM' + idNum;                
-                console.log('newId: ' + newId);
+                newId = 'MM' + idNum;            
                 setId(newId);
             }else{
                 newId = 'FF' + idNum;
-                console.log('newId: ' + newId);
                 setId(newId);
             };
         }catch{
