@@ -70,6 +70,10 @@ const Cadastrar = ({ navigation }) => {
     const [selectedTatuagem, setSelectedTatuagem] = useState("");
   
 
+    //obrigando o infeliz a usar o botão origem:
+    const [isOrigemSelected, setIsOrigemSelected] = useState(false);
+    const [countID, setCountID] = useState("");
+
     //monta a lista de dropdown por categoria
     const dropdownAltura =  Altura.getAllValues();
     const dropdownFaixaEtaria =  FaixaEtaria.getAllValues();
@@ -90,6 +94,8 @@ const Cadastrar = ({ navigation }) => {
     };
     const handleSelectOrigem = (itemValue) => {
         setSelectedOrigem(itemValue);
+        setIsOrigemSelected(true);
+        createID(itemValue);
         toggleOrigemModal();
     };
     const handleSelectSexo = (itemValue) => {
@@ -112,6 +118,7 @@ const Cadastrar = ({ navigation }) => {
     // Função para criar a instância da Pessoa
     const createPessoaInstance = () => {
         const novaPessoa = new Pessoa();
+        novaPessoa.id = id;
         novaPessoa.image = image;
         novaPessoa.nome = nome;
         novaPessoa.rg = rg;
@@ -146,59 +153,123 @@ const Cadastrar = ({ navigation }) => {
         setSelectedSexo("");
         setSelectedSexualidade("");
         setSelectedTatuagem("");
+        setIsOrigemSelected(false);
     };
 
     const handleSalvarPress = () => {
-        const pessoa = createPessoaInstance();
-        console.log(pessoa);
-        formData = pessoa;
-        imageData = {uri: pessoa.image, type: 'image/jpeg',
-        name: 'foto.jpg'};
-        formData.image = imageData;
-        formData.job = "put";
-        console.log(formData);
-        alert(JSON.stringify(formData));
-        /*
-        fetch('https://tcy36fyg2j.execute-api.sa-east-1.amazonaws.com/Test/', {
-  
-          method: 'POST',
-  
-          headers: {
-  
-            'Content-Type': 'application/json',
-  
-          },
-  
-          body: JSON.stringify(formData),
-  
-        })
-  
-        .then(response => {
-  
-          if (!response.ok) {
-            setStatus('Erro na solicitação.');
-            throw new Error('Erro na solicitação.');
-          }
-  
-          return response.json();
-  
-        })
-  
-        .then(data => {
-          console.log('resposta do server:', data);
-          alert('Dados atualizados com sucesso');
-          navigation.navigate('FichaScreen', { pessoa: item });
-        })
-  
-        .catch(error => {
-  
-          console.error('Erro na solicitação:', error);
-          // Trate erros aqui
-  
-        });
-        */
+        if (isOrigemSelected){
+            const pessoa = createPessoaInstance();
+            console.log(pessoa);
+            formData = pessoa;
+            imageData = {uri: pessoa.image, type: 'image/jpeg',
+            name: 'foto.jpg'};
+            formData.image = imageData;
+            formData.job = "put";
+            console.log(formData);
+            alert(JSON.stringify(formData));
+            /*
+            fetch('https://tcy36fyg2j.execute-api.sa-east-1.amazonaws.com/Test/', {
+    
+            method: 'POST',
+    
+            headers: {
+    
+                'Content-Type': 'application/json',
+    
+            },
+    
+            body: JSON.stringify(formData),
+    
+            })
+    
+            .then(response => {
+    
+            if (!response.ok) {
+                setStatus('Erro na solicitação.');
+                throw new Error('Erro na solicitação.');
+            }
+    
+            return response.json();
+    
+            })
+    
+            .then(data => {
+            console.log('resposta do server:', data);
+            alert('Dados atualizados com sucesso');
+            navigation.navigate('FichaScreen', { pessoa: item });
+            })
+    
+            .catch(error => {
+    
+            console.error('Erro na solicitação:', error);
+            // Trate erros aqui
+    
+            });
+            */
+        }else{
+            alert('Você deve selecionar a origem para cadastar um indivíduo.');
+            return;
+        }   
     };
  
+    const handleAPISearch = (origem) => {
+        let filtros = { job: 'count', origem: origem };
+    
+        // Retorne a promessa gerada pelo fetch
+        return fetch('https://tcy36fyg2j.execute-api.sa-east-1.amazonaws.com/Test/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(filtros),
+        })
+            .then(response => {
+                if (!response.ok) {
+                    setStatus('Erro na solicitação.');
+                    throw new Error('Erro na solicitação.');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Dados recebidos:', data);
+                setCountID(data.body.response.Count);
+                return data.body.response.Count;
+            })
+            .catch(error => {
+                console.error('Erro na solicitação:', error);
+                setStatus('error');
+                // Trate erros aqui
+                throw error; // Propague o erro para que possa ser capturado pelo catch em createID
+            });
+    }
+
+    const createID = async (origem) => {
+        try{
+            const count = await handleAPISearch(origem);
+            const countPlus = count + 1;
+            const idNum = String(countPlus).padStart(4, '0');
+            console.log('idNum: ' + idNum);
+            if (origem === 'Brasileiro'){
+                newId = 'BB' + idNum;
+                console.log('newId: ' + newId);
+                setId(newId);            
+            }else if(origem === 'Mercosul'){
+                newId = 'MM' + idNum;                
+                console.log('newId: ' + newId);
+                setId(newId);
+            }else{
+                newId = 'FF' + idNum;
+                console.log('newId: ' + newId);
+                setId(newId);
+            };
+        }catch{
+
+        }        
+    }
+
+
+
+
     const handlePhotoPress = async () => {
         const foto = await pickImage();
         console.log(foto);
