@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, TouchableOpacity, ScrollView, Pressable, TextInput, Image, Alert} from 'react-native';
 import Altura from '../Entity/Altura';
-import takePicture from '../components/takepicture';
 import styles from '../styles/editarFichaStyles';
 import FaixaEtaria from '../Entity/FaixaEtaria';
 import Origem from '../Entity/Origem';
@@ -10,6 +9,8 @@ import Sexualidade from '../Entity/Sexualidade';
 import Peso from '../Entity/Peso';
 import Tatuagem from '../Entity/Tatuagem';
 import ModalBtn from '../components/ModalBtn';
+import ApiService from '../utils/ApiService';
+import pickImage from '../components/pickImage';
 
 const EditarFicha = ({ route, navigation }) => {
 
@@ -126,56 +127,14 @@ const EditarFicha = ({ route, navigation }) => {
             sexualidade: selectedSexualidade,
             peso: selectedPeso,
             tatuagem: selectedTatuagem,
-            image: image // Certifique-se de que `image` já foi atualizado antes de criar o objeto
-      };
+            image: image
+        };
     };
 
 
     const handleSalvarPress = async () => {
-        json = novaPessoa();
-        json.job = 'update';
-
-        console.log(JSON.stringify(json))
-        
-        fetch('https://tcy36fyg2j.execute-api.sa-east-1.amazonaws.com/Test/', {
-  
-          method: 'POST',
-  
-          headers: {
-  
-            'Content-Type': 'application/json',
-  
-          },
-  
-          body: JSON.stringify(json),
-  
-        })
-  
-        .then(response => {
-  
-          if (!response.ok) {
-            setStatus('Erro na solicitação.');
-            throw new Error('Erro na solicitação.');
-          }
-  
-          return response.json();
-  
-        })
-  
-        .then(data => {
-          console.log('resposta do server:', data);
-          alert('Dados atualizados com sucesso');
-          navigation.goBack();
-        })
-  
-        .catch(error => {
-  
-          console.error('Erro na solicitação:', error);
-          // Trate erros aqui
-  
-        });
-        
-      }
+        ApiService.handleSalvarPress(novaPessoa(), 'update', navigation);    
+    }
  
     const handlePhotoPress = async () =>{
         const foto = await pickImage();
@@ -183,7 +142,6 @@ const EditarFicha = ({ route, navigation }) => {
             if ( foto != false){       
                 setPicture(foto);            
         }
-
     }
 
     
@@ -205,7 +163,7 @@ const EditarFicha = ({ route, navigation }) => {
                 style={styles.input}
                 placeholder="NOME DO MALA..."
                 value={nome}
-                onChangeText={(text) => setNome(nome)}
+                onChangeText={(text) => setNome(text)}
                 />
         </View>
         <View style={styles.viewDocs}>

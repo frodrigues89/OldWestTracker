@@ -2,7 +2,6 @@ import { launchCamera } from 'react-native-image-picker';
 
 function takePicture() {
   return new Promise ((resolve, reject) => {
-  console.log ('entrei aqui');
   const options = {
     title: 'oldWestTracker',
     mediaType: 'photo',

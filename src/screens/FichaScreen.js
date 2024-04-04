@@ -4,7 +4,7 @@ import styles from '../styles/fichaScreenStyles';
 
 const FichaScreen = ({ route, navigation }) => {
   const { pessoa } = route.params;
-  const uri = 'https://oldwestimg.s3.sa-east-1.amazonaws.com/Pessoas/' + pessoa.id + '/foto.jpg';
+  const uri = pessoa.image;
 
   return (
     <View style={styles.fichaContainer}>

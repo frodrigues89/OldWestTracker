@@ -11,6 +11,7 @@ import Peso from '../Entity/Peso';
 import Tatuagem from '../Entity/Tatuagem';
 import Pessoa from '../Entity/Pessoa';
 import ModalBtn from '../components/ModalBtn';
+import ApiService from '../utils/ApiService';
 
 const Cadastrar = ({ navigation }) => {
 
@@ -156,60 +157,12 @@ const Cadastrar = ({ navigation }) => {
         setIsOrigemSelected(false);
     };
 
-    const handleSalvarPress = () => {
-        if (isOrigemSelected){
-            const pessoa = createPessoaInstance();
-            const formData = new FormData();
-            const file = { uri: pessoa.image, type: 'image/jpeg', name: 'foto.jpg' };
-            // Adiciona o arquivo de imagem ao formData
-            formData.append('file', file);
-
-            // Adiciona todos os atributos da pessoa ao formData
-            for (const [key, value] of Object.entries(pessoa)) {
-                formData.append(key, value);
-            }
-            // formData.append('job','put');
-            formData.job = 'put';
-            // Configura a requisição
-            const requestOptions = {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                  },
-            };
-
-            console.log(formData);
-            alert(JSON.stringify(formData));
-            /*
-            fetch('https://tcy36fyg2j.execute-api.sa-east-1.amazonaws.com/Test/', requestOptions)
-            .then(response => {
-    
-            if (!response.ok) {
-                throw new Error('Erro na solicitação.');
-            }
-    
-            return response.json();
-    
-            })
-    
-            .then(data => {
-            console.log('resposta da API:', data);
-            alert('Dados atualizados com sucesso');
-            navigation.navigate('FichaScreen', { pessoa: pessoa });
-            })
-    
-            .catch(error => {
-    
-            console.error('Erro na solicitação à API:', error);
-            // Trate erros aqui
-    
-            });
-        }else{
-            alert('Você deve selecionar a origem para cadastar um indivíduo.');
-            return;
-            */
-        } 
+    const handleSalvarPress = async () => {
+        if (isOrigemSelected) {
+            ApiService.handleSalvarPress(createPessoaInstance(), 'put', navigation);
+        } else {
+            alert('Você deve selecionar a origem para cadastrar um indivíduo.');
+        }
     };
  
     const handleAPISearch = (origem) => {
@@ -262,10 +215,7 @@ const Cadastrar = ({ navigation }) => {
 
         }        
     }
-
-
-
-
+    
     const handlePhotoPress = async () => {
         const foto = await pickImage();
         console.log(foto);
