@@ -10,7 +10,6 @@ class ApiService {
     const fotoName = `foto`;
     const key = `${directory}/${fotoName}.${format}`;
     try {
-      
       const blob = await fetch(pessoa.image).then(response => response.blob());
 
       // Faça o upload da imagem para o S3

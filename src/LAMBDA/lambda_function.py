@@ -3,6 +3,7 @@ import boto3
 from boto3.dynamodb.conditions import Key, Attr
 from time import gmtime, strftime
 from functools import reduce
+from getJob import getJob
 from putJob import putJob
 from scanJob import scanJob
 from countJob import countJob
@@ -18,16 +19,8 @@ def lambda_handler(event, context):
     job = event['job']
 
     if job == "get" :
-        response = table.get_item(
-            Key={
-                'id': id
-            }
-        )
-    
-        return {
-            'statusCode': 200,
-            'body': response['Item']
-        }
+        
+        return getJob(event, context)
             
     elif job == "put" :
         
