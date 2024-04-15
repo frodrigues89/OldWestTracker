@@ -89,6 +89,17 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginLeft: '10%',
   },
+  inputEndereco: {
+    borderWidth: 1,
+    borderColor: 'rgb(23,23,150)',
+    borderRadius: 8,
+    marginBottom: 20,
+    height: 100,
+    width: '80%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginLeft: '10%',
+  },
   inputRg: {
     flex: 1,
     borderWidth: 1,

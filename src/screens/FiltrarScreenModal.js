@@ -26,9 +26,6 @@ const FiltrarScreenModal = () => {
     const [isAtividadeModalVisible, setAtividadeModalVisible] = useState(false);
     const [isRacaModalVisible, setRacaModalVisible] = useState(false);
 
-    const { width } = useWindowDimensions;
-    const { height } = useWindowDimensions;
-
     // métodos para tratar a visibilidade do modal.
     const toggleAlturaModal = () => {
         setAlturaModalVisible(!isAlturaModalVisible);
@@ -109,7 +106,7 @@ const FiltrarScreenModal = () => {
         setSelectedAtividade(itemValue);
         toggleAtividadeModal();
     };
-    const handleSelectRaca = (itemValue) => {
+    const handleSelectCorDePele = (itemValue) => {
         setSelectedRaca(itemValue);
         toggleRacaModal();
     };
@@ -190,14 +187,14 @@ const FiltrarScreenModal = () => {
                     style={[styles.modalBtn, selectedRaca !== "" ? styles.changedButton : null]}
                     onPress={toggleRacaModal}>
                     <Text style={styles.modalBtnTxt}>
-                        {selectedRaca || 'Raça'}
+                        {selectedRaca || 'Cor de Pele'}
                     </Text>
                 </Pressable>
                 <ModalBtn
                     isVisible={isRacaModalVisible}
                     toggleModal={toggleRacaModal}
                     selectedValue={selectedRaca}
-                    onValueChange={handleSelectRaca}
+                    onValueChange={handleSelectCorDePele}
                     items={Raca.getAllValues()} />
             </View>
             <View> 

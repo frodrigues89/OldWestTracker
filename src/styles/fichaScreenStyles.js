@@ -111,7 +111,13 @@ const styles = StyleSheet.create({
     color: 'black',
     fontSize: 20,
     marginVertical: 3,
+  },  
+  fichaObs: {
+    color: 'black',
+    fontSize: 20,
+    marginVertical: 3,
   },
+
   input: {
     borderWidth: 1,
     borderColor: '#ccc',

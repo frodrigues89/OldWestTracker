@@ -13,7 +13,8 @@ const ResultadoBusca = () => {
 
     //esse método pode enviar os filtros como POST para a API
     const loadData = async () => {
-      filtros.job = "scan"
+      filtros.job = "scan";
+      filtros.foto= "";
       console.log(JSON.stringify(filtros))
       
       fetch('https://tcy36fyg2j.execute-api.sa-east-1.amazonaws.com/Test/', {
@@ -44,6 +45,7 @@ const ResultadoBusca = () => {
       .then(data => {
 
         console.log('Dados recebidos:', data);
+        console.log(data.body.response.Items);
         setData(data.body.response.Items);
 
       })
@@ -74,8 +76,9 @@ const ResultadoBusca = () => {
           <FlatList
             data={data}
             renderItem={({ item }) => {
+              console.log(item)
               const { nome, origem, image, atividade, id } = item
-              const uri = 'https://oldwestimg.s3.sa-east-1.amazonaws.com/Pessoas/' + id + '/foto.jpg';
+              const uri = image;
               return (
                 <View style={styles.itemContainer}>
                   

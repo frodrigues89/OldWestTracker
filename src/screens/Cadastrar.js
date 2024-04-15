@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, TouchableOpacity, ScrollView, Pressable, TextInput, Image, Alert} from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView, Pressable, TextInput, Image} from 'react-native';
 import Altura from '../Entity/Altura';
 import pickImage from '../components/pickImage';
 import styles from '../styles/cadastrarStyles';
@@ -10,10 +10,12 @@ import Sexualidade from '../Entity/Sexualidade';
 import Peso from '../Entity/Peso';
 import Tatuagem from '../Entity/Tatuagem';
 import Pessoa from '../Entity/Pessoa';
+import Atividade from '../Entity/Atividade';
+import Raca from '../Entity/Raca';
 import ModalBtn from '../components/ModalBtn';
 import ApiService from '../utils/ApiService';
 
-const Cadastrar = ({ navigation }) => {
+const Cadastrar = ({route, navigation }) => {
 
 
     // Estados para controlar a visibilidade de cada modal
@@ -23,7 +25,10 @@ const Cadastrar = ({ navigation }) => {
     const [isSexoModalVisible, setSexoModalVisible] = useState(false);
     const [isSexualidadeModalVisible, setSexualidadeModalVisible] = useState(false);
     const [isPesoModalVisible, setPesoModalVisible] = useState(false);
-    const [isTatuagemModalVisible, setTatuagemModalVisible] = useState(false);
+    const [isTatuagemModalVisible, setTatuagemModalVisible] = useState(false);    
+    const [isAtividadeModalVisible, setAtividadeModalVisible] = useState(false);
+    const [isRacaModalVisible, setRacaModalVisible] = useState(false);
+
 
     // métodos para tratar a visibilidade do modal.
     const toggleAlturaModal = () => {
@@ -51,24 +56,85 @@ const Cadastrar = ({ navigation }) => {
 
     const toggleTatuagemModal = () => {
         setTatuagemModalVisible(!isTatuagemModalVisible);
+    }; 
+
+    const toggleAtividadeModal = () => {
+        setAtividadeModalVisible(!isAtividadeModalVisible)
     };
 
-    //variáveis de características.
-    const [image,setImage ] = useState('https://oldwesttracker.s3.sa-east-1.amazonaws.com/logo.png');
-    const [nome,setNome ] = useState("");
-    const [rg, setRg ]  = useState("");
-    const [cpf, setCpf ] = useState("");
-    const [dataNascimento, setDataNascimento] = useState("");
-    const [id, setId] = useState("");
-    const [mae, setMae] = useState("");
+    const toggleRacaModal = () => {
+        setRacaModalVisible(!isRacaModalVisible)
+    };
 
-    const [selectedAltura, setSelectedAltura] = useState("");
-    const [selectedFaixaEtaria, setSelectedFaixaEtaria] = useState("");
-    const [selectedOrigem, setSelectedOrigem] = useState("");
-    const [selectedSexo, setSelectedSexo] = useState("");
-    const [selectedSexualidade, setSelectedSexualidade] = useState("");
-    const [selectedPeso, setSelectedPeso] = useState("");    
-    const [selectedTatuagem, setSelectedTatuagem] = useState("");
+    const [job, setJob] = useState('');    
+    const [pessoa, setPessoa] = useState(new Pessoa());
+    useEffect(() => {
+        if (route.params && route.params.pessoa){
+            setPessoa(route.params.pessoa);
+            updatePessoa(route.params.pessoa);
+            setJob('update');
+        } else {
+            console.log('else');
+            setJob('put');
+        }
+    }, [route.params]);
+    
+    function updatePessoa(pessoa) {
+        setImage(pessoa.image);
+        setNome(pessoa.nome);
+        setId(pessoa.id);
+        setRg(pessoa.rg);
+        setCpf(pessoa.cpf);
+        setDataNascimento(pessoa.dataNascimento);
+        setMae(pessoa.mae);
+        setPai(pessoa.pai);
+        setEstadoCivil(pessoa.estadoCivil);
+        setNaturalidade(pessoa.naturalidade);
+        setCEP(pessoa.cep);
+        setEndereco(pessoa.endereco);
+        setOcupacao(pessoa.ocupacao);
+        setTelResidencial(pessoa.telResidencial);
+        setTelCelular(pessoa.telCelular);
+        setObservacoes(pessoa.observacoes);
+        setSelectedAltura(pessoa.altura);
+        setSelectedFaixaEtaria(pessoa.faixaEtaria);
+        setSelectedOrigem(pessoa.origem);
+        setSelectedSexo(pessoa.sexo);
+        setSelectedSexualidade(pessoa.sexualidade);
+        setSelectedPeso(pessoa.peso);
+        setSelectedTatuagem(pessoa.tatuagem);
+        setSelectedAtividade(pessoa.atividade);
+        setSelectedRaca(pessoa.raca);
+    }
+    
+
+    //variáveis de características.
+    const [image,setImage ] = useState(pessoa.foto);
+    const [nome,setNome ] = useState(pessoa.nome);
+    const [id, setId] = useState(pessoa.id);
+    const [rg, setRg ]  = useState(pessoa.rg);
+    const [cpf, setCpf ] = useState(pessoa.cpf);
+    const [dataNascimento, setDataNascimento] = useState(pessoa.dataNascimento);
+    const [mae, setMae] = useState(pessoa.mae);
+    const [pai, setPai] = useState(pessoa.pai);
+    const [estadoCivil, setEstadoCivil] = useState(pessoa.estadoCivil);
+    const [naturalidade, setNaturalidade] = useState(pessoa.naturalidade);
+    const [cep , setCEP] = useState(pessoa.cep);
+    const [endereco, setEndereco] = useState(pessoa.endereco);
+    const [ocupacao, setOcupacao] = useState(pessoa.ocupacao);
+    const [telResidencial, setTelResidencial] = useState(pessoa.telResidencial);
+    const [telCelular, setTelCelular] = useState(pessoa.telCelular);
+    const [observacoes, setObservacoes] = useState(pessoa.observacoes);
+
+    const [selectedAltura, setSelectedAltura] = useState(pessoa.altura);
+    const [selectedFaixaEtaria, setSelectedFaixaEtaria] = useState(pessoa.faixaEtaria);
+    const [selectedOrigem, setSelectedOrigem] = useState(pessoa.origem);
+    const [selectedSexo, setSelectedSexo] = useState(pessoa.sexo);
+    const [selectedSexualidade, setSelectedSexualidade] = useState(pessoa.sexualidade);
+    const [selectedPeso, setSelectedPeso] = useState(pessoa.peso);    
+    const [selectedTatuagem, setSelectedTatuagem] = useState(pessoa.tatuagem);    
+    const [selectedAtividade, setSelectedAtividade] = useState(pessoa.atividade);
+    const [selectedRaca, setSelectedRaca] = useState(pessoa.raca);
   
 
     //obrigando o infeliz a usar o botão origem:
@@ -115,6 +181,14 @@ const Cadastrar = ({ navigation }) => {
         setSelectedTatuagem(itemValue);
         toggleTatuagemModal();
     };
+    const handleSelectAtividade = (itemValue) => {
+        setSelectedAtividade(itemValue);
+        toggleAtividadeModal();
+    };
+    const handleSelectCorDePele = (itemValue) => {
+        setSelectedRaca(itemValue);
+        toggleRacaModal();
+    };
 
     // Função para criar a instância da Pessoa
     const createPessoaInstance = () => {
@@ -132,7 +206,18 @@ const Cadastrar = ({ navigation }) => {
         novaPessoa.origem = selectedOrigem;
         novaPessoa.sexo = selectedSexo;
         novaPessoa.sexualidade = selectedSexualidade;
-        novaPessoa.tatuagem = selectedTatuagem;
+        novaPessoa.tatuagem = selectedTatuagem;        
+        novaPessoa.atividade = selectedAtividade;
+        novaPessoa.raca = selectedRaca;
+        novaPessoa.pai = pai;
+        novaPessoa.estadoCivil = estadoCivil;
+        novaPessoa.naturalidade = naturalidade;
+        novaPessoa.cep = cep;
+        novaPessoa.endereco = endereco;
+        novaPessoa.ocupacao = ocupacao;
+        novaPessoa.telCelular = telCelular;
+        novaPessoa.telResidencial = telResidencial;
+        novaPessoa.observacoes = observacoes;
 
         return novaPessoa;
     };
@@ -147,13 +232,24 @@ const Cadastrar = ({ navigation }) => {
         setDataNascimento("");
         setId("");
         setMae("");
+        setPai("");
+        setEstadoCivil("");
+        setNaturalidade("");
+        setCEP("");
+        setEndereco("");
+        setOcupacao("");
+        setTelCelular("");
+        setTelResidencial("");
+        setObservacoes("");
         setSelectedAltura("");
         setSelectedPeso("");
         setSelectedFaixaEtaria("");
         setSelectedOrigem("");
         setSelectedSexo("");
         setSelectedSexualidade("");
-        setSelectedTatuagem("");
+        setSelectedTatuagem("");        
+        setSelectedAtividade("");
+        setSelectedRaca("");
         setIsOrigemSelected(false);
     };
 
@@ -289,6 +385,59 @@ const Cadastrar = ({ navigation }) => {
                     />
             </View>
         </View>
+        <View style={styles.viewDocs}>
+            <View style={styles.viewDocsItems}> 
+                <Text style={styles.txt}>Estado Civil: </Text>
+                <TextInput
+                    style={styles.inputRg}
+                    placeholder="Estado Civil"
+                    value={estadoCivil}
+                    onChangeText={(text) => setEstadoCivil(text)}
+                    />
+            </View>
+        
+            <View style={styles.viewDocsItems}>
+                <Text style={styles.txt}>Natural / UF: </Text>
+                <TextInput
+                    style={styles.inputRg}
+                    placeholder="Natural / UF"
+                    value={naturalidade}
+                    onChangeText={(text) => setNaturalidade(text)}
+                    />
+            </View>
+        </View>
+        <View style={styles.viewDocs}>
+            <View style={styles.viewDocsItems}> 
+                <Text style={styles.txt}>CEP: </Text>
+                <TextInput
+                    style={styles.inputRg}
+                    placeholder="CEP"
+                    value={cep}
+                    onChangeText={(text) => setCEP(text)}
+                    />
+            </View>
+        
+            <View style={styles.viewDocsItems}>
+                <Text style={styles.txt}>Ocupação: </Text>
+                <TextInput
+                    style={styles.inputRg}
+                    placeholder="Ocupção"
+                    value={ocupacao}
+                    onChangeText={(text) => setOcupacao(text)}
+                    />
+            </View>
+        </View>
+        <View>
+            <Text style={[styles.txt, {marginLeft: '10%'}]}>Endereço: </Text>
+            <TextInput
+                style={styles.inputEndereco}
+                placeholder="Endereço"
+                value={endereco}
+                multiline={true}
+                numberOfLines={4}
+                onChangeText={(text) => setEndereco(text)}
+                />
+        </View>
         <View>
             <Text style={[styles.txt, {marginLeft: '10%'}]}>Nome da mãe: </Text>
             <TextInput
@@ -298,38 +447,62 @@ const Cadastrar = ({ navigation }) => {
                 onChangeText={(text) => setMae(text)}
                 />
         </View>
-        
-        
-        
         <View>
-            <Pressable
-                onPress={toggleAlturaModal}
-                style={[styles.modalBtn, selectedAltura !== "" ? styles.changedButton : null]}>
-                <Text style={styles.modalBtnTxt}>
-                    {selectedAltura || 'Altura'}
-                </Text>
-            </Pressable>
-            <ModalBtn
-                isVisible={isAlturaModalVisible}
-                toggleModal={toggleAlturaModal}
-                selectedValue={selectedAltura}
-                onValueChange={handleSelectAltura}
-                items={dropdownAltura} />
+            <Text style={[styles.txt, {marginLeft: '10%'}]}>Nome do Pai: </Text>
+            <TextInput
+                style={styles.input}
+                placeholder="NOME DO PAI"
+                value={pai}
+                onChangeText={(text) => setPai(text)}
+                />
+        </View>        
+        <View style={styles.viewDocs}>
+            <View style={styles.viewDocsItems}> 
+                <Text style={styles.txt}>Tel. Residencial: </Text>
+                <TextInput
+                    style={styles.inputRg}
+                    placeholder="(##)####.####"
+                    value={telResidencial}
+                    onChangeText={(text) => setTelResidencial(text)}
+                    />
+            </View>
+        
+            <View style={styles.viewDocsItems}>
+                <Text style={styles.txt}>Tel. Celular: </Text>
+                <TextInput
+                    style={styles.inputRg}
+                    placeholder="(##)9####.####"
+                    value={telCelular}
+                    onChangeText={(text) => setTelCelular(text)}
+                    />
+            </View>
         </View>
         <View>
-            <Pressable
-                style={[styles.modalBtn, selectedFaixaEtaria !== "" ? styles.changedButton : null]}
-                onPress={toggleFaixaEtariaModal}>
-                <Text style={styles.modalBtnTxt}>
-                    {selectedFaixaEtaria || 'Faixa Etaria'}
-                </Text>
+            <Text style={[styles.txt, {marginLeft: '10%'}]}>Observações: </Text>
+            <TextInput
+                style={styles.inputEndereco}
+                placeholder="Observações:"
+                value={observacoes}
+                multiline={true}
+                numberOfLines={4}
+                onChangeText={(text) => setObservacoes(text)}
+                />
+        </View>
+        
+        <View>
+            <Pressable 
+                style={[styles.modalBtn, selectedSexo !== "" ? styles.changedButton : null]}
+                onPress={toggleSexoModal}>
+            <Text style={styles.modalBtnTxt}>
+                {selectedSexo || 'Sexo'}
+            </Text>
             </Pressable>
             <ModalBtn
-                isVisible={isFaixaEtariaModalVisible}
-                toggleModal={toggleFaixaEtariaModal}
-                selectedValue={selectedFaixaEtaria}
-                onValueChange={handleSelectFaixaEtaria}
-                items={dropdownFaixaEtaria} />
+                isVisible={isSexoModalVisible}
+                toggleModal={toggleSexoModal}
+                selectedValue={selectedSexo}
+                onValueChange={handleSelectSexo}
+                items={dropdownSexo} />
         </View>
         <View> 
             <Pressable 
@@ -345,8 +518,67 @@ const Cadastrar = ({ navigation }) => {
                 selectedValue={selectedOrigem}
                 onValueChange={handleSelectOrigem}
                 items={dropdownOrigem} />
+        </View>
+        <View> 
+                <Pressable 
+                    style={[styles.modalBtn, selectedRaca !== "" ? styles.changedButton : null]}
+                    onPress={toggleRacaModal}>
+                    <Text style={styles.modalBtnTxt}>
+                        {selectedRaca || 'Cor de Pele'}
+                    </Text>
+                </Pressable>
+                <ModalBtn
+                    isVisible={isRacaModalVisible}
+                    toggleModal={toggleRacaModal}
+                    selectedValue={selectedRaca}
+                    onValueChange={handleSelectCorDePele}
+                    items={Raca.getAllValues()} />
+        </View>
+        <View> 
+                <Pressable 
+                    style={[styles.modalBtn, selectedAtividade !== "" ? styles.changedButton : null]}
+                    onPress={toggleAtividadeModal}>
+                    <Text style={styles.modalBtnTxt}>
+                        {selectedAtividade || 'Atividade'}
+                    </Text>
+                </Pressable>
+                <ModalBtn
+                    isVisible={isAtividadeModalVisible}
+                    toggleModal={toggleAtividadeModal}
+                    selectedValue={selectedAtividade}
+                    onValueChange={handleSelectAtividade}
+                    items={Atividade.getAllValues()} />
+        </View>
+        <View>
+            <Pressable
+                style={[styles.modalBtn, selectedFaixaEtaria !== "" ? styles.changedButton : null]}
+                onPress={toggleFaixaEtariaModal}>
+                <Text style={styles.modalBtnTxt}>
+                    {selectedFaixaEtaria || 'Faixa Etaria'}
+                </Text>
+            </Pressable>
+            <ModalBtn
+                isVisible={isFaixaEtariaModalVisible}
+                toggleModal={toggleFaixaEtariaModal}
+                selectedValue={selectedFaixaEtaria}
+                onValueChange={handleSelectFaixaEtaria}
+                items={dropdownFaixaEtaria} />
         </View> 
-
+        <View>
+            <Pressable
+                onPress={toggleAlturaModal}
+                style={[styles.modalBtn, selectedAltura !== "" ? styles.changedButton : null]}>
+                <Text style={styles.modalBtnTxt}>
+                    {selectedAltura || 'Altura'}
+                </Text>
+            </Pressable>
+            <ModalBtn
+                isVisible={isAlturaModalVisible}
+                toggleModal={toggleAlturaModal}
+                selectedValue={selectedAltura}
+                onValueChange={handleSelectAltura}
+                items={dropdownAltura} />
+        </View>
         <View> 
             <Pressable 
                 style={[styles.modalBtn, selectedPeso !== "" ? styles.changedButton : null]}
@@ -361,21 +593,6 @@ const Cadastrar = ({ navigation }) => {
                 selectedValue={selectedPeso}
                 onValueChange={handleSelectPeso}
                 items={dropdownPeso} />
-        </View>
-        <View>
-            <Pressable 
-                style={[styles.modalBtn, selectedSexo !== "" ? styles.changedButton : null]}
-                onPress={toggleSexoModal}>
-            <Text style={styles.modalBtnTxt}>
-                {selectedSexo || 'Sexo'}
-            </Text>
-            </Pressable>
-            <ModalBtn
-                isVisible={isSexoModalVisible}
-                toggleModal={toggleSexoModal}
-                selectedValue={selectedSexo}
-                onValueChange={handleSelectSexo}
-                items={dropdownSexo} />
         </View>
         <View>
             <Pressable

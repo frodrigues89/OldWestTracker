@@ -8,7 +8,6 @@ import ResultadoBusca from './src/screens/ResultadoBusca'; //tela resultadoBusca
 import FichaScreen, {FichaScreenOptions} from './src/screens/FichaScreen'; //tela de ficha
 import Login from './src/screens/Login'; //tela de login
 import Cadastrar from './src/screens/Cadastrar';
-import EditarFicha from './src/screens/EditarFicha';
 import { navigationOptions } from './src/utils/navigationOptions';
 const Stack = createStackNavigator();
 
@@ -22,7 +21,6 @@ const App = () => {
         <Stack.Screen name="ResultadoBusca" component={ResultadoBusca}/>
         <Stack.Screen name="FichaScreen" component={FichaScreen} options={FichaScreenOptions}/>
         <Stack.Screen name="Cadastrar" component={Cadastrar}/>
-        <Stack.Screen name="EditarFicha" component={EditarFicha}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -13,6 +13,7 @@ class Pessoa {
         this.tatuagem = '';
         this.atividade = '';
         this.raca = '';
+        this.foto = 'https://oldwesttracker.s3.sa-east-1.amazonaws.com/logo.png';
     }
 }
 

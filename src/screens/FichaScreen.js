@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, Image, Pressable } from 'react-native';
 import styles from '../styles/fichaScreenStyles';
+import { ScrollView } from 'react-native';
 
 const FichaScreen = ({ route, navigation }) => {
   const { pessoa } = route.params;
@@ -10,20 +11,22 @@ const FichaScreen = ({ route, navigation }) => {
     <View style={styles.fichaContainer}>
       <Text style={styles.nomeText}>{pessoa.nome}</Text>
       <Text style={styles.fichaText}>ID: {pessoa.id}</Text>
-      <Image source={{ uri: uri }} style={styles.fichaIMG} />
-      <View>
+      <ScrollView>
+        <Image source={{ uri: uri }} style={styles.fichaIMG} />
         <Text style={styles.fichaText}>RG: {pessoa.rg}</Text>
         <Text style={styles.fichaText}>CPF: {pessoa.cpf}</Text>
         <Text style={styles.fichaText}>Data de Nascimento: {pessoa.dataNascimento}</Text>
-        <Text style={styles.fichaText}>Altura: {pessoa.altura}</Text>
-        <Text style={styles.fichaText}>Peso: {pessoa.peso}</Text>
-        <Text style={styles.fichaText}>Origem: {pessoa.origem}</Text>
-        <Text style={styles.fichaText}>Faixa Etária: {pessoa.faixaEtaria}</Text>
-        <Text style={styles.fichaText}>Etnia: {pessoa.raca}</Text>
-        <Text style={styles.fichaText}>Sexo: {pessoa.sexo}</Text>
-        <Text style={styles.fichaText}>Sexualidade: {pessoa.sexualidade}</Text>
-        <Text style={styles.fichaText}>Tatuagem: {pessoa.tatuagem}</Text>
-      </View>
+        <Text style={styles.fichaText}>Mãe: {pessoa.mae}</Text>
+        <Text style={styles.fichaText}>Pai: {pessoa.pai}</Text>
+        <Text style={styles.fichaText}>Estado Civil: {pessoa.estadoCivil}</Text>
+        <Text style={styles.fichaText}>Naturalidade: {pessoa.naturalidade}</Text>
+        <Text style={styles.fichaText}>Ocupação: {pessoa.ocupacao}</Text>
+        <Text style={styles.fichaText}>CEP: {pessoa.cep}</Text>
+        <Text style={styles.fichaText}>Endereço: {pessoa.endereco}</Text>
+        <Text style={styles.fichaText}>Tel. Residencial: {pessoa.telResidencial}</Text>
+        <Text style={styles.fichaText}>Tel. Celular: {pessoa.telCelular}</Text>
+        <Text style={styles.fichaObs} numberOfLines={null}>Observações: {pessoa.observacoes}</Text>
+      </ScrollView>
     </View>
   );
 };
@@ -36,7 +39,7 @@ export const FichaScreenOptions = ({ navigation, route }) => {
   const { pessoa } = route.params;
 
   const handleEditarBtn = () => {
-    navigation.navigate('EditarFicha', { pessoa }); // Passe pessoa como parâmetro para a tela Cadastrar
+    navigation.navigate('Cadastrar', { pessoa }); // Passe pessoa como parâmetro para a tela Cadastrar
   };
 
   return {
