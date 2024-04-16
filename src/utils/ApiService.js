@@ -4,11 +4,11 @@ import { uploadFileToS3 } from './s3Uploader';
 class ApiService {
   static async handleSalvarPress(pessoa, jobParam, navigation) {
     const parts = pessoa.image.split('.');
-    const format = parts[parts.length - 1];
-    const contentType = `image/${format}`;
-    const directory = `Pessoas/${format}`;
+    const extension = parts[parts.length - 1];
+    const contentType = `image/${extension}`;
+    const directory = `Pessoas/${extension}`;
     const fotoName = `foto`;
-    const key = `${directory}/${fotoName}.${format}`;
+    const key = `${directory}/${fotoName}.${extension}`;
     try {
       const blob = await fetch(pessoa.image).then(response => response.blob());
 

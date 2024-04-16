@@ -4,8 +4,8 @@ import AWS from 'aws-sdk';
 
 // Configura as credenciais AWS
 AWS.config.update({
-  accessKeyId: '',
-  secretAccessKey: '',
+  accessKeyId: 'AKIA3FLD4MAWRZK2SDMF',
+  secretAccessKey: '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',
   region: 'sa-east-1', // Ex: 'us-east-1'
 });
 
