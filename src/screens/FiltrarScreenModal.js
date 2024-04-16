@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, ScrollView, Pressable, useWindowDimensions} from 'react-native';
+import { View, Text, ScrollView, Pressable} from 'react-native';
 import Altura from '../Entity/Altura';
 import styles from '../styles/filtrarScreenStyles';
 import FaixaEtaria from '../Entity/FaixaEtaria';

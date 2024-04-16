@@ -72,6 +72,7 @@ const Cadastrar = ({route, navigation }) => {
         if (route.params && route.params.pessoa){
             setPessoa(route.params.pessoa);
             updatePessoa(route.params.pessoa);
+            setIsOrigemSelected(true);
             setJob('update');
         } else {
             console.log('else');
@@ -255,7 +256,7 @@ const Cadastrar = ({route, navigation }) => {
 
     const handleSalvarPress = async () => {
         if (isOrigemSelected) {
-            ApiService.handleSalvarPress(createPessoaInstance(), 'put', navigation);
+            ApiService.handleSalvarPress(createPessoaInstance(), job, navigation, novaFoto);
         } else {
             alert('Você deve selecionar a origem para cadastrar um indivíduo.');
         }
@@ -312,10 +313,13 @@ const Cadastrar = ({route, navigation }) => {
         }        
     }
     
+    const [novaFoto, setNovaFoto] = useState(false);
+
     const handlePhotoPress = async () => {
         const foto = await pickImage();
         console.log(foto);
-            if ( foto != false){       
+            if ( foto != false){
+                setNovaFoto(true);      
                 setImage(foto);            
         }
     }

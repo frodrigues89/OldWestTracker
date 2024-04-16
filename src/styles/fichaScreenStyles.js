@@ -107,6 +107,12 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginVertical: 10,
   },
+  fichaTextEnum: {
+    color: 'black',
+    fontSize: 20,
+    marginVertical: 3,
+    fontWeight: 'bold',
+  },  
   fichaText: {
     color: 'black',
     fontSize: 20,
@@ -116,6 +122,7 @@ const styles = StyleSheet.create({
     color: 'black',
     fontSize: 20,
     marginVertical: 3,
+    fontWeight: 'bold',
   },
 
   input: {

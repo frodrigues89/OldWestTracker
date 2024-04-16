@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { uploadFileToS3 } from './s3Uploader';
 
 class ApiService {
-  static async handleSalvarPress(pessoa, jobParam, navigation) {
+  static async handleSalvarPress(pessoa, jobParam, navigation, novaFoto) {
     const parts = pessoa.image.split('.');
     const extension = parts[parts.length - 1];
     const contentType = `image/${extension}`;
@@ -10,16 +10,19 @@ class ApiService {
     const fotoName = `foto`;
     const key = `${directory}/${fotoName}.${extension}`;
     try {
-      const blob = await fetch(pessoa.image).then(response => response.blob());
 
-      // Faça o upload da imagem para o S3
-      const imageUrl = await uploadFileToS3(
-        blob,
-        key,
-        'oldwestimg',
-        contentType // Defina o tipo de conteúdo da imagem aqui
-      );
-      pessoa.image = imageUrl;
+      if (novaFoto){
+        const blob = await fetch(pessoa.image).then(response => response.blob());
+
+        // Faça o upload da imagem para o S3
+        const imageUrl = await uploadFileToS3(
+          blob,
+          key,
+          'oldwestimg',
+          contentType // Defina o tipo de conteúdo da imagem aqui
+        );
+        pessoa.image = imageUrl;
+      };
 
       // Se o upload da imagem for bem-sucedido, envie os dados da pessoa para o Lambda
       const requestOptionsLambda = {
