@@ -86,7 +86,7 @@ export const FichaScreenOptions = ({ navigation, route }) => {
     headerRight: () => (
       // Botão que aparece apenas nesta tela
       <Pressable onPress={handleEditarBtn}>
-        <Text style={styles.navTabBtn} >Editar</Text>
+        <Text style={styles.navTabBtn} >✎</Text>
       </Pressable>
     ),
   };
