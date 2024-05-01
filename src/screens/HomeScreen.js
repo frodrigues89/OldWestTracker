@@ -49,11 +49,13 @@ const HomeScreen = (user) => {
                     <Text style={styles.buttonText}>CARACTERÍSTICAS </Text>
                 </Pressable>
             </View>
+            {/*
             <View style={styles.searchContainer}>
                 <Pressable style={styles.button} onPress={handleCadastrarPress}>
                     <Text style={styles.buttonText}>CADASTRAR</Text>
                 </Pressable>
             </View>
+            */}
         </View>
         );
     };

@@ -3,9 +3,12 @@
 import AWS from 'aws-sdk';
 
 // Configura as credenciais AWS
+const keyId = 'AKIA3FLD4MAWRZK2SDMF';
+const encriptedKey = '';
+
 AWS.config.update({
-  accessKeyId: 'AKIA3FLD4MAWRZK2SDMF',
-  secretAccessKey: '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',
+  accessKeyId: keyId,
+  secretAccessKey: '',
   region: 'sa-east-1', // Ex: 'us-east-1'
 });
 
