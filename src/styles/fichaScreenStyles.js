@@ -22,10 +22,8 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   navTabBtn:{
-    flexDirection: 'row',
-    width: '20%',
     fontWeight: 'bold',
-    fontSize: 20,
+    fontSize: 16,
     color: 'rgb(23,23,150)',
     marginRight: '10%',
   },
