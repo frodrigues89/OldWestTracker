@@ -23,9 +23,9 @@ const styles = StyleSheet.create({
   },
   navTabBtn:{
     fontWeight: 'bold',
-    fontSize: 16,
+    fontSize: 30,
     color: 'rgb(23,23,150)',
-    marginRight: '10%',
+    padding: 5
   },
   txt: {
     color: 'black',
