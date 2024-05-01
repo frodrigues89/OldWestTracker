@@ -22,6 +22,7 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   navTabBtn:{
+    width: '20%',
     fontWeight: 'bold',
     fontSize: 20,
     color: 'rgb(23,23,150)',
